@@ -2,15 +2,14 @@
 <html lang="en" class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
 <head>
     <meta charset="UTF-8">
-    <title>Luke Priest | IT Technician</title>
+    <title>Luke Priest's Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Luke Priest's professional portfolio showcasing experience as an IT Technician, certifications, projects, networking, hardware, and customer support.">
     <meta name="author" content="Luke Priest">
     <meta name="keywords" content="Luke Priest, Portfolio, IT Technician, CompTIA A+, CompTIA Network+, Dayton STEM School" >
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link href="./dist/output.css" rel="stylesheet">
+    <link href="./src/output.css" rel="stylesheet">
 
-    <link rel="canonical" href="https://lukepriest.work" />
     <meta property="og:title" content="Luke Priest's Portfolio" />
     <meta property="og:description" content="Accredited IT Technician in Dayton, Ohio" />
     <meta property="og:image" content="https://lukepriest.work/img/Me.avif" />
@@ -439,17 +438,41 @@ document.addEventListener('DOMContentLoaded', () => {
     </button>
 </div>
 
-<div class="fixed top-4 right-4 md:top-8 md:right-16 z-20">
-    <button tabindex="0" onclick="openContactPopup()"
-            class="md:inline-block text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 transition focus:outline-none"
-            aria-label="Contact Me">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-             class="feather feather-message-square">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-        </svg>
-    </button>
-</div>
+<nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 backdrop-blur-lg bg-white/30 dark:bg-gray-900/30 border border-gray-200/30 dark:border-gray-700/30 rounded-full shadow-lg px-6 py-3 max-w-max">
+  <div class="flex items-center space-x-6">
+    <!-- Nav Links -->
+    <a href="index.html" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 font-medium transition-colors">Home</a>
+    <a href="/Projects/index.html" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 font-medium transition-colors">Projects</a>
+    <a href="Experience/index.html" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 font-medium transition-colors">Experiences</a>
+    <a href="WBL/index.html" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 font-medium transition-colors">WBL</a>
+    <a href="STEM/index.html" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 font-medium transition-colors">STEM</a>
+    <a href="Coding/index.html" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 font-medium transition-colors">Coding</a>
+  </div>
+</nav>
+
+<style>
+  nav a {
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+  }
+  nav a:hover {
+    background-color: rgba(147, 197, 253, 0.3); /* light blue hover */
+  }
+  @media (max-width: 768px) {
+    nav {
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      padding: 0.75rem 1rem;
+    }
+    nav div {
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+  }
+</style>
+
 
 <header
     class="flex flex-col md:flex-row items-center justify-between min-h-[60vh] md:min-h-screen px-4 md:px-16 py-8 md:py-12 bg-gradient-to-br from-blue-200 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-blue-900 relative overflow-hidden">
@@ -476,15 +499,9 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="flex-1 w-full md:w-auto relative z-10 flex flex-col items-center md:items-start text-center md:text-left">
         <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6 drop-shadow-lg animate-hero-text">
             Luke Priest</h1>
-        <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-blue-700 dark:text-blue-200 font-medium mb-6 md:mb-8 animate-hero-text">IT
-            Technician</h2>
+        <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-blue-700 dark:text-blue-200 font-medium mb-6 md:mb-8 animate-hero-text">2025/2026</h2>
         <div class="flex flex-row items-center justify-center gap-4 animate-hero-buttons">
-            <button
-               onclick="event.preventDefault(); document.getElementById('finder').scrollIntoView({ behavior: 'smooth' });"
-               class="inline-block px-6 md:px-8 lg:px-12 py-2.5 md:py-3 lg:py-4 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-700 transition text-lg md:text-xl lg:text-2xl xl:text-3xl font-semibold">
-            Learn About Me</button>
-
-        </div>
+                  </div>
     </div>
     <div class="flex-1 w-full md:w-auto flex justify-center md:justify-end mt-8 md:mt-0 relative z-10 animate-hero-image">
     <div class="relative flex justify-center">
@@ -492,36 +509,11 @@ document.addEventListener('DOMContentLoaded', () => {
              src="img/Me.avif"
              alt="Luke Priest | IT Technician in Dayton, Ohio"
              class="rounded-full shadow-2xl object-cover lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem] border-8 border-white dark:border-gray-800 transition-all duration-300">
-        <span class="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-blue-600 dark:bg-blue-800 text-white px-3 sm:px-4 lg:px-6 py-1.5 sm:py-2 lg:py-3 rounded-full text-base sm:text-lg lg:text-xl xl:text-2xl font-semibold shadow-md">Open To Work</span>
     </div>
 </div>
 
 </header>
 <main class="px-4 md:px-16 py-8 md:py-12 bg-white dark:bg-gray-900">
-
-    <section id="finder" class="max-w-5xl mx-auto mb-16">
-        <h3 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">What are you looking for?</h3>
-        <div class="flex flex-wrap justify-center gap-4">
-            <button onclick="event.preventDefault(); document.getElementById('finder').scrollIntoView({ behavior: 'smooth' });"
-                    class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75 flex-1 min-w-[200px] text-center">
-                About Me
-            </button>
-
-            <button onclick="event.preventDefault(); document.getElementById('experience-scroll').scrollIntoView({ behavior: 'smooth' });"
-                    class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75 flex-1 min-w-[200px] text-center">
-                Experience
-            </button>
-            
-            <button onclick="event.preventDefault(); document.getElementById('project-scroll').scrollIntoView({ behavior: 'smooth' });"
-                    class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75 flex-1 min-w-[200px] text-center">
-                Projects
-            </button>
-            <button onclick="event.preventDefault(); document.getElementById('education-scroll').scrollIntoView({ behavior: 'smooth' });"
-                    class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75 flex-1 min-w-[200px] text-center">
-                Education
-            </button>
-        </div>
-    </section>
 
     <section id="about-me" class="max-w-5xl mx-auto mt-16 mb-16">
         <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">About Me</h2>
@@ -536,7 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </p>
         </div>
         <div class="flex justify-end mt-8">
-        <a href="About/index.html"
+        <a href="Experiences/index.html"
            class="inline-flex items-center px-6 py-3 g-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 text-white font-semibold text-base transition shadow-lg">
             Learn More
             <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -547,329 +539,324 @@ document.addEventListener('DOMContentLoaded', () => {
         <div id="experience-scroll"></div>
     </section>
 
-    <section id="experience" class="max-w-5xl mx-auto mb-16">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
-            <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4 sm:mb-0">Professional Experience</h2>
-            <a href="LukePriestResume.pdf" aria-label="PDF Resume" target="_blank" rel="noopener noreferrer"
-               class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-700 transition font-semibold text-lg">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4m-8 8h8"/>
-                </svg>
-                Resume
-            </a>
-        </div>
-        <div class="space-y-8">
-            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col md:flex-row items-start md:items-center">
-                <div class="flex-shrink-0 mr-6 mb-4 md:mb-0">
-                    <svg class="w-16 h-16 text-blue-400 dark:text-blue-300" fill="none" stroke="currentColor" stroke-width="2"
-                         viewBox="0 0 24 24">
-                        <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
-                        <path d="M12 20v4"></path>
-                        <line x1="8" y1="24" x2="16" y2="24"></line>
-                    </svg>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-semibold text-blue-700 dark:text-blue-300"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.daytonstemschool.org/" target="_blank" rel="noopener noreferrer">IT Technician - Dayton, Ohio</a></h3>
-                    <p class="text-gray-700 dark:text-gray-200 mt-2">Provided technical support for hardware and software issues in a
-                        school setting. Imaged fleet of laptops for incoming students.</p>
-                    <span class="block mt-2 text-sm text-gray-500 dark:text-gray-400">May 2025 - Present</span>
-                </div>
-            </div>
-            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col md:flex-row items-start md:items-center">
-                <div class="flex-shrink-0 mr-6 mb-4 md:mb-0">
-                    <svg class="w-16 h-16 text-blue-400 dark:text-blue-300" fill="none" stroke="currentColor" stroke-width="2"
-                         viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M12 6v6l4 2"></path>
-                    </svg>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-semibold text-blue-700 dark:text-blue-300"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://greatescapegame.com/" target="_blank" rel="noopener noreferrer">Escape Room Gamemaster - Beavercreek, Ohio</a></h3>
-                    <p class="text-gray-700 dark:text-gray-200 mt-2">Managed and facilitated escape room experiences, ensuring smooth
-                        gameplay and customer satisfaction. Provided clues and hints as needed to enhance the immersive
-                        experience.</p>
-                    <span class="block mt-2 text-sm text-gray-500 dark:text-gray-400">July 2024 - Present</span>
-                </div>
-            </div>
-        </div>
-        <div id="project-scroll"></div>
-    </section>
+    <!-- Table Section -->
+    <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <!-- Card -->
+    <div class="flex flex-col">
+      <div class="-m-1.5 overflow-x-auto">
+        <div class="p-1.5 min-w-full inline-block align-middle">
+          <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-neutral-800 dark:border-neutral-700">
+  
+            <!-- Table -->
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+              <thead class="bg-gray-50 dark:bg-neutral-800">
+                <tr>
+  
 
-<section id="projects" class="max-w-5xl mx-auto mt-16 mb-16">
-    <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">My Projects</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-            <h3 class="text-xl font-semibold text-blue-700 dark:text-blue-300 mb-2">Ticketing System</h3>
-            <p class="text-gray-700 dark:text-gray-200 mb-4">
-                Creating and supporting an OSTicket installation.
-            </p>
-            <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-4">
-                Technologies Used: <span class="font-normal">MySQL, XAMPP, CSS</span>
-            </p>
-            <div class="flex flex-wrap ">
-                <button onclick="openTicketPopup()"
-                        class="inline-flex items-center px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition">
-                    <svg class="mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
-                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
-                    </svg>
-                    <span>Learn More</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-            <h3 class="text-xl font-semibold text-blue-700 dark:text-blue-300 mb-2">Contact Book PowerApp</h3>
-            <p class="text-gray-700 dark:text-gray-200 mb-4">
-                Creating a contact book to aid Support Technicans.
-            </p>
-            <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-4">
-                Technologies Used: <span class="font-normal">MS PowerApps</span>
-            </p>
-            <div class="flex flex-wrap ">
-                <button onclick="openPowerAppsPopup()"
-                        class="inline-flex items-center px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition">
-                    <svg class="mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
-                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
-                    </svg>
-                    <span>Learn More</span>
-                </button>
-            </div>
-        </div>
-
-        </div>
-    <div class="flex justify-end mt-8">
-        <a href="Projects/index.html"
-           class="inline-flex items-center px-6 py-3 g-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 text-white font-semibold text-base transition shadow-lg">
-            View All Projects
-            <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-            </svg>
-        </a>
-    </div>
-
-    <div id="education-scroll"></div>
-
-</section>
-
-    <div id="ticket-popup"
-    tabindex="-1"
-     class="dark:bg-gray-900 w-full max-w-5xl fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white dark:bg-gray-800 border border-blue-200 dark:border-blue-700 rounded-xl shadow-2xl p-6 md:p-8 lg:p-10 flex flex-col items-center gap-6 transition-opacity duration-300 opacity-0 pointer-events-none">
-
-    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-100 text-center mb-4">
-        OSTicket
-    </h2>
-
-    <img loading="lazy" src="img/osTicket.avif" alt="OSTicket Frontend Application" class="object-cover rounded-xl mb-6 shadow-md">
-
-    <h2 class="text-4xl tb-2 font-bold text-gray-800 dark:text-gray-100 mb-2">Overview</h2>
-
-    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-        <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
-            This project involved the installation and setup of an instance of osTicket. This project allowed me to gain
-            first-hand experience in initializing and configuring servers, using technologies such as MySQL for database
-            integration. This project showcases my abilities in general system administration and real-world deployment of
-            web-based systems.
-        </p>
-    </div>
-
-    <h2 class="text-4xl tb-2 font-bold text-gray-800 dark:text-gray-100 mt-4 mb-4">Configuration</h2>
-
-    <img loading="lazy" src="img/StylingosTicket.avif" alt="OSTicket Backend Application Development" class="object-cover rounded-xl mb-6 shadow-md">
-
-    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-        <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
-            While I was configuring user accounts, tickets, and other settings, I began to realize that the styling of
-            osTicket was rather outdated. I decided to dive in deep into the staff side styling I spent a few hours
-            updating the styling for a more resposive website. I was rather unsatisfied with how complicated configuring
-            the styling.
-        </p>
-    </div>
-
-    <h2 class="text-4xl tb-2 font-bold text-gray-800 dark:text-gray-100 mt-4 mb-4">Pre-made Themes</h2>
-
-    <img loading="lazy" src="img/osTicketTheme.avif" alt="Alternative osTicket Themes" class="object-cover rounded-xl mb-6 shadow-md">
-
-    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-        <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
-            As I often turn to pre-made libraries for my code, such as Tailwindcss which is a framework for the entirety
-            of this website. I decided to search online for themes for osTicket. I found that there wasn't many good
-            FOSS repositoriesm but I found many licensed themes that I would use if this was a permanent installation.
-        </p>
-    </div>
-
-    <button tabindex="0" onclick="closeTicketPopup()"
-            class="mt-6 px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75">
-        Close
-    </button>
-</div>
-
-<div id="powerApps-popup"
-    tabindex="-1"
-     class="dark:bg-gray-900 w-full max-w-5xl fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white dark:bg-gray-800 border border-blue-200 dark:border-blue-700 rounded-xl shadow-2xl p-6 md:p-8 lg:p-10 flex flex-col items-center gap-6 transition-opacity duration-300 opacity-0 pointer-events-none">
-
-    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-100 text-center mb-4">
-        Contact Book PowerApp
-    </h2>
-
-    <img loading="lazy" src="./img/Microsoft_365.avif" alt="OSTicket Frontend Application" class="object-cover rounded-xl mb-6 shadow-md">
-
-    <h2 class="text-4xl tb-2 font-bold text-gray-800 dark:text-gray-100 mb-2">Overview</h2>
-
-    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-        <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
-            Now that we have a ticketing system it seems like theres a lot of tickets coming in. The team can’t keep up where everyones’ work station is. So, I'm going to quickly make a phone book like app in PowerApps so we can keep track where everyone is.
-        </p>
-    </div>
-
-    <h2 class="text-4xl tb-2 font-bold text-gray-800 dark:text-gray-100 mt-4 mb-4">Data</h2>
-
-    <img loading="lazy" src="./img/Mockaroo.avif" alt="OSTicket Backend Application Development" class="object-cover rounded-xl mb-6 shadow-md">
-
-    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-        <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
-            Obviously we need some mock data to get this working as this is just a scenario. So I’ll be using mockaroo to make a list of data. I choose to have it export the data into a CSV file, I would use SQL but I really don’t want to setup a SQL server and PowerApps’ Tables seem pretty good even with just a CSV file.
-        </p>
-    </div>
-
-    <h2 class="text-4xl tb-2 font-bold text-gray-800 dark:text-gray-100 mt-4 mb-4">App Setup</h2>
-
-    <img loading="lazy" src="./img/PowerAppDesign.avif" alt="Alternative osTicket Themes" class="object-cover rounded-xl mb-6 shadow-md">
-
-    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-        <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
-            After importing my CSV file in the PowerApps table, I was genuinely impressed with the application Power Apps automatically generated. I took few minutes to tweak it to look something like this which easily display's email, phone, and desk location information all on mobile device for in-field technicians.
-        </p>
-    </div>
-
-    <h2 class="text-4xl tb-2 font-bold text-gray-800 dark:text-gray-100 mt-4 mb-4">Conclusion</h2>
-
-    <video loading="lazy" width="auto" height="auto" autoplay loop class= rounded-xl">
-    <source src="./img/PowerAppScreenCast.webm" type='video/webm'>
-    <p>Your browser does not support AV1 video. Please consider upgrading to a modern browser.</p>
-    </video>
-
-
-    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-        <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
-            This is a quick demo of the app I was able to generate in about 45 minutes. By far the quickest functional app I have ever made. This allows my IT Support Technicans to easily enteract in various forms of communications with users. This could easily save techs time looking for their users that need support.
-        </p>
-    </div>
-
-    <button tabindex="0" onclick="closePowerAppsPopup()"
-            class="mt-6 px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75">
-        Close
-    </button>
-</div>
-
-    <section class="max-w-5xl mx-auto mt-16 mb-16">
-        <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">Education</h2>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-                <h3 class="text-xl font-semibold text-blue-700 dark:text-blue-300"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.comptia.org/en-us/certifications/a/core-1-and-2-v14/" target="_blank" rel="noopener noreferrer">CompTIA A+</a></h3>
-                <p class="text-gray-700 dark:text-gray-200 mt-2">Certified in foundational IT skills across a variety of devices and
-                    operating systems. 725/900 avg.</p>
-            </div> 
-            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-                <h3 class="text-xl font-semibold text-blue-700 dark:text-blue-300"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.comptia.org/en-us/certifications/network/" target="_blank" rel="noopener noreferrer">CompTIA Network+</a></h3>
-                <p class="text-gray-700 dark:text-gray-200 mt-2">Certified in networking concepts, tools, and best practices. 836/900</p>
-            </div> 
-        </div>
-            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-                <h3 class="text-2xl font-semibold text-blue-700 dark:text-blue-300"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.daytonstemschool.org/" target="_blank" rel="noopener noreferrer">Dayton Regional STEM School</a></h3>
-                <p class="text-lg text-gray-600 dark:text-gray-300 mt-2">12th Grade</p>
-                <p class="text-gray-700 dark:text-gray-200 mt-4 mb-6">
-                    Currently in my 12th grade year at the Dayton Regional STEM School, an institution renowned for its
-                    project-based and hands-on learning approach. This environment has fostered a deep understanding of
-                    practical applications in technology.
-                </p>
-
-                <div>
-                    <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow">
-                        <h4 class="text-xl font-semibold text-blue-700 dark:text-blue-300 mb-2"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="http://whyegg.org/math/" target="_blank" rel="noopener noreferrer">Computer Programming</a></h4>
-                        <p class="text-gray-700 dark:text-gray-200">
-                            Immersive coursework focusing on foundational programming concepts, algorithm design, and
-                            practical application development. Gained experience with various programming paradigms through
-                            hands-on projects.
-                        </p>
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
+                        Grade
+                      </span>
                     </div>
-
-                    <div class="mt-6 bg-white dark:bg-gray-700 p-6 rounded-xl shadow">
-                        <h4 class="text-xl font-semibold text-blue-700 dark:text-blue-300 mb-2"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.comptia.org/en-us/certifications/a/core-1-and-2-v14/" target="_blank" rel="noopener noreferrer">Hardware & Systems (A+ Study)</a></h4>
-                        <p class="text-700 dark:text-gray-200">
-                            Comprehensive hands-on experience with computer components, assembly, troubleshooting, and
-                            maintenance. Curriculum closely aligned with CompTIA A+ objectives, preparing for real-world
-                            hardware challenges.
-                        </p>
+                  </th>
+  
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
+                        Courses
+                      </span>
                     </div>
-
-                    <div class="mt-6 bg-white dark:bg-gray-700 p-6 rounded-xl shadow">
-                        <h4 class="text-xl font-semibold text-blue-700 dark:text-blue-300 mb-2"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.comptia.org/en-us/certifications/network/" target="_blank" rel="noopener noreferrer">Networking Fundamentals (Network+
-                            Study)</a></h4>
-                        <p class="text-gray-700 dark:text-gray-200">
-                            Practical and theoretical studies in network architecture, protocols (TCP/IP), network
-                            security, and troubleshooting. Strong emphasis on hands-on labs and scenarios to prepare for
-                            the CompTIA Network+ certification.
-                        </p>
+                  </th>
+  
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
+                        Pathway Completion
+                      </span>
                     </div>
-                </div>
-            </div>
+                  </th>
+                </tr>
+              </thead>
+  
+              <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+                <tr>
+                  <td class="size-px whitespace-nowrap">
+                    <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                      <div class="flex items-center gap-x-3">
+                        <div class="grow">
+                          <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-200 pl-8">Freshman</span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="h-px w-32 whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <span class="block text-sm text-gray-500 dark:text-neutral-500">1. Principles of Computer Science <br> 2. Langauge Arts 9 <br> 3. Algebra 1 <br> 4. Engineering Science <br> 5. U.S. History <br> 6. Art </span>
+                    </div>
+                  </td>
+                  <td class="flex justify-center whitespace-nowrap">
+                    <div class=" m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                        Computer Science
+                        <div class="flex items-center gap-x-3">
+                            <span class="text-xs text-gray-500 dark:text-neutral-500">1/4</span>
+                            <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                              <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          </div>
+                    </div>
+                    <div class=" m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                      Design
+                      <div class="flex items-center gap-x-3">
+                          <span class="text-xs text-gray-500 dark:text-neutral-500">1/4</span>
+                          <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                            <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="items-center m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                        Engineering
+                        <div class="flex items-center gap-x-3">
+                            <span class="text-xs text-gray-500 dark:text-neutral-500">1/4</span>
+                            <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                              <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          </div>
+                    </div>
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td class="size-px whitespace-nowrap">
+                    <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                      <div class="flex items-center gap-x-3">
+                        <div class="grow">
+                          <span class="block text-sm font-semibold text-gray-800 pl-8 dark:text-neutral-200">Sophomore</span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="h-px w-32 whitespace-nowrap">
+                    <div class="px-6 py-3">
+                        <span class="block text-sm text-gray-500 dark:text-neutral-500">1. Game Design 1 <br> 2. Langauge Arts 10 <br> 3. Geometry <br> 4. Biology <br> 5. Modern World History <br> 6. Chinese 1 <br> 7. Wellness/Fitness </span>
+                    </div>
+                  </td>
+                  
+                  <td class="flex justify-center whitespace-nowrap">
+                    <div class=" m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                        Computer Science
+                        <div class="flex items-center gap-x-3">
+                            <span class="text-xs text-gray-500 dark:text-neutral-500">2/4</span>
+                            <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                              <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="items-center m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                      Health Science
+                      <div class="flex items-center gap-x-3">
+                          <span class="text-xs text-gray-500 dark:text-neutral-500">2/4</span>
+                          <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                            <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                  </div>
+                  <div class=" m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                    Design
+                    <div class="flex items-center gap-x-3">
+                        <span class="text-xs text-gray-500 dark:text-neutral-500">1/4</span>
+                        <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                          <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                  </div>
+                    <div class="items-center m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                        Engineering
+                        <div class="flex items-center gap-x-3">
+                            <span class="text-xs text-gray-500 dark:text-neutral-500">1/4</span>
+                            <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                              <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="items-center m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                        Chinese
+                        <div class="flex items-center gap-x-3">
+                            <span class="text-xs text-gray-500 dark:text-neutral-500">1/4</span>
+                            <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                              <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                    <td class="size-px whitespace-nowrap">
+                      <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                        <div class="flex items-center gap-x-3">
+                          <div class="grow">
+                            <span class="block text-sm font-semibold text-gray-800 pl-8 dark:text-neutral-200">Junior</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="h-px w-32 whitespace-nowrap">
+                      <div class="px-6 py-3">
+                          <span class="block text-sm text-gray-500 dark:text-neutral-500">1. Computer Programming 1 <br> 2. Computer Hardware / Networking <br> 3. Technical Reading & Writing <br> 4. Chemistry <br> 5. Algebra 2 <br> 6. Government <br> 7. Finnacial Literacy </span>
+                      </div>
+                    </td>
+                    
+                    <td class="flex justify-center whitespace-nowrap">
+                        <div class=" m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                            Computer Science
+                            <div class="flex items-center gap-x-3">
+                                <span class="text-xs text-gray-500 dark:text-neutral-500">5/4</span>
+                                <div class="flex w-full h-1.5 bg-gray-200 rounded-full dark:bg-neutral-700">
+                                  <div class="flex flex-col rounded-full justify-center bg-gradient-to-r from-neutral-200 from-70% to-red-500 to-80% " role="progressbar" style="width: 90px" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="items-center m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                          Health Science
+                          <div class="flex items-center gap-x-3">
+                              <span class="text-xs text-gray-500 dark:text-neutral-500">2/4</span>
+                              <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                                <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </div>
+                      </div>
+                      <div class=" m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                        Design
+                        <div class="flex items-center gap-x-3">
+                            <span class="text-xs text-gray-500 dark:text-neutral-500">1/4</span>
+                            <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                              <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          </div>
+                      </div>
+                        <div class="items-center m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                            Engineering
+                            <div class="flex items-center gap-x-3">
+                                <span class="text-xs text-gray-500 dark:text-neutral-500">1/4</span>
+                                <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                                  <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="items-center m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                            Chinese
+                            <div class="flex items-center gap-x-3">
+                                <span class="text-xs text-gray-500 dark:text-neutral-500">1/4</span>
+                                <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                                  <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </div>
+                        </div>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td class="size-px whitespace-nowrap">
+                      <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                        <div class="flex items-center gap-x-3">
+                          <div class="grow">
+                            <span class="block text-sm font-semibold text-gray-800 pl-8 dark:text-neutral-200">Senior</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="h-px w-32 whitespace-nowrap">
+                      <div class="px-6 py-3">
+                          <span class="block text-sm text-gray-500 dark:text-neutral-500">1. TAC 1 <br> 2. Computer Science Experiential Learning <br> 3. Ceramics <br> 4. Precalculus <br> 5. Senior English</span>
+                      </div>
+                    </td>
+                    
+                    <td class="flex justify-center whitespace-nowrap">
+                        <div class=" m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                            Computer Science
+                            <div class="flex items-center gap-x-3">
+                                <span class="text-xs text-gray-500 dark:text-neutral-500">5/4</span>
+                                <div class="flex w-full h-1.5 bg-gray-200 rounded-full dark:bg-neutral-700">
+                                  <div class="flex flex-col rounded-full justify-center bg-gradient-to-r from-neutral-200 from-70% to-red-500 to-80% " role="progressbar" style="width: 90px" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="items-center m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                          Health Science
+                          <div class="flex items-center gap-x-3">
+                              <span class="text-xs text-gray-500 dark:text-neutral-500">2/4</span>
+                              <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                                <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                            </div>
+                      </div>
+                      <div class=" m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                        Design
+                        <div class="flex items-center gap-x-3">
+                            <span class="text-xs text-gray-500 dark:text-neutral-500">1/4</span>
+                            <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                              <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          </div>
+                      </div>
+                        <div class="items-center m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                            Engineering
+                            <div class="flex items-center gap-x-3">
+                                <span class="text-xs text-gray-500 dark:text-neutral-500">1/4</span>
+                                <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                                  <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="items-center m-4 p-4 w-32 text-center text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                            Chinese
+                            <div class="flex items-center gap-x-3">
+                                <span class="text-xs text-gray-500 dark:text-neutral-500">1/4</span>
+                                <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
+                                  <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </div>
+                        </div>
+                      </td>
+                  </tr>
+  
+              </tbody>
+            </table>
+            <!-- End Table -->
         </div>
-    </section>
-
-    <section id="skills" class="max-w-5xl mx-auto mt-16 mb-16">
-        <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">Skills</h2>
-        <ul class="flex flex-wrap gap-4">
-            <li class="skill-badge">Windows &amp; Linux Administration</li>
-            <li class="skill-badge">Network Administration</li>
-            <li class="skill-badge">Active Directory</li>
-            <li class="skill-badge">Office 365</li>
-            <li class="skill-badge">Google Workspace</li>
-            <li class="skill-badge">Adobe Creative Cloud</li>
-            <li class="skill-badge">Training</li>
-            <li class="skill-badge">Programming</li>
-            <li class="skill-badge">Scripting</li>
-            <li class="skill-badge">Customer Support</li>
-            <li class="skill-badge">Troubleshooting</li>
-            <li class="skill-badge">Penetration Testing</li>
-            <li class="skill-badge">System Hardening</li>
-            <li class="skill-badge">Hardware/Software Support</li>
-            <li class="skill-badge">Web Development</li>
-        </ul>
-    </section>
-
-    <section class="max-w-5xl mx-auto mt-16">
-        <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">Statistics</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
-            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-                <p class="text-5xl font-bold text-blue-600 dark:text-blue-400">300+</p>
-                <p class="text-gray-700 dark:text-gray-200 mt-2">Students Supported</p>
-            </div>
-            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-                <p class="text-5xl font-bold text-blue-600 dark:text-blue-400">120</p>
-                <p class="text-gray-700 dark:text-gray-200 mt-2">Hours Studying Certs</p>
-            </div>
-            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-                <p class="text-5xl font-bold text-blue-600 dark:text-blue-400">~1</p>
-                <p class="text-gray-700 dark:text-gray-200 mt-2">Years Experience</p>
-            </div>
-            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-                <p class="text-5xl font-bold text-blue-600 dark:text-blue-400">3.87</p>
-                <p class="text-gray-700 dark:text-gray-200 mt-2">Highschool GPA</p>
-            </div>
         </div>
-    </section>
-
-
-     <div id="linkedin-section" class="max-w-5xl mx-auto mt-16 py-20">
-        <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">Linkedin</h2>
-        <div class="bg-blue-50 dark:bg-blue-100 p-6 rounded-xl">
-            <div class='sk-ww-linkedin-profile-post' data-embed-id='25575047'></div>
         </div>
+
+
+    <div class="mt-24 text-center ">
+    <h1 class="block text-3xl font-bold text-gray-800 sm:text-2xl lg:text-4xl lg:leading-tight dark:text-white">After Highschool</h1>
+    <p class="mt-3 px-4 lg:px-[5vw] xl:px-[10vw] 2xl:px-[10vw] text-lg text-gray-800 dark:text-neutral-400">Due to the fact that I have gained certifications in Information Technology already, this gives me an intresting oppurtinity to go straight in to an entry level Information Technology job. I plan to start off as a help desk technican, but my ultimate goal is to continue my career to be a network engineer.</p>
+  </div>
+
+  <!-- End Table Section -->
+  <footer class="mt-auto w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
+    <!-- Grid -->
+    <div class="grid place-content-center items-center gap-5">
+      <!-- End Col -->
+  
+      <ul class="text-end">
+        <li class="inline-block relative pe-8 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-neutral-600">
+          <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200" href="mailto:priest.24@daytonstemschool.org">
+            Contact Me
+          </a>
+        </li>
+        <li class="inline-block relative pe-8 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-neutral-600">
+          <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200" href="https://www.linkedin.com/in/luke-priest">
+            LinkedIn
+          </a>
+        </li>
+      </ul>
+      <!-- End Col -->
+
     </div>
-
+    <!-- End Grid -->
+     
+  </footer>
+    
 </main>
 </body>
 </html>
