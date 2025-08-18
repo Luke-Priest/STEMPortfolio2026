@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="en" class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+<head>
+    <meta charset="UTF-8">
+    <title>Luke Priest | IT Technician</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Luke Priest's professional portfolio showcasing experience as an IT Technician, certifications, projects, networking, hardware, and customer support.">
+    <meta name="author" content="Luke Priest">
+    <meta name="keywords" content="Luke Priest, Portfolio, IT Technician, CompTIA A+, CompTIA Network+, Dayton STEM School" >
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="./dist/output.css" rel="stylesheet">
+
+    <link rel="canonical" href="https://lukepriest.work" />
+    <meta property="og:title" content="Luke Priest's Portfolio" />
+    <meta property="og:description" content="Accredited IT Technician in Dayton, Ohio" />
+    <meta property="og:image" content="https://lukepriest.work/img/Me.avif" />
+    <meta property="og:url" content="https://lukepriest.work/" />
+    <meta property="og:type" content="website" /> <meta property="og:site_name" content="Luke Priest IT Technician" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:updated_time" content="2025-07-278T23:00:06+0000" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://lukepriest.work/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+    <style>
+        html {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+        }
+
+        .skill-badge {
+            background-color: #dbeafe; /* bg-blue-100 */
+            color: #1e40af; /* text-blue-800 */
+            padding-left: 1rem; /* px-4 */
+            padding-right: 1rem;
+            padding-top: 0.5rem; /* py-2 */
+            padding-bottom: 0.5rem;
+            border-radius: 9999px; /* rounded-full */
+            font-weight: 500; /* font-medium */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .skill-badge {
+                background-color: #1e3a8a; /* dark:bg-blue-900 */
+                color: #bfdbfe; /* dark:text-blue-200 */
+            }
+        }
+
+        /* --- ANIMATION STYLES --- */
+        .hidden-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .hidden-item {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animated-section.visible,
+        .animated-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Delay for items within a section */
+        .animated-section.visible .hidden-item:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .animated-section.visible .hidden-item:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .animated-section.visible .hidden-item:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        .animated-section.visible .hidden-item:nth-child(4) {
+            transition-delay: 0.4s;
+        }
+
+        .animated-section.visible .hidden-item:nth-child(5) {
+            transition-delay: 0.5s;
+        }
+
+        .animated-section.visible .hidden-item:nth-child(6) {
+            transition-delay: 0.6s;
+        }
+        /* Add more for more items if needed */
+
+
+        /* Keyframes for the header elements */
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-hero-text {
+            animation: fadeInSlideUp 1s ease-out forwards;
+            opacity: 0; /* Hidden by default */
+        }
+
+        .animate-hero-text:nth-child(1) {
+            animation-delay: 0.2s;
+        } /* H1 */
+        .animate-hero-text:nth-child(2) {
+            animation-delay: 0.4s;
+        } /* P */
+        .animate-hero-buttons {
+            animation: fadeInSlideUp 1s ease-out forwards;
+            opacity: 0; /* Hidden by default */
+            animation-delay: 0.6s;
+        }
+
+        .animate-hero-image {
+            animation: fadeInSlideUp 1s ease-out forwards;
+            opacity: 0.01; /* Hidden by default */
+            animation-delay: 0.8s;
+        }
+        /* --- END ANIMATION STYLES --- */
+
+        /* Popup specific styles for internal scrolling */
+        #ticket-popup, #homelab-popup, #contact-popup, #powerApps-popup {
+            max-height: 90vh; /* Limit height so it doesn't fill the whole screen */
+            overflow-y: auto; /* Enable vertical scrolling */
+            -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+        }
+    </style>
+    <script>
+        // Toggle dark mode based on system preference or user toggle
+        if (
+            localStorage.theme === 'dark' ||
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleDarkMode() {
+            console.log('Toggling dark mode');
+            document.documentElement.classList.toggle('dark');
+            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        }
+
+        // Helper to manage body scrolling
+        function toggleBodyScrolling(enable) {
+            if (enable) {
+                document.body.classList.remove('overflow-hidden');
+            } else {
+                document.body.classList.add('overflow-hidden');
+            }
+        }
+
+        function handleKeydown(event) {
+            if (event.key === 'Escape') {
+                closeContactPopup();
+                closeTicketPopup(); 
+                closeHomelabPopup();
+                closePowerAppsPopup();
+            }
+        }
+
+        function openContactPopup() {
+            var contactPopup = document.getElementById('contact-popup');
+            var overlay = document.getElementById('popup-overlay');
+            contactPopup.style.opacity = '1';
+            contactPopup.style.pointerEvents = 'auto';
+            overlay.style.opacity = '1';
+            overlay.style.pointerEvents = 'auto';
+            document.addEventListener('keydown', handleKeydown);
+            toggleBodyScrolling(false); // Disable scrolling
+        }
+
+        function openTicketPopup() {
+            var ticketPopup = document.getElementById('ticket-popup');
+            var overlay = document.getElementById('popup-overlay');
+            ticketPopup.style.opacity = '1';
+            ticketPopup.style.pointerEvents = 'auto';
+            overlay.style.opacity = '1';
+            overlay.style.pointerEvents = 'auto';
+            document.addEventListener('keydown', handleKeydown);
+            toggleBodyScrolling(false); // Disable scrolling
+        }
+
+        function openHomelabPopup() {
+            var homelabPopup = document.getElementById('homelab-popup');
+            var overlay = document.getElementById('popup-overlay');
+            homelabPopup.style.opacity = '1';
+            homelabPopup.style.pointerEvents = 'auto';
+            overlay.style.opacity = '1';
+            overlay.style.pointerEvents = 'auto';
+            document.addEventListener('keydown', handleKeydown);
+            toggleBodyScrolling(false); // Disable scrolling
+        }
+
+        function openPowerAppsPopup() {
+            var powerAppsPopup = document.getElementById('powerApps-popup');
+            var overlay = document.getElementById('popup-overlay');
+            powerAppsPopup.style.opacity = '1';
+            powerAppsPopup.style.pointerEvents = 'auto';
+            overlay.style.opacity = '1';
+            overlay.style.pointerEvents = 'auto';
+            document.addEventListener('keydown', handleKeydown);
+            toggleBodyScrolling(false); // Disable scrolling
+        }
+
+        function closeHomelabPopup() {
+            document.getElementById('homelab-popup').style.opacity = '0';
+            document.getElementById('homelab-popup').style.pointerEvents = 'none';
+            document.getElementById('popup-overlay').style.opacity = '0';
+            document.getElementById('popup-overlay').style.pointerEvents = 'none';
+            document.removeEventListener('keydown', handleKeydown);
+            toggleBodyScrolling(true); // Re-enable scrolling
+        }
+
+        function closeContactPopup() {
+            document.getElementById('contact-popup').style.opacity = '0';
+            document.getElementById('contact-popup').style.pointerEvents = 'none';
+            document.getElementById('popup-overlay').style.opacity = '0';
+            document.getElementById('popup-overlay').style.pointerEvents = 'none';
+            document.removeEventListener('keydown', handleKeydown);
+            toggleBodyScrolling(true); // Re-enable scrolling
+        }
+
+        function closeTicketPopup() {
+            document.getElementById('ticket-popup').style.opacity = '0';
+            document.getElementById('ticket-popup').style.pointerEvents = 'none';
+            document.getElementById('popup-overlay').style.opacity = '0';
+            document.getElementById('popup-overlay').style.pointerEvents = 'none';
+            document.removeEventListener('keydown', handleKeydown);
+            toggleBodyScrolling(true); // Re-enable scrolling
+        }
+
+        function closePowerAppsPopup() {
+            document.getElementById('powerApps-popup').style.opacity = '0';
+            document.getElementById('powerApps-popup').style.pointerEvents = 'none';
+            document.getElementById('popup-overlay').style.opacity = '0';
+            document.getElementById('popup-overlay').style.pointerEvents = 'none';
+            document.removeEventListener('keydown', handleKeydown);
+            toggleBodyScrolling(true); // Re-enable scrolling
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            // Show education popup after 2 seconds, hide after 5 seconds
+            var educationPopup = document.getElementById('education-popup');
+            if (educationPopup) { // Check if element exists before trying to access
+                setTimeout(function() {
+                    educationPopup.style.opacity = '1';
+                    educationPopup.style.pointerEvents = 'auto';
+                    setTimeout(function() {
+                        educationPopup.style.opacity = '0';
+                        educationPopup.style.pointerEvents = 'none';
+                    }, 7000);
+                }, 2000);
+            }
+
+            // --- ANIMATION JAVASCRIPT ---
+            const sections = document.querySelectorAll('main section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the section is visible
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // If you only want the animation to play once, uncomment the line below
+                        // observer.unobserve(entry.target);
+                    } else {
+                        // Optional: Remove 'visible' class if you want the animation to replay when scrolling back up
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                section.classList.add('hidden-section', 'animated-section'); // Add initial hidden state and marker class
+                sectionObserver.observe(section);
+            });
+
+            // Close popup when clicking outside (using the overlay)
+            // This must be inside DOMContentLoaded to ensure popup-overlay exists
+            document.getElementById('popup-overlay').onclick = function(event) {
+                if (event.target == this) { // Only if clicking the overlay itself, not children
+                    // Attempt to close both popups
+                    closeContactPopup();
+                    closeTicketPopup();
+                    closeHomelabPopup();
+                    closePowerAppsPopup();
+                }
+            }
+
+            // Make these functions globally accessible (already are if defined outside DOMContentLoaded, but good practice)
+            window.openContactPopup = openContactPopup;
+            window.closeContactPopup = closeContactPopup;
+            window.openTicketPopup = openTicketPopup;
+            window.closeTicketPopup = closeTicketPopup;
+            window.openHomelabPopup = openHomelabPopup;
+            window.closeHomelabPopup = closeHomelabPopup;
+            window.openPowerAppsPopup = openPowerAppsPopup;
+            window.closePowerAppsPopup = closePowerAppsPopup;
+        });
+
+        // lazy-loader.js
+
+document.addEventListener('DOMContentLoaded', () => {
+    const linkedinSection = document.getElementById('linkedin-section');
+    const linkedinPlaceholder = document.getElementById('linkedin-placeholder'); // Optional: for a loading message
+    let scriptLoaded = false; // Flag to ensure the script loads only once
+
+    if (!linkedinSection) {
+        console.warn("LinkedIn section element with ID 'linkedin-section' not found.");
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // Check if the target element is intersecting (visible) AND the script hasn't loaded yet
+            if (entry.isIntersecting && !scriptLoaded) {
+                console.log('LinkedIn section is visible. Loading SociableKIT script...');
+
+                // Hide the placeholder if it exists
+                if (linkedinPlaceholder) {
+                    linkedinPlaceholder.style.display = 'none';
+                }
+
+                // Create the script element
+                const script = document.createElement('script');
+                script.src = 'https://widgets.sociablekit.com/linkedin-profile-posts/widget.js';
+                script.defer = true; // Use defer for the dynamically loaded script
+
+                script.onload = () => {
+                    console.log('SociableKIT LinkedIn widget script loaded successfully!');
+                    scriptLoaded = true;
+                    // SociableKIT widget should now render automatically
+                };
+
+                script.onerror = () => {
+                    console.error('Failed to load SociableKIT LinkedIn widget script.');
+                    if (linkedinPlaceholder) {
+                        linkedinPlaceholder.innerText = 'Failed to load LinkedIn feed.';
+                        linkedinPlaceholder.style.display = 'block';
+                    }
+                };
+
+                // Append the script to the body or to the specific div
+                // Appending to the div might be slightly cleaner for this specific widget,
+                // but appending to body is also common for external scripts.
+                // For SociableKIT, it needs to be in the DOM to find its target div.
+                // Appending it to the div containing the widget is a good idea.
+                entry.target.querySelector('.bg-blue-50').appendChild(script); // Append to the inner div
+
+                // Stop observing once the script is triggered for loading
+                observer.unobserve(linkedinSection);
+            }
+        });
+    }, {
+        rootMargin: '0px', // No extra margin around the viewport
+        threshold: 0.1 // Trigger when 10% of the element is visible
+    });
+
+    // Start observing the LinkedIn section
+    observer.observe(linkedinSection);
+});
+    </script>
+</head>
+<body>
+
+<div id="popup-overlay"
+     class="fixed top-0 left-0 w-full h-full bg-gray-900/50 backdrop-blur-lg z-40 transition-opacity duration-300 opacity-0 pointer-events-none"></div>
+
+
+<div id="contact-popup"
+     class="dark:bg-gray-900 w-11/12 md:w-2/3 lg:w-1/2 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white dark:bg-gray-800 border border-blue-200 dark:border-blue-700 rounded-xl shadow-2xl p-6 md:p-8 lg:p-10 flex flex-col items-center gap-6 transition-opacity duration-300 opacity-0 pointer-events-none">
+
+    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-100 text-center mb-4">
+        Get in Touch!
+    </h2>
+
+    <p class="text-lg text-gray-700 dark:text-gray-300 text-center max-w-prose">
+        I'd love to connect. Linkedin is preferred but email is avalible aswell.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4 w-full">
+        <a href="https://www.linkedin.com/in/luke-priest" target="_blank" rel="noopener noreferrer"
+           class="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-3 px-6 rounded-full inline-flex items-center justify-center text-base sm:text-lg transition-all duration-200 ease-in-out shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 w-full sm:w-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48" class="mr-3 fill-current">
+                <path fill="#0078d4"
+                      d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"></path>
+                <path d="M30,37V26.901c0-1.689-0.819-2.698-2.192-2.698c-0.815,0-1.414,0.459-1.779,1.364 c-0.017,0.064-0.041,0.325-0.031,1.114L26,37h-7V18h7v1.061C27.022,18.356,28.275,18,29.738,18c4.547,0,7.261,3.093,7.261,8.274 L37,37H30z M11,37V18h3.457C12.454,18,11,16.528,11,14.499C11,12.472,12.478,11,14.514,11c2.012,0,3.445,1.431,3.486,3.479 C18,16.523,16.521,18,14.485,18H18v19H11z"
+                      opacity=".05"></path>
+                <path d="M30.5,36.5v-9.599c0-1.973-1.031-3.198-2.692-3.198c-1.295,0-1.935,0.912-2.243,1.677 c-0.082,0.199-0.071,0.989-0.067,1.326L25.5,36.5h-6v-18h6v1.638c0.795-0.823,2.075-1.638,4.238-1.638 c4.233,0,6.761,2.906,6.761,7.774L36.5,36.5H30.5z M11.5,36.5v-18h6v18H11.5z M14.457,17.5c-1.713,0-2.957-1.262-2.957-3.001 c0-1.738,1.268-2.999,3.014-2.999c1.724,0,2.951,1.229,2.986,2.989c0,1.749-1.268,3.011-3.015,3.011H14.457z"
+                      opacity=".07"></path>
+                <path fill="#fff"
+                      d="M12,19h5v17h-5V19z M14.485,17h-0.028C12.965,17,12,15.888,12,14.499C12,13.08,12.995,12,14.514,12 c1.521,0,2.458,1.08,2.486,2.499C17,15.887,16.035,17,14.485,17z M36,36h-5v-9.099c0-2.198-1.225-3.698-3.192-3.698 c-1.501,0-2.313,1.012-2.707,1.99C24.957,25.543,25,26.511,25,27v9h-5V19h5v2.616C25.721,20.5,26.85,19,29.738,19 c3.578,0,6.261,2.25,6.261,7.274L36,36L36,36z"></path>
+            </svg>
+            LinkedIn
+        </a>
+
+        <a href="mailto:contact&#64;lukepriest.work"
+           class="bg-gray-200 dark:bg-gray-700 active:bg-blue-800  hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-semibold py-3 px-6 rounded-full inline-flex items-center justify-center text-base sm:text-lg transition-all duration-200 ease-in-out shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 w-full sm:w-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
+                 class="mr-3 fill-gray-800 dark:fill-gray-200">
+                <path d="M149-135q-39.05 0-66.53-27.48Q55-189.95 55-229v-502q0-39.46 27.47-67.23Q109.95-826 149-826h662q39.46 0 67.23 27.77Q906-770.46 906-731v502q0 39.05-27.77 66.52Q850.46-135 811-135H149Zm331-295 331-223v-78L480-513 149-731v78l331 223Z"/>
+            </svg>
+            <span class="text-gray-800 dark:text-gray-200">Email Me</span>
+        </a>
+    </div>
+
+    <button onclick="closeContactPopup()"
+            class="mt-6 px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75">
+        Close
+    </button>
+</div>
+
+<div class="fixed top-4 right-4 md:top-8 md:right-16 z-20">
+    <button tabindex="0" onclick="openContactPopup()"
+            class="md:inline-block text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 transition focus:outline-none"
+            aria-label="Contact Me">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="feather feather-message-square">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </button>
+</div>
+
+<header
+    class="flex flex-col md:flex-row items-center justify-between min-h-[60vh] md:min-h-screen px-4 md:px-16 py-8 md:py-12 bg-gradient-to-br from-blue-200 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-blue-900 relative overflow-hidden">
+    <svg class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-30" xmlns="http://www.w3.org/2000/svg"
+         preserveAspectRatio="none" viewBox="0 0 1440 800" fill="none">
+        <defs>
+            <linearGradient id="bg-gradient" x1="0" y1="0" x2="1440" y2="800" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#60A5FA"/>
+                <stop offset="1" stop-color="#F0F9FF"/>
+            </linearGradient>
+            <linearGradient id="bg-gradient-dark" x1="0" y1="0" x2="1440" y2="800" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#1e3a8a"/>
+                <stop offset="1" stop-color="#0f172a"/>
+            </linearGradient>
+        </defs>
+        <path d="M0,400 Q360,600 720,400 T1440,400 V800 H0 Z" fill="url(#bg-gradient)" class="dark:hidden"/>
+        <path d="M0,400 Q360,600 720,400 T1440,400 V800 H0 Z" fill="url(#bg-gradient-dark)" class="hidden dark:inline"/>
+    </svg>
+    <svg class="absolute top-0 left-0 w-full h-full pointer-events-none z-10" xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 1440 800">
+        <circle cx="83%" cy="25%" r="180" fill="#93C5FD" opacity="0.09"/>
+        <circle cx="21%" cy="13%" r="120" fill="#3B82F6" opacity="0.05"/>
+    </svg>
+    <div class="flex-1 w-full md:w-auto relative z-10 flex flex-col items-center md:items-start text-center md:text-left">
+        <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6 drop-shadow-lg animate-hero-text">
+            Luke Priest</h1>
+        <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-blue-700 dark:text-blue-200 font-medium mb-6 md:mb-8 animate-hero-text">IT
+            Technician</h2>
+        <div class="flex flex-row items-center justify-center gap-4 animate-hero-buttons">
+            <button
+               onclick="event.preventDefault(); document.getElementById('finder').scrollIntoView({ behavior: 'smooth' });"
+               class="inline-block px-6 md:px-8 lg:px-12 py-2.5 md:py-3 lg:py-4 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-700 transition text-lg md:text-xl lg:text-2xl xl:text-3xl font-semibold">
+            Learn About Me</button>
+
+        </div>
+    </div>
+    <div class="flex-1 w-full md:w-auto flex justify-center md:justify-end mt-8 md:mt-0 relative z-10 animate-hero-image">
+    <div class="relative flex justify-center">
+        <img loading="eager" fetchpriority="high" 
+             src="img/Me.avif"
+             alt="Luke Priest | IT Technician in Dayton, Ohio"
+             class="rounded-full shadow-2xl object-cover lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem] border-8 border-white dark:border-gray-800 transition-all duration-300">
+        <span class="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-blue-600 dark:bg-blue-800 text-white px-3 sm:px-4 lg:px-6 py-1.5 sm:py-2 lg:py-3 rounded-full text-base sm:text-lg lg:text-xl xl:text-2xl font-semibold shadow-md">Open To Work</span>
+    </div>
+</div>
+
+</header>
+<main class="px-4 md:px-16 py-8 md:py-12 bg-white dark:bg-gray-900">
+
+    <section id="finder" class="max-w-5xl mx-auto mb-16">
+        <h3 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">What are you looking for?</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+            <button onclick="event.preventDefault(); document.getElementById('finder').scrollIntoView({ behavior: 'smooth' });"
+                    class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75 flex-1 min-w-[200px] text-center">
+                About Me
+            </button>
+
+            <button onclick="event.preventDefault(); document.getElementById('experience-scroll').scrollIntoView({ behavior: 'smooth' });"
+                    class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75 flex-1 min-w-[200px] text-center">
+                Experience
+            </button>
+            
+            <button onclick="event.preventDefault(); document.getElementById('project-scroll').scrollIntoView({ behavior: 'smooth' });"
+                    class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75 flex-1 min-w-[200px] text-center">
+                Projects
+            </button>
+            <button onclick="event.preventDefault(); document.getElementById('education-scroll').scrollIntoView({ behavior: 'smooth' });"
+                    class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75 flex-1 min-w-[200px] text-center">
+                Education
+            </button>
+        </div>
+    </section>
+
+    <section id="about-me" class="max-w-5xl mx-auto mt-16 mb-16">
+        <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">About Me</h2>
+        <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+            <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
+                I am a highly motivated and hands-on 12th-grade student at the <a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.daytonstemschool.org/" target="_blank" rel="noopener noreferrer">Dayton Regional STEM School</a>, passionate
+                about everything technology. With a strong foundation in computer programming, hardware, and networking,
+                I thrive in project-based environments where I can apply theoretical knowledge to real-world challenges.
+                My experience as an IT Technician and Escape Room Gamemaster has shaped my problem-solving, customer
+                support, and technical troubleshooting skills. I am constantly seeking opportunities to expand my
+                expertise and contribute to innovative solutions in the IT field.
+            </p>
+        </div>
+        <div class="flex justify-end mt-8">
+        <a href="About/index.html"
+           class="inline-flex items-center px-6 py-3 g-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 text-white font-semibold text-base transition shadow-lg">
+            Learn More
+            <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+        </a>
+    </div>
+        <div id="experience-scroll"></div>
+    </section>
+
+    <section id="experience" class="max-w-5xl mx-auto mb-16">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+            <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4 sm:mb-0">Professional Experience</h2>
+            <a href="LukePriestResume.pdf" aria-label="PDF Resume" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-700 transition font-semibold text-lg">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4m-8 8h8"/>
+                </svg>
+                Resume
+            </a>
+        </div>
+        <div class="space-y-8">
+            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col md:flex-row items-start md:items-center">
+                <div class="flex-shrink-0 mr-6 mb-4 md:mb-0">
+                    <svg class="w-16 h-16 text-blue-400 dark:text-blue-300" fill="none" stroke="currentColor" stroke-width="2"
+                         viewBox="0 0 24 24">
+                        <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+                        <path d="M12 20v4"></path>
+                        <line x1="8" y1="24" x2="16" y2="24"></line>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-700 dark:text-blue-300"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.daytonstemschool.org/" target="_blank" rel="noopener noreferrer">IT Technician - Dayton, Ohio</a></h3>
+                    <p class="text-gray-700 dark:text-gray-200 mt-2">Provided technical support for hardware and software issues in a
+                        school setting. Imaged fleet of laptops for incoming students.</p>
+                    <span class="block mt-2 text-sm text-gray-500 dark:text-gray-400">May 2025 - Present</span>
+                </div>
+            </div>
+            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col md:flex-row items-start md:items-center">
+                <div class="flex-shrink-0 mr-6 mb-4 md:mb-0">
+                    <svg class="w-16 h-16 text-blue-400 dark:text-blue-300" fill="none" stroke="currentColor" stroke-width="2"
+                         viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-700 dark:text-blue-300"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://greatescapegame.com/" target="_blank" rel="noopener noreferrer">Escape Room Gamemaster - Beavercreek, Ohio</a></h3>
+                    <p class="text-gray-700 dark:text-gray-200 mt-2">Managed and facilitated escape room experiences, ensuring smooth
+                        gameplay and customer satisfaction. Provided clues and hints as needed to enhance the immersive
+                        experience.</p>
+                    <span class="block mt-2 text-sm text-gray-500 dark:text-gray-400">July 2024 - Present</span>
+                </div>
+            </div>
+        </div>
+        <div id="project-scroll"></div>
+    </section>
+
+<section id="projects" class="max-w-5xl mx-auto mt-16 mb-16">
+    <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">My Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+            <h3 class="text-xl font-semibold text-blue-700 dark:text-blue-300 mb-2">Ticketing System</h3>
+            <p class="text-gray-700 dark:text-gray-200 mb-4">
+                Creating and supporting an OSTicket installation.
+            </p>
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-4">
+                Technologies Used: <span class="font-normal">MySQL, XAMPP, CSS</span>
+            </p>
+            <div class="flex flex-wrap ">
+                <button onclick="openTicketPopup()"
+                        class="inline-flex items-center px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                    <svg class="mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
+                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
+                    </svg>
+                    <span>Learn More</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+            <h3 class="text-xl font-semibold text-blue-700 dark:text-blue-300 mb-2">Contact Book PowerApp</h3>
+            <p class="text-gray-700 dark:text-gray-200 mb-4">
+                Creating a contact book to aid Support Technicans.
+            </p>
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-4">
+                Technologies Used: <span class="font-normal">MS PowerApps</span>
+            </p>
+            <div class="flex flex-wrap ">
+                <button onclick="openPowerAppsPopup()"
+                        class="inline-flex items-center px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                    <svg class="mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
+                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
+                    </svg>
+                    <span>Learn More</span>
+                </button>
+            </div>
+        </div>
+
+        </div>
+    <div class="flex justify-end mt-8">
+        <a href="Projects/index.html"
+           class="inline-flex items-center px-6 py-3 g-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 text-white font-semibold text-base transition shadow-lg">
+            View All Projects
+            <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+        </a>
+    </div>
+
+    <div id="education-scroll"></div>
+
+</section>
+
+    <div id="ticket-popup"
+    tabindex="-1"
+     class="dark:bg-gray-900 w-full max-w-5xl fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white dark:bg-gray-800 border border-blue-200 dark:border-blue-700 rounded-xl shadow-2xl p-6 md:p-8 lg:p-10 flex flex-col items-center gap-6 transition-opacity duration-300 opacity-0 pointer-events-none">
+
+    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-100 text-center mb-4">
+        OSTicket
+    </h2>
+
+    <img loading="lazy" src="img/osTicket.avif" alt="OSTicket Frontend Application" class="object-cover rounded-xl mb-6 shadow-md">
+
+    <h2 class="text-4xl tb-2 font-bold text-gray-800 dark:text-gray-100 mb-2">Overview</h2>
+
+    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+        <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
+            This project involved the installation and setup of an instance of osTicket. This project allowed me to gain
+            first-hand experience in initializing and configuring servers, using technologies such as MySQL for database
+            integration. This project showcases my abilities in general system administration and real-world deployment of
+            web-based systems.
+        </p>
+    </div>
+
+    <h2 class="text-4xl tb-2 font-bold text-gray-800 dark:text-gray-100 mt-4 mb-4">Configuration</h2>
+
+    <img loading="lazy" src="img/StylingosTicket.avif" alt="OSTicket Backend Application Development" class="object-cover rounded-xl mb-6 shadow-md">
+
+    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+        <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
+            While I was configuring user accounts, tickets, and other settings, I began to realize that the styling of
+            osTicket was rather outdated. I decided to dive in deep into the staff side styling I spent a few hours
+            updating the styling for a more resposive website. I was rather unsatisfied with how complicated configuring
+            the styling.
+        </p>
+    </div>
+
+    <h2 class="text-4xl tb-2 font-bold text-gray-800 dark:text-gray-100 mt-4 mb-4">Pre-made Themes</h2>
+
+    <img loading="lazy" src="img/osTicketTheme.avif" alt="Alternative osTicket Themes" class="object-cover rounded-xl mb-6 shadow-md">
+
+    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+        <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
+            As I often turn to pre-made libraries for my code, such as Tailwindcss which is a framework for the entirety
+            of this website. I decided to search online for themes for osTicket. I found that there wasn't many good
+            FOSS repositoriesm but I found many licensed themes that I would use if this was a permanent installation.
+        </p>
+    </div>
+
+    <button tabindex="0" onclick="closeTicketPopup()"
+            class="mt-6 px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75">
+        Close
+    </button>
+</div>
+
+<div id="powerApps-popup"
+    tabindex="-1"
+     class="dark:bg-gray-900 w-full max-w-5xl fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white dark:bg-gray-800 border border-blue-200 dark:border-blue-700 rounded-xl shadow-2xl p-6 md:p-8 lg:p-10 flex flex-col items-center gap-6 transition-opacity duration-300 opacity-0 pointer-events-none">
+
+    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-100 text-center mb-4">
+        Contact Book PowerApp
+    </h2>
+
+    <img loading="lazy" src="./img/Microsoft_365.avif" alt="OSTicket Frontend Application" class="object-cover rounded-xl mb-6 shadow-md">
+
+    <h2 class="text-4xl tb-2 font-bold text-gray-800 dark:text-gray-100 mb-2">Overview</h2>
+
+    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+        <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
+            Now that we have a ticketing system it seems like theres a lot of tickets coming in. The team can’t keep up where everyones’ work station is. So, I'm going to quickly make a phone book like app in PowerApps so we can keep track where everyone is.
+        </p>
+    </div>
+
+    <h2 class="text-4xl tb-2 font-bold text-gray-800 dark:text-gray-100 mt-4 mb-4">Data</h2>
+
+    <img loading="lazy" src="./img/Mockaroo.avif" alt="OSTicket Backend Application Development" class="object-cover rounded-xl mb-6 shadow-md">
+
+    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+        <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
+            Obviously we need some mock data to get this working as this is just a scenario. So I’ll be using mockaroo to make a list of data. I choose to have it export the data into a CSV file, I would use SQL but I really don’t want to setup a SQL server and PowerApps’ Tables seem pretty good even with just a CSV file.
+        </p>
+    </div>
+
+    <h2 class="text-4xl tb-2 font-bold text-gray-800 dark:text-gray-100 mt-4 mb-4">App Setup</h2>
+
+    <img loading="lazy" src="./img/PowerAppDesign.avif" alt="Alternative osTicket Themes" class="object-cover rounded-xl mb-6 shadow-md">
+
+    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+        <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
+            After importing my CSV file in the PowerApps table, I was genuinely impressed with the application Power Apps automatically generated. I took few minutes to tweak it to look something like this which easily display's email, phone, and desk location information all on mobile device for in-field technicians.
+        </p>
+    </div>
+
+    <h2 class="text-4xl tb-2 font-bold text-gray-800 dark:text-gray-100 mt-4 mb-4">Conclusion</h2>
+
+    <video loading="lazy" width="auto" height="auto" autoplay loop class= rounded-xl">
+    <source src="./img/PowerAppScreenCast.webm" type='video/webm'>
+    <p>Your browser does not support AV1 video. Please consider upgrading to a modern browser.</p>
+    </video>
+
+
+    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+        <p class="text-lg text-gray-700 dark:text-gray-300 text-center">
+            This is a quick demo of the app I was able to generate in about 45 minutes. By far the quickest functional app I have ever made. This allows my IT Support Technicans to easily enteract in various forms of communications with users. This could easily save techs time looking for their users that need support.
+        </p>
+    </div>
+
+    <button tabindex="0" onclick="closePowerAppsPopup()"
+            class="mt-6 px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75">
+        Close
+    </button>
+</div>
+
+    <section class="max-w-5xl mx-auto mt-16 mb-16">
+        <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">Education</h2>
+        <div class="grid grid-cols-1 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+                <h3 class="text-xl font-semibold text-blue-700 dark:text-blue-300"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.comptia.org/en-us/certifications/a/core-1-and-2-v14/" target="_blank" rel="noopener noreferrer">CompTIA A+</a></h3>
+                <p class="text-gray-700 dark:text-gray-200 mt-2">Certified in foundational IT skills across a variety of devices and
+                    operating systems. 725/900 avg.</p>
+            </div> 
+            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+                <h3 class="text-xl font-semibold text-blue-700 dark:text-blue-300"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.comptia.org/en-us/certifications/network/" target="_blank" rel="noopener noreferrer">CompTIA Network+</a></h3>
+                <p class="text-gray-700 dark:text-gray-200 mt-2">Certified in networking concepts, tools, and best practices. 836/900</p>
+            </div> 
+        </div>
+            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+                <h3 class="text-2xl font-semibold text-blue-700 dark:text-blue-300"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.daytonstemschool.org/" target="_blank" rel="noopener noreferrer">Dayton Regional STEM School</a></h3>
+                <p class="text-lg text-gray-600 dark:text-gray-300 mt-2">12th Grade</p>
+                <p class="text-gray-700 dark:text-gray-200 mt-4 mb-6">
+                    Currently in my 12th grade year at the Dayton Regional STEM School, an institution renowned for its
+                    project-based and hands-on learning approach. This environment has fostered a deep understanding of
+                    practical applications in technology.
+                </p>
+
+                <div>
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow">
+                        <h4 class="text-xl font-semibold text-blue-700 dark:text-blue-300 mb-2"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="http://whyegg.org/math/" target="_blank" rel="noopener noreferrer">Computer Programming</a></h4>
+                        <p class="text-gray-700 dark:text-gray-200">
+                            Immersive coursework focusing on foundational programming concepts, algorithm design, and
+                            practical application development. Gained experience with various programming paradigms through
+                            hands-on projects.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 bg-white dark:bg-gray-700 p-6 rounded-xl shadow">
+                        <h4 class="text-xl font-semibold text-blue-700 dark:text-blue-300 mb-2"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.comptia.org/en-us/certifications/a/core-1-and-2-v14/" target="_blank" rel="noopener noreferrer">Hardware & Systems (A+ Study)</a></h4>
+                        <p class="text-700 dark:text-gray-200">
+                            Comprehensive hands-on experience with computer components, assembly, troubleshooting, and
+                            maintenance. Curriculum closely aligned with CompTIA A+ objectives, preparing for real-world
+                            hardware challenges.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 bg-white dark:bg-gray-700 p-6 rounded-xl shadow">
+                        <h4 class="text-xl font-semibold text-blue-700 dark:text-blue-300 mb-2"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.comptia.org/en-us/certifications/network/" target="_blank" rel="noopener noreferrer">Networking Fundamentals (Network+
+                            Study)</a></h4>
+                        <p class="text-gray-700 dark:text-gray-200">
+                            Practical and theoretical studies in network architecture, protocols (TCP/IP), network
+                            security, and troubleshooting. Strong emphasis on hands-on labs and scenarios to prepare for
+                            the CompTIA Network+ certification.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="max-w-5xl mx-auto mt-16 mb-16">
+        <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">Skills</h2>
+        <ul class="flex flex-wrap gap-4">
+            <li class="skill-badge">Windows &amp; Linux Administration</li>
+            <li class="skill-badge">Network Administration</li>
+            <li class="skill-badge">Active Directory</li>
+            <li class="skill-badge">Office 365</li>
+            <li class="skill-badge">Google Workspace</li>
+            <li class="skill-badge">Adobe Creative Cloud</li>
+            <li class="skill-badge">Training</li>
+            <li class="skill-badge">Programming</li>
+            <li class="skill-badge">Scripting</li>
+            <li class="skill-badge">Customer Support</li>
+            <li class="skill-badge">Troubleshooting</li>
+            <li class="skill-badge">Penetration Testing</li>
+            <li class="skill-badge">System Hardening</li>
+            <li class="skill-badge">Hardware/Software Support</li>
+            <li class="skill-badge">Web Development</li>
+        </ul>
+    </section>
+
+    <section class="max-w-5xl mx-auto mt-16">
+        <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">Statistics</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
+            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+                <p class="text-5xl font-bold text-blue-600 dark:text-blue-400">300+</p>
+                <p class="text-gray-700 dark:text-gray-200 mt-2">Students Supported</p>
+            </div>
+            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+                <p class="text-5xl font-bold text-blue-600 dark:text-blue-400">120</p>
+                <p class="text-gray-700 dark:text-gray-200 mt-2">Hours Studying Certs</p>
+            </div>
+            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+                <p class="text-5xl font-bold text-blue-600 dark:text-blue-400">~1</p>
+                <p class="text-gray-700 dark:text-gray-200 mt-2">Years Experience</p>
+            </div>
+            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+                <p class="text-5xl font-bold text-blue-600 dark:text-blue-400">3.87</p>
+                <p class="text-gray-700 dark:text-gray-200 mt-2">Highschool GPA</p>
+            </div>
+        </div>
+    </section>
+
+
+     <div id="linkedin-section" class="max-w-5xl mx-auto mt-16 py-20">
+        <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">Linkedin</h2>
+        <div class="bg-blue-50 dark:bg-blue-100 p-6 rounded-xl">
+            <div class='sk-ww-linkedin-profile-post' data-embed-id='25575047'></div>
+        </div>
+    </div>
+
+</main>
+</body>
+</html>
