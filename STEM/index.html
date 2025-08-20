@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en" class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+<head>
+  <meta charset="UTF-8">
+  <title>Luke Priest's Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Luke Priest's professional portfolio showcasing experience as an IT Technician, certifications, projects, networking, hardware, and customer support.">
+  <meta name="author" content="Luke Priest">
+  <meta name="keywords" content="Luke Priest, Portfolio, IT Technician, CompTIA A+, CompTIA Network+, Dayton STEM School">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="../src/output.css" rel="stylesheet">
+
+  <meta property="og:title" content="Luke Priest's Portfolio" />
+  <meta property="og:description" content="Accredited IT Technician in Dayton, Ohio" />
+  <meta property="og:image" content="https://lukepriest.work/img/Me.avif" />
+  <meta property="og:url" content="https://lukepriest.work/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Luke Priest IT Technician" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:updated_time" content="2025-07-27T23:00:06+0000" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://lukepriest.work/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    html { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif; }
+
+    .skill-badge { background-color: #dbeafe; color: #1e40af; padding: .5rem 1rem; border-radius: 9999px; font-weight: 500; transition: background-color .3s, color .3s; }
+    @media (prefers-color-scheme: dark) { .skill-badge { background-color: #1e3a8a; color: #bfdbfe; } }
+
+    .hidden-section { opacity: 0; transform: translateY(20px); transition: opacity .8s ease-out, transform .8s ease-out; }
+    .hidden-item { opacity: 0; transform: translateY(10px); transition: opacity .6s ease-out, transform .6s ease-out; }
+    .animated-section.visible, .animated-item.visible { opacity: 1; transform: translateY(0); }
+    .animated-section.visible .hidden-item:nth-child(1) { transition-delay: .1s; }
+    .animated-section.visible .hidden-item:nth-child(2) { transition-delay: .2s; }
+    .animated-section.visible .hidden-item:nth-child(3) { transition-delay: .3s; }
+    .animated-section.visible .hidden-item:nth-child(4) { transition-delay: .4s; }
+    .animated-section.visible .hidden-item:nth-child(5) { transition-delay: .5s; }
+    .animated-section.visible .hidden-item:nth-child(6) { transition-delay: .6s; }
+
+    @keyframes fadeInSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0);} }
+    .animate-hero-text { animation: fadeInSlideUp 1s ease-out forwards; opacity: 0; }
+    .animate-hero-text:nth-child(1) { animation-delay: .2s; }
+    .animate-hero-text:nth-child(2) { animation-delay: .4s; }
+    .animate-hero-buttons { animation: fadeInSlideUp 1s ease-out forwards; opacity: 0; animation-delay: .6s; }
+    .animate-hero-image { animation: fadeInSlideUp 1s ease-out forwards; opacity: .01; animation-delay: .8s; }
+
+    /* Preserve desktop nav hover aesthetics */
+    nav a { padding: .5rem 1rem; border-radius: 9999px; transition: all .3s ease; }
+    nav a:hover { background-color: rgba(147, 197, 253, 0.3); }
+
+    /* Small-screen adjustments without affecting md+ */
+    @media (max-width: 768px) {
+      nav.nav-pill { left: 50%; transform: translateX(-50%); width: 92%; padding: .75rem 1rem; }
+    }
+
+    /* Popup internal scrolling */
+    #ticket-popup, #homelab-popup, #contact-popup, #powerApps-popup { max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  </style>
+
+  <script>
+    // Dark mode init + toggle
+    if ( localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) ) {
+      document.documentElement.classList.add('dark');
+    } else { document.documentElement.classList.remove('dark'); }
+    function toggleDarkMode(){ document.documentElement.classList.toggle('dark'); localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'; }
+  </script>
+</head>
+<body>
+
+<!-- Global overlay (popups & mobile nav reuse) -->
+<div id="popup-overlay" class="fixed top-0 left-0 w-full h-full bg-gray-900/50 backdrop-blur-lg z-40 transition-opacity duration-300 opacity-0 pointer-events-none"></div>
+<div id="nav-overlay" class="fixed top-0 left-0 w-full h-full bg-gray-900/30 z-40 transition-opacity duration-300 opacity-0 pointer-events-none md:hidden"></div>
+
+<!-- Contact Popup (unchanged) -->
+<div id="contact-popup" class="dark:bg-gray-900 w-11/12 md:w-2/3 lg:w-1/2 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white dark:bg-gray-800 border border-blue-200 dark:border-blue-700 rounded-xl shadow-2xl p-6 md:p-8 lg:p-10 flex flex-col items-center gap-6 transition-opacity duration-300 opacity-0 pointer-events-none">
+  <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-100 text-center mb-4">Get in Touch!</h2>
+  <p class="text-lg text-gray-700 dark:text-gray-300 text-center max-w-prose">I'd love to connect. Linkedin is preferred but email is avalible aswell.</p>
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4 w-full">
+    <a href="https://www.linkedin.com/in/luke-priest" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-3 px-6 rounded-full inline-flex items-center justify-center text-base sm:text-lg transition-all duration-200 ease-in-out shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 w-full sm:w-auto">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48" class="mr-3 fill-current"><path fill="#0078d4" d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"></path><path d="M30,37V26.901c0-1.689-0.819-2.698-2.192-2.698c-0.815,0-1.414,0.459-1.779,1.364 c-0.017,0.064-0.041,0.325-0.031,1.114L26,37h-7V18h7v1.061C27.022,18.356,28.275,18,29.738,18c4.547,0,7.261,3.093,7.261,8.274 L37,37H30z M11,37V18h3.457C12.454,18,11,16.528,11,14.499C11,12.472,12.478,11,14.514,11c2.012,0,3.445,1.431,3.486,3.479 C18,16.523,16.521,18,14.485,18H18v19H11z" opacity=".05"></path><path d="M30.5,36.5v-9.599c0-1.973-1.031-3.198-2.692-3.198c-1.295,0-1.935,0.912-2.243,1.677 c-0.082,0.199-0.071,0.989-0.067,1.326L25.5,36.5h-6v-18h6v1.638c0.795-0.823,2.075-1.638,4.238-1.638 c4.233,0,6.761,2.906,6.761,7.774L36.5,36.5H30.5z M11.5,36.5v-18h6v18H11.5z M14.457,17.5c-1.713,0-2.957-1.262-2.957-3.001 c0-1.738,1.268-2.999,3.014-2.999c1.724,0,2.951,1.229,2.986,2.989c0,1.749-1.268,3.011-3.015,3.011H14.457z" opacity=".07"></path><path fill="#fff" d="M12,19h5v17h-5V19z M14.485,17h-0.028C12.965,17,12,15.888,12,14.499C12,13.08,12.995,12,14.514,12 c1.521,0,2.458,1.08,2.486,2.499C17,15.887,16.035,17,14.485,17z M36,36h-5v-9.099c0-2.198-1.225-3.698-3.192-3.698 c-1.501,0-2.313,1.012-2.707,1.99C24.957,25.543,25,26.511,25,27v9h-5V19h5v2.616C25.721,20.5,26.85,19,29.738,19 c3.578,0,6.261,2.25,6.261,7.274L36,36L36,36z"></path></svg>
+      LinkedIn
+    </a>
+    <a href="mailto:contact&#64;lukepriest.work" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-semibold py-3 px-6 rounded-full inline-flex items-center justify-center text-base sm:text-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 w-full sm:w-auto">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="mr-3 fill-gray-800 dark:fill-gray-200"><path d="M149-135q-39.05 0-66.53-27.48Q55-189.95 55-229v-502q0-39.46 27.47-67.23Q109.95-826 149-826h662q39.46 0 67.23 27.77Q906-770.46 906-731v502q0 39.05-27.77 66.52Q850.46-135 811-135H149Zm331-295 331-223v-78L480-513 149-731v78l331 223Z"/></svg>
+      <span class="text-gray-800 dark:text-gray-200">Email Me</span>
+    </a>
+  </div>
+  <button onclick="closeContactPopup()" class="mt-6 px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75">Close</button>
+</div>
+
+<!-- NAVBAR: Right-floating hamburger + fullscreen overlay (JS-free). Desktop pill preserved. -->
+
+<!-- 1) Desktop pill nav (centered). Hidden on mobile -->
+<nav class="hidden md:block fixed inset-x-0 top-0 z-40">
+  <div class="nav-pill pointer-events-auto fixed top-4 left-1/2 -translate-x-1/2 backdrop-blur-lg bg-white/30 dark:bg-gray-900/30 border border-gray-200/30 dark:border-gray-700/30 rounded-full shadow-lg px-6 py-3">
+    <div class="flex items-center space-x-6">
+      <a href="../index.html" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 font-medium transition-colors">Home</a>
+      <a href="../Projects/index.html" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 font-medium transition-colors">Projects</a>
+      <a href="../Experiences/index.html" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 font-medium transition-colors">Experiences</a>
+      <a href="../WBL/index.html" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 font-medium transition-colors">WBL</a>
+      <a href="index.html" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 font-medium transition-colors">STEM</a>
+      <a href="../Coding/index.html" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 font-medium transition-colors">Coding</a>
+    </div>
+  </div>
+</nav>
+
+<!-- 2) Mobile: checkbox + label trick (no JS). The label at top-right is the button. -->
+<input id="nav-check" type="checkbox" class="peer sr-only" />
+
+<!-- Hamburger button (floats right) -->
+<label for="nav-check"
+       class="md:hidden fixed top-4 right-4 z-50 inline-flex items-center justify-center rounded-full p-4 backdrop-blur-lg bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-gray-100 border border-gray-200/40 dark:border-gray-700/40 shadow-lg cursor-pointer">
+  <!-- Hamburger icon (shown when closed) -->
+  <svg class="h-8 w-8 peer-checked:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+  <!-- Close icon (shown when open) -->
+  <svg class="h-8 w-8 hidden peer-checked:block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+  <span class="sr-only">Toggle menu</span>
+</label>
+
+<!-- Fullscreen overlay menu (closer to top) -->
+<div class="md:hidden fixed inset-0 z-40 hidden peer-checked:block">
+  <!-- Backdrop -->
+  <label for="nav-check" class="absolute inset-0 backdrop-blur-xl bg-white/85 dark:bg-gray-900/85"></label>
+
+  <!-- Menu content -->
+  <div class="relative h-full w-full flex flex-col items-center mt-20 gap-6 p-6 animate-[fadeIn_150ms_ease-out]">
+    <!-- Each link larger and easier to tap -->
+    <label for="nav-check" class="w-full max-w-md">
+      <a href="../index.html" class="block text-center text-2xl font-semibold text-gray-900 dark:text-gray-100 py-4 rounded-xl bg-white/80 dark:bg-gray-800/80 border border-gray-200/50 dark:border-gray-700/50 shadow">Home</a>
+    </label>
+    <label for="nav-check" class="w-full max-w-md">
+      <a href="../Projects/index.html" class="block text-center text-2xl font-semibold text-gray-900 dark:text-gray-100 py-4 rounded-xl bg-white/80 dark:bg-gray-800/80 border border-gray-200/50 dark:border-gray-700/50 shadow">Projects</a>
+    </label>
+    <label for="nav-check" class="w-full max-w-md">
+      <a href="../Experiences/index.html" class="block text-center text-2xl font-semibold text-gray-900 dark:text-gray-100 py-4 rounded-xl bg-white/80 dark:bg-gray-800/80 border border-gray-200/50 dark:border-gray-700/50 shadow">Experiences</a>
+    </label>
+    <label for="nav-check" class="w-full max-w-md">
+      <a href="../WBL/index.html" class="block text-center text-2xl font-semibold text-gray-900 dark:text-gray-100 py-4 rounded-xl bg-white/80 dark:bg-gray-800/80 border border-gray-200/50 dark:border-gray-700/50 shadow">WBL</a>
+    </label>
+    <label for="nav-check" class="w-full max-w-md">
+      <a href="index.html" class="block text-center text-2xl font-semibold text-gray-900 dark:text-gray-100 py-4 rounded-xl bg-white/80 dark:bg-gray-800/80 border border-gray-200/50 dark:border-gray-700/50 shadow">STEM</a>
+    </label>
+    <label for="nav-check" class="w-full max-w-md">
+      <a href="../Coding/index.html" class="block text-center text-2xl font-semibold text-gray-900 dark:text-gray-100 py-4 rounded-xl bg-white/80 dark:bg-gray-800/80 border border-gray-200/50 dark:border-gray-700/50 shadow">Coding</a>
+    </label>
+  </div>
+</div>
+
+<!-- Optional keyframe for subtle fade-in -->
+<style>
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+
+
+
+
+<header class="flex flex-col md:flex-row items-center justify-between min-h-[60vh] md:min-h-screen px-4 md:px-16 py-8 md:py-12 bg-gradient-to-br from-blue-200 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-blue-900 relative overflow-hidden">
+  <svg class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 800" fill="none">
+    <defs>
+      <linearGradient id="bg-gradient" x1="0" y1="0" x2="1440" y2="800" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#60A5FA"/>
+        <stop offset="1" stop-color="#F0F9FF"/>
+      </linearGradient>
+      <linearGradient id="bg-gradient-dark" x1="0" y1="0" x2="1440" y2="800" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#1e3a8a"/>
+        <stop offset="1" stop-color="#0f172a"/>
+      </linearGradient>
+    </defs>
+    <path d="M0,400 Q360,600 720,400 T1440,400 V800 H0 Z" fill="url(#bg-gradient)" class="dark:hidden"/>
+    <path d="M0,400 Q360,600 720,400 T1440,400 V800 H0 Z" fill="url(#bg-gradient-dark)" class="hidden dark:inline"/>
+  </svg>
+  <svg class="absolute top-0 left-0 w-full h-full pointer-events-none z-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 800">
+    <circle cx="83%" cy="25%" r="180" fill="#93C5FD" opacity="0.09"/>
+    <circle cx="21%" cy="13%" r="120" fill="#3B82F6" opacity="0.05"/>
+  </svg>
+  <div class="flex-1 w-full md:w-auto relative z-10 flex flex-col items-center md:items-start text-center md:text-left">
+    <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6 drop-shadow-lg animate-hero-text">STEM</h1>
+    <div class="flex flex-row items-center justify-center gap-4 animate-hero-buttons"></div>
+  </div>
+  <div class="flex-1 w-full md:w-auto flex justify-center md:justify-end mt-8 md:mt-0 relative z-10 animate-hero-image">
+    <div class="relative flex justify-center">
+      <img loading="eager" fetchpriority="high" src="../img/Me.avif" alt="Luke Priest | IT Technician in Dayton, Ohio" class="rounded-full shadow-2xl object-cover lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem] border-8 border-white dark:border-gray-800 transition-all duration-300">
+    </div>
+  </div>
+</header>
+
+<main class="px-4 md:px-16 py-8 md:py-12 bg-white dark:bg-gray-900">
+  <section id="about-me" class="max-w-5xl mx-auto mt-16 mb-16">
+    <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">About Me</h2>
+    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+      <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
+        I am a highly motivated and hands-on 12th-grade student at the <a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.daytonstemschool.org/" target="_blank" rel="noopener noreferrer">Dayton Regional STEM School</a>, passionate about everything technology. With a strong foundation in computer programming, hardware, and networking, I thrive in project-based environments where I can apply theoretical knowledge to real-world challenges. My experience as an IT Technician and Escape Room Gamemaster has shaped my problem-solving, customer support, and technical troubleshooting skills. I am constantly seeking opportunities to expand my expertise and contribute to innovative solutions in the IT field.
+      </p>
+    </div>
+    <div class="flex justify-end mt-8">
+      <a href="Experiences/index.html" class="inline-flex items-center px-6 py-3 g-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 text-white font-semibold text-base transition shadow-lg">
+        Learn More
+        <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <div id="experience-scroll"></div>
+  </section>
+
+    <div class="mt-24 text-center">
+      <h1 class="block text-3xl font-bold text-gray-800 sm:text-2xl lg:text-4xl lg:leading-tight dark:text-white">After Highschool</h1>
+      <p class="mt-3 px-4 lg:px-[5vw] xl:px-[10vw] 2xl:px-[10vw] text-lg text-gray-800 dark:text-neutral-400">Due to the fact that I have gained certifications in Information Technology already, this gives me an intresting oppurtinity to go straight in to an entry level Information Technology job. I plan to start off as a help desk technican, but my ultimate goal is to continue my career to be a network engineer.</p>
+    </div>
+
+    <footer class="mt-auto w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
+      <div class="grid place-content-center items-center gap-5">
+        <ul class="text-end">
+          <li class="inline-block relative pe-8 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-neutral-600">
+            <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200" href="mailto:priest.24@daytonstemschool.org">Contact Me</a>
+          </li>
+          <li class="inline-block relative pe-8 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-neutral-600">
+            <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200" href="https://www.linkedin.com/in/luke-priest">LinkedIn</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+</main>
+</body>
+</html>
