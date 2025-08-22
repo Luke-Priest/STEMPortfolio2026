@@ -170,8 +170,6 @@
 </style>
 
 
-
-
 <header class="flex flex-col md:flex-row items-center justify-between min-h-[60vh] md:min-h-screen px-4 md:px-16 py-8 md:py-12 bg-gradient-to-br from-blue-200 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-blue-900 relative overflow-hidden">
   <svg class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 800" fill="none">
     <defs>
@@ -191,38 +189,347 @@
     <circle cx="83%" cy="25%" r="180" fill="#93C5FD" opacity="0.09"/>
     <circle cx="21%" cy="13%" r="120" fill="#3B82F6" opacity="0.05"/>
   </svg>
-  <div class="flex-1 w-full md:w-auto relative z-10 flex flex-col items-center md:items-start text-center md:text-left">
+  <div class="flex-1 w-full relative z-10 flex items-center justify-center text-center">
     <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6 drop-shadow-lg animate-hero-text">Work Based Learning</h1>
-    <div class="flex flex-row items-center justify-center gap-4 animate-hero-buttons"></div>
-  </div>
-  <div class="flex-1 w-full md:w-auto flex justify-center md:justify-end mt-8 md:mt-0 relative z-10 animate-hero-image">
-    <div class="relative flex justify-center">
-      <img loading="eager" fetchpriority="high" src="../img/Me.avif" alt="Luke Priest | IT Technician in Dayton, Ohio" class="rounded-full shadow-2xl object-cover lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem] border-8 border-white dark:border-gray-800 transition-all duration-300">
-    </div>
   </div>
 </header>
 
 <main class="px-4 md:px-16 py-8 md:py-12 bg-white dark:bg-gray-900">
+
+   <section id="experience" class="max-w-5xl mx-auto mb-16">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+            <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4 sm:mb-0">Professional Experience</h2>
+            <a href="LukePriestResume.pdf" aria-label="PDF Resume" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-700 transition font-semibold text-lg">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4m-8 8h8"/>
+                </svg>
+                Resume
+            </a>
+        </div>
+        <div class="space-y-8">
+            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col md:flex-row items-start md:items-center">
+                <div class="flex-shrink-0 mr-6 mb-4 md:mb-0">
+                    <svg class="w-16 h-16 text-blue-400 dark:text-blue-300" fill="none" stroke="currentColor" stroke-width="2"
+                         viewBox="0 0 24 24">
+                        <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+                        <path d="M12 20v4"></path>
+                        <line x1="8" y1="24" x2="16" y2="24"></line>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-700 dark:text-blue-300"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.daytonstemschool.org/" target="_blank" rel="noopener noreferrer">IT Technician - Dayton, Ohio</a></h3>
+                    <p class="text-gray-700 dark:text-gray-200 mt-2">Provided technical support for hardware and software issues in a
+                        school setting. Imaged fleet of laptops for incoming students.</p>
+                    <span class="block mt-2 text-sm text-gray-500 dark:text-gray-400">May 2025 - Present</span>
+                </div>
+            </div>
+            <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col md:flex-row items-start md:items-center">
+                <div class="flex-shrink-0 mr-6 mb-4 md:mb-0">
+                    <svg class="w-16 h-16 text-blue-400 dark:text-blue-300" fill="none" stroke="currentColor" stroke-width="2"
+                         viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-700 dark:text-blue-300"><a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://greatescapegame.com/" target="_blank" rel="noopener noreferrer">Escape Room Gamemaster - Beavercreek, Ohio</a></h3>
+                    <p class="text-gray-700 dark:text-gray-200 mt-2">Managed and facilitated escape room experiences, ensuring smooth
+                        gameplay and customer satisfaction. Provided clues and hints as needed to enhance the immersive
+                        experience.</p>
+                    <span class="block mt-2 text-sm text-gray-500 dark:text-gray-400">July 2024 - Present</span>
+                </div>
+            </div>
+        </div>
+        <div id="project-scroll"></div>
+    </section>
+
   <section id="about-me" class="max-w-5xl mx-auto mt-16 mb-16">
-    <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">About Me</h2>
+    <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">Internship</h2>
     <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
       <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
-        I am a highly motivated and hands-on 12th-grade student at the <a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.daytonstemschool.org/" target="_blank" rel="noopener noreferrer">Dayton Regional STEM School</a>, passionate about everything technology. With a strong foundation in computer programming, hardware, and networking, I thrive in project-based environments where I can apply theoretical knowledge to real-world challenges. My experience as an IT Technician and Escape Room Gamemaster has shaped my problem-solving, customer support, and technical troubleshooting skills. I am constantly seeking opportunities to expand my expertise and contribute to innovative solutions in the IT field.
+        At the Dayton Regional STEM School, 11th-grade students are required to complete an 80-hour internship in their intended career field. This is an excellent hands-on experience working with professionals and seeing the practical aspects of a chosen path. My internship was here at DRSS, directly working with the school's IT department during the 10 days of STEMmersion for 8 hours each day. I gained exposure to the various facets of IT support, such as resolving hardware and software issues, and learning about the systems driving our learning environment.
       </p>
     </div>
-    <div class="flex justify-end mt-8">
-      <a href="Experiences/index.html" class="inline-flex items-center px-6 py-3 g-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 text-white font-semibold text-base transition shadow-lg">
-        Learn More
-        <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-      </a>
-    </div>
-    <div id="experience-scroll"></div>
   </section>
 
-    <div class="mt-24 text-center">
-      <h1 class="block text-3xl font-bold text-gray-800 sm:text-2xl lg:text-4xl lg:leading-tight dark:text-white">After Highschool</h1>
-      <p class="mt-3 px-4 lg:px-[5vw] xl:px-[10vw] 2xl:px-[10vw] text-lg text-gray-800 dark:text-neutral-400">Due to the fact that I have gained certifications in Information Technology already, this gives me an intresting oppurtinity to go straight in to an entry level Information Technology job. I plan to start off as a help desk technican, but my ultimate goal is to continue my career to be a network engineer.</p>
-    </div>
+        <!-- Table Section -->
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <!-- Card -->
+    <div class="flex flex-col">
+      <div class="-m-1.5 overflow-x-auto">
+        <div class="p-1.5 min-w-full inline-block align-middle">
+          <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-neutral-800 dark:border-neutral-700">
+  
+            <!-- Table -->
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+              <thead class="bg-gray-50 dark:bg-neutral-800">
+                <tr>
+  
+
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
+                        Date
+                      </span>
+                    </div>
+                  </th>
+  
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
+                        Hours
+                      </span>
+                    </div>
+                  </th>
+  
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
+                        Summary
+                      </span>
+                    </div>
+                  </th>
+
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
+                        Photos
+                      </span>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+  
+              <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+                <tr>
+                  <td class="size-px whitespace-nowrap">
+                    <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                      <div class="flex items-center gap-x-3">
+                        <div class="grow">
+                          <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-200 pl-8">5/15</span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="h-px w-32 whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <span class="block text-sm text-gray-500 dark:text-neutral-500">8 hours</span>
+                    </div>
+                  </td>
+                  <td class="flex justify-center p-6">
+                    After a short orientation, I helped with computer collection and organizing. This involved some lifting, and I also assisted with Chromebook setup for the elementary school.
+                  </td>
+                  <td class="w-2/5 whitespace-nowrap">
+                    <img src="img/LaptopCollectionDay1.jpg" alt="5-15" class="object-cover rounded-lg">
+                  </td>
+                </tr>
+  
+                <tr>
+                  <td class="size-px whitespace-nowrap">
+                    <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                      <div class="flex items-center gap-x-3">
+                        <div class="grow">
+                          <span class="block text-sm font-semibold text-gray-800 pl-8 dark:text-neutral-200">5/16</span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="h-px w-32 whitespace-nowrap">
+                    <div class="px-6 py-3">
+                        <span class="block text-sm text-gray-500 dark:text-neutral-500">8 hours</span>
+                    </div>
+                  </td>
+                  
+                  <td class="flex justify-center p-6">
+                    Today my main goal was to unbox and enroll new Chromebooks. I quickly realized the necessity of multi-tasking to be able to accomplish all the various tasks, and created a staging process for the unboxing process.
+                  </td>
+                  <td class="w-2/5 whitespace-nowrap">
+                    <img src="img/ChromebookEnrollment.jpg" alt="5-15" class="object-cover rounded-lg">
+                  </td>
+                </tr>
+                <tr>
+                    <td class="size-px whitespace-nowrap">
+                      <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                        <div class="flex items-center gap-x-3">
+                          <div class="grow">
+                            <span class="block text-sm font-semibold text-gray-800 pl-8 dark:text-neutral-200">5/19</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="h-px w-32 whitespace-nowrap">
+                      <div class="px-6 py-3">
+                          <span class="block text-sm text-gray-500 dark:text-neutral-500">8 hours</span>
+                      </div>
+                    </td>
+                    <td class="flex justify-center p-6">
+                        I sat in a meeting today, mainly about continuing Chromebook Enrollment. Chromebook enrollment is a long process, multi-tasking was a key process to accomplish this.
+                      </td>
+                    <td class="w-2/5 whitespace-nowrap">
+                    <img src="img/ChromeBookEnrollment2.jpg" alt="5-15" class="object-cover rounded-lg">
+                  </td>
+                  </tr>
+                  <tr>
+                    <td class="size-px whitespace-nowrap">
+                      <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                        <div class="flex items-center gap-x-3">
+                          <div class="grow">
+                            <span class="block text-sm font-semibold text-gray-800 pl-8 dark:text-neutral-200">5/20</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="h-px w-32 whitespace-nowrap">
+                      <div class="px-6 py-3">
+                          <span class="block text-sm text-gray-500 dark:text-neutral-500">8 hours</span>
+                      </div>
+                    </td>
+                    <td class="flex justify-center p-6">
+                        Today the only goal was to finish setting up about 120 chromebooks. This took extreme patience and effiecent processes to get completed.
+                      </td>
+                    <td class="w-2/5 whitespace-nowrap">
+                    <img src="img/ChromeBookEnrollment3.jpg" alt="5-15" class="object-cover rounded-lg">
+                  </td>
+                  </tr>
+                  <tr>
+                    <td class="size-px whitespace-nowrap">
+                      <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                        <div class="flex items-center gap-x-3">
+                          <div class="grow">
+                            <span class="block text-sm font-semibold text-gray-800 pl-8 dark:text-neutral-200">5/21</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="h-px w-32 whitespace-nowrap">
+                      <div class="px-6 py-3">
+                          <span class="block text-sm text-gray-500 dark:text-neutral-500">8 hours</span>
+                      </div>
+                    </td>
+                    <td class="flex justify-center p-6">
+                        I focused on finishing up the Chromebook enrollment, after the passed 3 days. In addition, I worked on updating software on Windows laptops, keeping our software current and secure. We mostly were focused on the secure testing browser to allow students in fall to do their map testing.
+                      </td>
+                    <td class="w-2/5 whitespace-nowrap">
+                    <img src="img/WindowsMapUpdate.jpg" alt="5-15" class="object-cover rounded-lg">
+                  </td>
+                  </tr>
+                  <tr>
+                    <td class="size-px whitespace-nowrap">
+                      <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                        <div class="flex items-center gap-x-3">
+                          <div class="grow">
+                            <span class="block text-sm font-semibold text-gray-800 pl-8 dark:text-neutral-200">5/22</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="h-px w-32 whitespace-nowrap">
+                      <div class="px-6 py-3">
+                          <span class="block text-sm text-gray-500 dark:text-neutral-500">8 hours</span>
+                      </div>
+                    </td>
+                    <td class="flex justify-center p-6">
+                        We continued to worked on the windows update today. This was a long process, but I learned a lot of windows shortcuts to make my life easier.
+                      </td>
+                    <td class="w-2/5 whitespace-nowrap">
+                    <img src="img/WindowsImaging.jpg" alt="5-15" class="object-cover rounded-lg">
+                  </td>
+                  </tr>
+                  <tr>
+                    <td class="size-px whitespace-nowrap">
+                      <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                        <div class="flex items-center gap-x-3">
+                          <div class="grow">
+                            <span class="block text-sm font-semibold text-gray-800 pl-8 dark:text-neutral-200">5/23</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="h-px w-32 whitespace-nowrap">
+                      <div class="px-6 py-3">
+                          <span class="block text-sm text-gray-500 dark:text-neutral-500">8 hours</span>
+                      </div>
+                    </td>
+                    <td class="flex justify-center p-6">
+                        Today I continued to perform software updates on the rest of the windows laptops, ensuring they meet compliance. I also reimaged some of the laptops that were extremely far out of compliance. 
+                      </td>
+                    <td class="w-2/5 whitespace-nowrap">
+                    <img src="img/WindowsImaged.jpg" alt="5-15" class="object-cover rounded-lg">
+                  </td>
+                  </tr>
+                  <tr>
+                    <td class="size-px whitespace-nowrap">
+                      <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                        <div class="flex items-center gap-x-3">
+                          <div class="grow">
+                            <span class="block text-sm font-semibold text-gray-800 pl-8 dark:text-neutral-200">5/27</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="h-px w-32 whitespace-nowrap">
+                      <div class="px-6 py-3">
+                          <span class="block text-sm text-gray-500 dark:text-neutral-500">8 hours</span>
+                      </div>
+                    </td>
+                    <td class="flex justify-center p-6">
+                        My primary responsibility today collected student computers and chargers from designated STEMmersions. This task required attention to detail to ensure all items were accounted for and in good condition. 
+                      </td>
+                    <td class="w-2/5 whitespace-nowrap">
+                    <img src="img/ChargerCollection.jpg" alt="5-15" class="object-cover rounded-lg">
+                  </td>
+                  </tr>
+                  <tr>
+                    <td class="size-px whitespace-nowrap">
+                      <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                        <div class="flex items-center gap-x-3">
+                          <div class="grow">
+                            <span class="block text-sm font-semibold text-gray-800 pl-8 dark:text-neutral-200">5/28</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="h-px w-32 whitespace-nowrap">
+                      <div class="px-6 py-3">
+                          <span class="block text-sm text-gray-500 dark:text-neutral-500">8 hours</span>
+                      </div>
+                    </td>
+                    <td class="flex justify-center p-6">
+                        Today I help gather necessary equipment from students. I also performed quick computer repair whenever a computers hinge, or other screws are loose.
+                    </td>
+                    <td class="w-2/5 whitespace-nowrap">
+                    <img src="img/LaptopRepair.jpg" alt="5-15" class="object-cover rounded-lg">
+                  </td>
+                  </tr>
+                  <tr>
+                    <td class="size-px whitespace-nowrap">
+                      <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
+                        <div class="flex items-center gap-x-3">
+                          <div class="grow">
+                            <span class="block text-sm font-semibold text-gray-800 pl-8 dark:text-neutral-200">5/29</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="h-px w-32 whitespace-nowrap">
+                      <div class="px-6 py-3">
+                          <span class="block text-sm text-gray-500 dark:text-neutral-500">8 hours</span>
+                      </div>
+                    </td>
+                    <td class="flex justify-center p-6">
+                        Today was the second day of gathering necessary equipment from students and performing quick computer repair whenever a computers hinge, or other screws are loose. Today was the last day of school, so we also had to hunt people down that may have not turned in their laptop. 
+                    </td>
+                    <td class="w-2/5 whitespace-nowrap">
+                    <img src="img/LaptopCollectionDay2.jpg" alt="5-15" class="object-cover rounded-lg">
+                  </td>
+                  </tr>
+  
+              </tbody>
+            </table>
+            <!-- End Table -->
+             </div>
+
 
     <footer class="mt-auto w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
       <div class="grid place-content-center items-center gap-5">

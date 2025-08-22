@@ -1,0 +1,168 @@
+@charset "UTF-8";
+
+/* Header */
+
+.headershape-m-full {
+    height: clamp(100vw, 85vh, 85vh);
+}
+
+.Me {
+    width: 100%;
+}
+
+.Me-t {
+    display: none;
+}
+
+.header {
+    height: 120vw;
+}
+
+    .header .headershape-m {
+        position: relative;
+        left: 0;
+        top: -20vw;
+        width: 100%;
+    }
+
+.headershape-t {
+    display: none;
+}
+
+.boat {
+    display: none;
+}
+
+.boat-m {
+    display: unset;
+    position: absolute;
+    top: 75vw;
+    left: 70vw;
+    width: 25%;
+}
+
+/* Title */
+
+.header-title-half {
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(16px, 8vw, 100px);
+    width: 60%;
+    margin-left: 2%;
+    top: -56vw;
+    color: black;
+}
+
+.header-title-full {
+    position: absolute;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-size: clamp(16px, 8vw, 100px);
+    width: 80%;
+    margin-left: 10%;
+    top: 50vw;
+    color: black;
+}
+
+
+/* Tablet Header */
+
+@media screen and (min-width: 600px) {
+
+    .headershape-m-full {
+        display: none;
+    }
+
+    .header {
+        height: 75vw;
+    }
+
+    .header-title-half {
+        position: absolute;
+        text-align: center;
+        line-height: 10vw;
+        top: 20vw;
+        width: 50%;
+    }
+
+    .header-title-full {
+        text-align: center;
+        line-height: 10vw;
+        top: 20vw;
+    }
+
+    .headershape-m {
+        display: none;
+    }
+
+    .headershape-t {
+        display: unset;
+        position: absolute;
+        width: 100%;
+        height: clamp(75vw, 100vh, 75vw);
+        top: 0px;
+    }
+
+    .Me {
+        display: none;
+    }
+
+    .Me-t {
+        display: unset;
+        position: absolute;
+        top: 18vw;
+        right: 5%;
+        width: 40%;
+        border-radius: 100%;
+    }
+
+    .boat-m {
+        display: none;
+    }
+
+    .boat {
+        display: unset;
+        width: clamp(20vw, 20vh, 21.5vw);
+        position: absolute;
+        top: clamp(50vw, 65vh, 50vw);
+        left: 0;
+        transform: rotate(-14deg);
+    }
+}
+
+@media screen and (min-width: 830px) {
+
+    .header {
+        height: clamp(45vw, 110vh, 110vh);
+    }
+
+    .header-title-half {
+        line-height: 100px;
+        top: clamp(18vw, 35vh, 20vw);
+        font-size: clamp(16px, 8vw, 11vh);
+        width: 45%;
+    }
+
+    .header-title-full {
+        line-height: 100px;
+        top: clamp(18vw, 35vh, 20vw);
+        font-size: clamp(16px, 8vw, 11vh);
+    }
+
+    .headershape-t {
+        height: clamp(45vw, 110vh, 110vh);
+    }
+
+    .Me-t {
+        top: clamp(10vw, 22vh, 22vh);
+        right: 5%;
+        width: clamp(30vw, 75vh, 45vw);
+    }
+
+    .boat {
+        transform: rotate(-14deg);
+        top: clamp(32.5vw, 72.5vh, 72.5vh);
+        height: clamp(10vw, 31.5vh, 31.5vh);
+        width: auto;
+    }
+}

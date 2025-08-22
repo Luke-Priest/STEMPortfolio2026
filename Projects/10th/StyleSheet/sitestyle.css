@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+/*Fonts*/
+
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+/*Body*/
+
+    body {
+        background-color: #131930;
+        font-family: Arial, Verdana;
+        font-size: 1em;
+        color: white;
+        margin:0;
+    }
+
+/*Custom Scrollbar*/
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 9px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #dedede;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #aaaaaa;
+        border-radius: 15px;
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+        border-radius: 15px;
+    }

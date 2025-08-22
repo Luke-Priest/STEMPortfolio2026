@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+	<!-- This is a template made for 9th grade DRSS students, it contains the bare necessities. 
+	I ask that you to add to this document, and have fun with it. 
+	If you need any help please look at the README text file in the zip file. -->
+
+<head>
+
+	<title>9th Grade Projects | Luke Priest</title>
+	<meta charset="UTF-8">
+	<meta name="desciption" content="Luke Priest's 10th grade portfolio">
+	<meta name="keywords" content="DRSS, Luke Priest, Sophmore, Portfolio, Dayton Regional STEM School">
+	<meta name="author" content="Luke Priest">
+	<meta name="copyright" content="Dayton Regional STEM School">
+	<meta name="rating" content="general">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="../../images/me.jpg" type="image/x-icon" />
+	<link rel="stylesheet" href="SiteStyle/StyleSheet.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+	<style>
+		.active .dropbtn p {
+			color: black;
+		}
+	</style>
+
+	<!--Ending responsive hamburger menu-->
+
+	<script>
+		/* When the user clicks on the button,
+		toggle between hiding and showing the dropdown content */
+		function buttonFunction() {
+			document.getElementById("myDropdown").classList.toggle("show");
+		}
+
+		// Close the dropdown if the user clicks outside of it
+		window.onclick = function (event) {
+			if (!event.target.matches('.dropbtn')) {
+				var dropdowns = document.getElementsByClassName("dropdown-content");
+				var i;
+				for (i = 0; i < dropdowns.length; i++) {
+					var openDropdown = dropdowns[i];
+					if (openDropdown.classList.contains('show')) {
+						openDropdown.classList.remove('show');
+					}
+				}
+			}
+		}
+	</script>
+
+</head>
+
+<body>
+
+
+	<div class="headerfull">
+		<h1>9th Grade Projects</h1>
+	</div>
+
+	<div class="main">
+		<h2>My Growth</h2>
+		<p>
+			I have grown from knowing little about CADing to being able to use some advanced skills. Before beginning the CADing projects I’ve spent little time in CAD software.
+			The most I’ve done was use TinkerCAD, a very simple online CADing website. TinkerCAD served its use in the eighth grade, but outside of that, there was definitely to
+			move to an advanced CADing program. In the first quarter of this year we began working on the puzzle cube project. This project allowe3d me to get to understand Autodesk Inventor,
+			as I knew very little about the program. The first step of CADing my puzzle cube design, was to make a 2D sketch on the x plane. Using the rectangle tool I completed my first
+			piece of my puzzle cube, I was confident in Inventor at this point. The next step was to form the pieces into the cube itself. To do this I would assemble the parts using mate
+			and flush constrain features. At the beginning it took me a while to understand how to constrain a piece to another piece and have it look correct, but after I fully constrained
+			my cube, I was able to constrain pieces together much more confidentially and quicker. This Cube designed used only a few basic features, 2D sketch, rectangle tool, extrude, and
+			mate and flush.
+		</p> <center><img src="PagePhotos/puzzleCube.png" style="height:370px" alt="A picture of my puzzle cube project"></center> <p>
+			My next artifact, the car project used many more skills and features such as; cut extrude, shell, fillet, mirror, revolve, insert constrain, and more.
+			The car project tested my skills and showed me I definitely was as comfortable with some of these tools that I had learned from some of the lessons. During the car project
+			I was constantly behind deadlines, I would always complete a task to realize that I had completed it wrong. But, I was able to use tutorials that were posted on schoology
+			to gain better understanding of the ways that I need to use the tools and features in Inventor.
+		</p>
+		<center><img src="PagePhotos/Car.png" alt="A picture of my CADed car project"></center>
+	</div>
+
+	<footer>
+		<p>&copy; 2023 Luke Priest</p>
+	</footer>
+
+</body>
+
+</html>

@@ -191,38 +191,153 @@
     <circle cx="83%" cy="25%" r="180" fill="#93C5FD" opacity="0.09"/>
     <circle cx="21%" cy="13%" r="120" fill="#3B82F6" opacity="0.05"/>
   </svg>
-  <div class="flex-1 w-full md:w-auto relative z-10 flex flex-col items-center md:items-start text-center md:text-left">
+  <div class="flex-1 w-full relative z-10 flex items-center justify-center text-center">
     <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6 drop-shadow-lg animate-hero-text">Experiences</h1>
-    <div class="flex flex-row items-center justify-center gap-4 animate-hero-buttons"></div>
-  </div>
-  <div class="flex-1 w-full md:w-auto flex justify-center md:justify-end mt-8 md:mt-0 relative z-10 animate-hero-image">
-    <div class="relative flex justify-center">
-      <img loading="eager" fetchpriority="high" src="../img/Me.avif" alt="Luke Priest | IT Technician in Dayton, Ohio" class="rounded-full shadow-2xl object-cover lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem] border-8 border-white dark:border-gray-800 transition-all duration-300">
-    </div>
   </div>
 </header>
 
 <main class="px-4 md:px-16 py-8 md:py-12 bg-white dark:bg-gray-900">
-  <section id="about-me" class="max-w-5xl mx-auto mt-16 mb-16">
-    <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">About Me</h2>
-    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
-      <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
-        I am a highly motivated and hands-on 12th-grade student at the <a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.daytonstemschool.org/" target="_blank" rel="noopener noreferrer">Dayton Regional STEM School</a>, passionate about everything technology. With a strong foundation in computer programming, hardware, and networking, I thrive in project-based environments where I can apply theoretical knowledge to real-world challenges. My experience as an IT Technician and Escape Room Gamemaster has shaped my problem-solving, customer support, and technical troubleshooting skills. I am constantly seeking opportunities to expand my expertise and contribute to innovative solutions in the IT field.
-      </p>
-    </div>
-    <div class="flex justify-end mt-8">
-      <a href="Experiences/index.html" class="inline-flex items-center px-6 py-3 g-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 text-white font-semibold text-base transition shadow-lg">
-        Learn More
-        <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-      </a>
-    </div>
-    <div id="experience-scroll"></div>
-  </section>
 
-    <div class="mt-24 text-center">
-      <h1 class="block text-3xl font-bold text-gray-800 sm:text-2xl lg:text-4xl lg:leading-tight dark:text-white">After Highschool</h1>
-      <p class="mt-3 px-4 lg:px-[5vw] xl:px-[10vw] 2xl:px-[10vw] text-lg text-gray-800 dark:text-neutral-400">Due to the fact that I have gained certifications in Information Technology already, this gives me an intresting oppurtinity to go straight in to an entry level Information Technology job. I plan to start off as a help desk technican, but my ultimate goal is to continue my career to be a network engineer.</p>
-    </div>
+    <!-- HOBBIES SECTION (desktop-optimized + scroll-in animations) -->
+<section id="hobbies" class="max-w-7xl mx-auto mt-28 mb-28 px-4">
+  <!-- Header -->
+  <div class="text-center mb-14 reveal opacity-0 translate-y-4">
+    <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 mb-3">
+      Hobbies & Interests
+    </h2>
+    <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+      Outside of IT, I like to tinker, explore, and make things. Here are a few favorites.
+    </p>
+  </div>
+
+  <!-- Responsive grid: 2 cols on sm, 3 on lg, 4 on xl -->
+  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+
+    <!-- Card template: duplicate as needed -->
+    <!-- Photography -->
+    <article class="card group rounded-3xl overflow-hidden border border-gray-200/60 dark:border-gray-700/60 bg-white/70 dark:bg-gray-800/70 backdrop-blur supports-[backdrop-filter]:bg-white/50 dark:supports-[backdrop-filter]:bg-gray-800/50 shadow-sm hover:shadow-xl transition-all duration-500 reveal opacity-0 translate-y-6" data-delay="0">
+      <figure class="relative h-56 md:h-60 xl:h-64 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Ocean sunset photography" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1400px) 33vw, 25vw">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/0"></div>
+        <figcaption class="sr-only">Photography</figcaption>
+      </figure>
+      <div class="p-6">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2 flex items-center gap-2">
+          <span class="inline-block h-2 w-2 rounded-full bg-blue-500"></span> Photography
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Landscapes and city nights—light, composition, and tasteful post‑processing.</p>
+      </div>
+    </article>
+
+    <!-- Cycling -->
+    <article class="card group rounded-3xl overflow-hidden border border-gray-200/60 dark:border-gray-700/60 bg-white/70 dark:bg-gray-800/70 backdrop-blur shadow-sm hover:shadow-xl transition-all duration-500 reveal opacity-0 translate-y-6" data-delay="50">
+      <figure class="relative h-56 md:h-60 xl:h-64 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf" alt="Cyclist on scenic road" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1400px) 33vw, 25vw">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/0"></div>
+        <figcaption class="sr-only">Cycling</figcaption>
+      </figure>
+      <div class="p-6">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2 flex items-center gap-2">
+          <span class="inline-block h-2 w-2 rounded-full bg-emerald-500"></span> Cycling
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Exploring trails, tracking elevation, and chasing that clear‑headed rhythm.</p>
+      </div>
+    </article>
+
+    <!-- Coding -->
+    <article class="card group rounded-3xl overflow-hidden border border-gray-200/60 dark:border-gray-700/60 bg-white/70 dark:bg-gray-800/70 backdrop-blur shadow-sm hover:shadow-xl transition-all duration-500 reveal opacity-0 translate-y-6" data-delay="100">
+      <figure class="relative h-56 md:h-60 xl:h-64 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475" alt="Coding setup" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1400px) 33vw, 25vw">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/0"></div>
+        <figcaption class="sr-only">Coding</figcaption>
+      </figure>
+      <div class="p-6">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2 flex items-center gap-2">
+          <span class="inline-block h-2 w-2 rounded-full bg-indigo-500"></span> Coding
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Tiny tools, APIs, and UI demos—automating away little annoyances.</p>
+      </div>
+    </article>
+
+    <!-- Gaming -->
+    <article class="card group rounded-3xl overflow-hidden border border-gray-200/60 dark:border-gray-700/60 bg-white/70 dark:bg-gray-800/70 backdrop-blur shadow-sm hover:shadow-xl transition-all duration-500 reveal opacity-0 translate-y-6" data-delay="150">
+      <figure class="relative h-56 md:h-60 xl:h-64 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1606813907290-c26b6e07c89a" alt="Gaming setup" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1400px) 33vw, 25vw">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/0"></div>
+        <figcaption class="sr-only">Gaming</figcaption>
+      </figure>
+      <div class="p-6">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2 flex items-center gap-2">
+          <span class="inline-block h-2 w-2 rounded-full bg-pink-500"></span> Gaming
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Indie and strategy for relaxing, learning systems, and co‑op with friends.</p>
+      </div>
+    </article>
+
+    <!-- Hiking -->
+    <article class="card group rounded-3xl overflow-hidden border border-gray-200/60 dark:border-gray-700/60 bg-white/70 dark:bg-gray-800/70 backdrop-blur shadow-sm hover:shadow-xl transition-all duration-500 reveal opacity-0 translate-y-6" data-delay="200">
+      <figure class="relative h-56 md:h-60 xl:h-64 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="Mountain hiking" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1400px) 33vw, 25vw">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/0"></div>
+        <figcaption class="sr-only">Hiking</figcaption>
+      </figure>
+      <div class="p-6">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2 flex items-center gap-2">
+          <span class="inline-block h-2 w-2 rounded-full bg-orange-500"></span> Hiking
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Weekend trails and fresh air—nice balance to screens and servers.</p>
+      </div>
+    </article>
+
+    <!-- Homelab -->
+    <article class="card group rounded-3xl overflow-hidden border border-gray-200/60 dark:border-gray-700/60 bg-white/70 dark:bg-gray-800/70 backdrop-blur shadow-sm hover:shadow-xl transition-all duration-500 reveal opacity-0 translate-y-6" data-delay="250">
+      <figure class="relative h-56 md:h-60 xl:h-64 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1581092334651-ddf3ec6a0395" alt="Server rack" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1400px) 33vw, 25vw">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/0"></div>
+        <figcaption class="sr-only">Homelab</figcaption>
+      </figure>
+      <div class="p-6">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2 flex items-center gap-2">
+          <span class="inline-block h-2 w-2 rounded-full bg-teal-500"></span> Homelab & Networking
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">Self‑hosting, Docker, VLANs, monitoring—my safe place to break things.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- Scroll‑in reveal (staggered, respects reduced motion) -->
+<script>
+  (function(){
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const cards = document.querySelectorAll('#hobbies .reveal');
+    if (!cards.length) return;
+
+    if (prefersReduced) {
+      cards.forEach(el => el.classList.remove('opacity-0','translate-y-6','translate-y-4'));
+      return;
+    }
+
+    const onIntersect = (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const delay = Number(el.getAttribute('data-delay') || 0);
+          el.style.transition = 'opacity 700ms cubic-bezier(0.22,1,0.36,1) '+delay+'ms, transform 700ms cubic-bezier(0.22,1,0.36,1) '+delay+'ms';
+          el.classList.remove('opacity-0');
+          el.classList.remove('translate-y-6');
+          el.classList.remove('translate-y-4');
+          obs.unobserve(el);
+        }
+      });
+    };
+
+    const obs = new IntersectionObserver(onIntersect, { threshold: 0.15 });
+    cards.forEach(el => obs.observe(el));
+  })();
+</script>
+
 
     <footer class="mt-auto w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
       <div class="grid place-content-center items-center gap-5">

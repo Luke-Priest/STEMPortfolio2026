@@ -1,0 +1,362 @@
+@charset "utf-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+.back {
+	border-radius: 100%;
+	border: hidden;
+	padding: .5%;
+	background: rgba(120, 109, 109, 0.50);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.50);
+	backdrop-filter: blur(2px);
+	font-size: 15px;
+	position: fixed;
+	top: 2vh;
+	left: 2vw;
+}
+
+	.back:hover {
+		border-color: #d1d1d4;
+		color: black;
+		background: rgba(255, 255, 255, 0.8);
+	}
+
+		.back:hover .home {
+			fill: black;
+		}
+
+.home {
+	fill: white;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #dedede; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+  border-radius: 50px;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+	background-color: black;
+	font-family: 'Poppins', sans-serif;
+}
+
+
+figcaption {
+	text-align:center;
+	padding-bottom: 5px;
+}
+
+.menu-area a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: black;
+  height: 60px;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.menu-area a:hover{
+  background: white;
+  color: black;
+}
+
+.menu-area ul{
+  list-style: none;
+  display: flex;
+ }
+
+.menu-area li{
+  position: relative;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+}
+
+.menu-area li:hover .dropdown > li{
+  display: block;
+  top: 0;
+  left: 0;
+}
+
+.dropdown li{
+  display: none;
+  position: relative;
+}
+
+.dropdown{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dropdown li:hover li{
+  display: block;
+}
+
+h2.title { 
+	color: #670BDE; 
+	text-align: center;
+	font-size: 36px;	
+}
+
+.content {
+	background-color: white;
+  padding-top: 20px;
+ font-size: 18px;
+ font-family: 'Poppins', sans-serif; 
+}
+
+.content p {
+ margin: 5px;
+ width: 94%;
+}
+
+.content h1 {
+  font-size: 65px;
+  padding-bottom: 5px;
+}
+
+p {
+ font-family: 'Noto Sans', sans-serif;
+}
+
+ footer {
+	 display:flex;
+	 justify-content: center;
+	 background-color: black;
+	 padding: 5px;
+	 color:white;
+ }
+ 
+ .MyImage {
+  position: absolute;
+  top: 14%;
+  left: 78%;
+ }
+ 
+ section h1 {
+	font-size: 40px;
+}
+ 
+ .QualitiesText {
+  width: 400px;
+  font-size: 19px;
+  font-weight: 400;
+ }
+
+ .Qualities {
+   margin-bottom: 1%;
+   
+ }
+
+  .Intro {
+	text-align: left;
+	background-color: #1f1b24;
+  padding: 25px;
+  padding-left: 27px; 
+  color: white;
+  font-size: 15px;
+}
+
+ .PBL {
+  position: absolute;
+  top: 105px;
+  margin-left: 73%;
+ }
+
+ .Title {
+   width: 800px;
+   font-size: 100px;
+   margin-top: 30px;
+   margin-left: 3%;
+ }
+
+ .PBLParagraph {
+  width: 500px;
+  padding: 25px;
+  font-weight: 500;
+ }
+
+ .Info {
+   margin-top: 2px;
+   font-size: 20px;
+   font-weight: 550;
+   margin-left: 3%;
+ }
+
+.ContentTitle {
+  font-size: 65px;
+  margin-left: 3%;
+}
+
+.PBLParagraphSection {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin-top: 15px;
+  margin-left: 20%;
+  margin-right: 20%;
+  background-color: rgba(0, 0, 0, .05);
+}
+
+.InquirySection {
+  position: absolute;
+  left: 39.5%;
+  top: 61.5%;
+  width: 400px;
+}
+
+.Growth {
+  background-color: rgba(0, 0, 0, .05);
+  padding-top: 20px;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif; 
+}
+
+.ContentParagraph {
+  padding-left: 3%;
+  font-size: 21px;
+  padding-bottom: 2%;
+  font-weight: 550;
+}
+
+.After {
+  padding-top: 20px;
+}
+
+.PhotoInfo {
+  background-color: rgba(0, 0, 0, .05);
+  position: absolute;
+  top: 570px;
+  width: 25%;
+  height: 865px;
+  margin-bottom: 48px;
+  margin-left: 5%;
+}
+
+.PhotoInfoIMG {
+  width: 65%;
+  margin-left: 30%;
+  margin-bottom: 2%;
+}
+
+.PhotoInfoParagraph {
+  padding: 3%;
+  width: 90%;
+}
+
+.PhotoInfoTwo {
+  background-color: rgba(0, 0, 0, .05);
+  position: absolute;
+  top: 1873px;
+  width: 25%;
+  height: 1614px;
+  margin-bottom: 48px;
+  margin-left: 5%;
+  margin-bottom: 2%;
+}
+
+.Video {
+  padding-bottom: 2%;
+}
+
+.CollaborationSection {
+  margin-left: 8.5%;
+  width: 400px;
+}
+
+.Persistence {
+  position: absolute;
+  left: 70%;
+  top: 61.5%;
+  width: 400px;
+}
+
+table {
+  background-color: rgba(0, 0, 0, .05);
+  width: 65%;
+}
+
+th, td {
+  padding: 5px;
+}
+
+.Communication {
+  margin-left: 8.5%;
+  margin-top: 9%;
+  width: 400px;
+}
+
+.Creativity {
+  position: absolute;
+  left: 70%;
+  top: 119.5%;
+  width: 400px;
+}
+
+.QualitiesTitle {
+  font-size: 32px;
+}
+
+.SixGradeCode {
+  margin-top: 5%; 
+  padding-top: 1%;
+  height: 450px;
+  background-image: url('../PagePhotos/6thGrade.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  color: black;
+  font-weight: 550;
+}
+
+.SeventhGradeCode {
+  padding-top: 1%;
+  height: 450px;
+  background-image: url('../PagePhotos/7thGradeCode.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  color: white;
+  font-weight: 550;
+}
+
+.GradeCode {
+  padding-left: 70%;
+  padding-top: 1%;
+  height: 475px;
+  background-image: url('../PagePhotos/8thGradeCode.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  color: white;
+  font-weight: 550;
+}
+
+.SixthGradeCode {
+ padding-left: 3%;
+}

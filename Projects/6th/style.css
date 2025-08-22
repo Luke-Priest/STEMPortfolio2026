@@ -1,0 +1,67 @@
+.back {
+	border-radius: 100%;
+	border: hidden;
+	padding: .5%;
+	background: rgba(120, 109, 109, 0.50);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.50);
+	backdrop-filter: blur(2px);
+	font-size: 15px;
+	position: fixed;
+	top: 2vh;
+	left: 2vw;
+}
+
+	.back:hover {
+		border-color: #d1d1d4;
+		color: black;
+		background: rgba(255, 255, 255, 0.8);
+	}
+
+	.back:hover .home {
+		fill: black;
+	}
+
+.home {
+	fill: white;
+}
+
+p {
+	font-size:20px;
+	font-family:Sans-Serif;
+	color:white
+}
+/* the p section is for selecting the text align and font size for the paragraph tags*/ 
+h1 { 
+	font-size:40px;
+}
+/* The section H1 is a font size selector for h1 tags*/ 
+#aboutme {
+	color: red;
+	text-decoration:underline;
+	font-family:sans-serif;
+	
+}
+/* #aboutme section is a id for the section About Me*/
+.Competencies {
+	color:rgb(255,230,250);
+}
+/* The Competencies section is a font color for the section Competencies*/
+body {
+	background-color:#0000ff;
+	border-color:#b30000;
+	border-style:solid;
+	margin:20px;
+	border-radius:20px;
+	border-width:20px;
+
+}
+/* the body section is a selector for background color and more for the body*/7
+li{
+	font-size:99999999px;
+}
+
+ul{
+	font-size:25px;
+	color:white
+}
+

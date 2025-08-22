@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+<head>
+  <meta charset="UTF-8">
+  <title>Luke Priest's Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Luke Priest's professional portfolio showcasing experience as an IT Technician, certifications, projects, networking, hardware, and customer support.">
+  <meta name="author" content="Luke Priest">
+  <meta name="keywords" content="Luke Priest, Portfolio, IT Technician, CompTIA A+, CompTIA Network+, Dayton STEM School">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="../src/output.css" rel="stylesheet">
+
+  <meta property="og:title" content="Luke Priest's Portfolio" />
+  <meta property="og:description" content="Accredited IT Technician in Dayton, Ohio" />
+  <meta property="og:image" content="https://lukepriest.work/img/Me.avif" />
+  <meta property="og:url" content="https://lukepriest.work/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Luke Priest IT Technician" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:updated_time" content="2025-07-27T23:00:06+0000" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://lukepriest.work/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    html { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif; }
+
+    .skill-badge { background-color: #dbeafe; color: #1e40af; padding: .5rem 1rem; border-radius: 9999px; font-weight: 500; transition: background-color .3s, color .3s; }
+    @media (prefers-color-scheme: dark) { .skill-badge { background-color: #1e3a8a; color: #bfdbfe; } }
+
+    .hidden-section { opacity: 0; transform: translateY(20px); transition: opacity .8s ease-out, transform .8s ease-out; }
+    .hidden-item { opacity: 0; transform: translateY(10px); transition: opacity .6s ease-out, transform .6s ease-out; }
+    .animated-section.visible, .animated-item.visible { opacity: 1; transform: translateY(0); }
+    .animated-section.visible .hidden-item:nth-child(1) { transition-delay: .1s; }
+    .animated-section.visible .hidden-item:nth-child(2) { transition-delay: .2s; }
+    .animated-section.visible .hidden-item:nth-child(3) { transition-delay: .3s; }
+    .animated-section.visible .hidden-item:nth-child(4) { transition-delay: .4s; }
+    .animated-section.visible .hidden-item:nth-child(5) { transition-delay: .5s; }
+    .animated-section.visible .hidden-item:nth-child(6) { transition-delay: .6s; }
+
+    @keyframes fadeInSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0);} }
+    .animate-hero-text { animation: fadeInSlideUp 1s ease-out forwards; opacity: 0; }
+    .animate-hero-text:nth-child(1) { animation-delay: .2s; }
+    .animate-hero-text:nth-child(2) { animation-delay: .4s; }
+    .animate-hero-buttons { animation: fadeInSlideUp 1s ease-out forwards; opacity: 0; animation-delay: .6s; }
+    .animate-hero-image { animation: fadeInSlideUp 1s ease-out forwards; opacity: .01; animation-delay: .8s; }
+
+    /* Preserve desktop nav hover aesthetics */
+    nav a { padding: .5rem 1rem; border-radius: 9999px; transition: all .3s ease; }
+    nav a:hover { background-color: rgba(147, 197, 253, 0.3); }
+
+    /* Small-screen adjustments without affecting md+ */
+    @media (max-width: 768px) {
+      nav.nav-pill { left: 50%; transform: translateX(-50%); width: 92%; padding: .75rem 1rem; }
+    }
+
+    /* Popup internal scrolling */
+    #ticket-popup, #homelab-popup, #contact-popup, #powerApps-popup { max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  </style>
+
+  <script>
+    // Dark mode init + toggle
+    if ( localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) ) {
+      document.documentElement.classList.add('dark');
+    } else { document.documentElement.classList.remove('dark'); }
+    function toggleDarkMode(){ document.documentElement.classList.toggle('dark'); localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'; }
+  </script>
+</head>
+<body>
+
+<main class="px-4 md:px-16 py-8 md:py-12 bg-white dark:bg-gray-900">
+  <section id="about-me" class="max-w-5xl mx-auto mt-16 mb-16">
+    <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">About Me</h2>
+    <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
+      <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
+        I am a highly motivated and hands-on 12th-grade student at the <a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.daytonstemschool.org/" target="_blank" rel="noopener noreferrer">Dayton Regional STEM School</a>, passionate about everything technology. With a strong foundation in computer programming, hardware, and networking, I thrive in project-based environments where I can apply theoretical knowledge to real-world challenges. My experience as an IT Technician and Escape Room Gamemaster has shaped my problem-solving, customer support, and technical troubleshooting skills. I am constantly seeking opportunities to expand my expertise and contribute to innovative solutions in the IT field.
+      </p>
+    </div>
+    <div class="flex justify-end mt-8">
+      <a href="Experiences/index.html" class="inline-flex items-center px-6 py-3 g-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 text-white font-semibold text-base transition shadow-lg">
+        Learn More
+        <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+      </a>
+    </div>
+    <div id="experience-scroll"></div>
+  </section>
+
+  </div>
+</main>
+</body>
+</html>
