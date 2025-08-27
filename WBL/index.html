@@ -1,15 +1,16 @@
 <!doctype html>
 <html lang="en" class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Luke Priest's Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Luke Priest's professional portfolio showcasing experience as an IT Technician, certifications, projects, networking, hardware, and customer support.">
-  <meta name="author" content="Luke Priest">
-  <meta name="keywords" content="Luke Priest, Portfolio, IT Technician, CompTIA A+, CompTIA Network+, Dayton STEM School">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="../src/output.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Luke Priest's professional portfolio showcasing experience as an IT Technician, certifications, projects, networking, hardware, and customer support." />
+  <meta name="author" content="Luke Priest" />
+  <meta name="keywords" content="Luke Priest, Portfolio, IT Technician, CompTIA A+, CompTIA Network+, Dayton STEM School" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link href="../src/output.css" rel="stylesheet" />
 
+  <!-- Open Graph -->
   <meta property="og:title" content="Luke Priest's Portfolio" />
   <meta property="og:description" content="Accredited IT Technician in Dayton, Ohio" />
   <meta property="og:image" content="https://lukepriest.work/img/Me.avif" />
@@ -18,8 +19,10 @@
   <meta property="og:site_name" content="Luke Priest IT Technician" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:updated_time" content="2025-07-27T23:00:06+0000" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -27,12 +30,7 @@
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://lukepriest.work/"
-          }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://lukepriest.work/" }
         ]
       }
     ]
@@ -45,37 +43,44 @@
     .skill-badge { background-color: #dbeafe; color: #1e40af; padding: .5rem 1rem; border-radius: 9999px; font-weight: 500; transition: background-color .3s, color .3s; }
     @media (prefers-color-scheme: dark) { .skill-badge { background-color: #1e3a8a; color: #bfdbfe; } }
 
-    .hidden-section { opacity: 0; transform: translateY(20px); transition: opacity .8s ease-out, transform .8s ease-out; }
-    .hidden-item { opacity: 0; transform: translateY(10px); transition: opacity .6s ease-out, transform .6s ease-out; }
+    .hidden-section { opacity: 0; transform: translateY(20px); transition: opacity .6s ease-out, transform .6s ease-out; }
+    .hidden-item { opacity: 0; transform: translateY(10px); transition: opacity .5s ease-out, transform .5s ease-out; }
     .animated-section.visible, .animated-item.visible { opacity: 1; transform: translateY(0); }
-    .animated-section.visible .hidden-item:nth-child(1) { transition-delay: .1s; }
-    .animated-section.visible .hidden-item:nth-child(2) { transition-delay: .2s; }
-    .animated-section.visible .hidden-item:nth-child(3) { transition-delay: .3s; }
-    .animated-section.visible .hidden-item:nth-child(4) { transition-delay: .4s; }
-    .animated-section.visible .hidden-item:nth-child(5) { transition-delay: .5s; }
-    .animated-section.visible .hidden-item:nth-child(6) { transition-delay: .6s; }
 
     @keyframes fadeInSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0);} }
     .animate-hero-text { animation: fadeInSlideUp 1s ease-out forwards; opacity: 0; }
-    .animate-hero-text:nth-child(1) { animation-delay: .2s; }
-    .animate-hero-text:nth-child(2) { animation-delay: .4s; }
-    .animate-hero-buttons { animation: fadeInSlideUp 1s ease-out forwards; opacity: 0; animation-delay: .6s; }
-    .animate-hero-image { animation: fadeInSlideUp 1s ease-out forwards; opacity: .01; animation-delay: .8s; }
 
-    /* Preserve desktop nav hover aesthetics */
     nav a { padding: .5rem 1rem; border-radius: 9999px; transition: all .3s ease; }
     nav a:hover { background-color: rgba(147, 197, 253, 0.3); }
 
-    /* Small-screen adjustments without affecting md+ */
-    @media (max-width: 768px) {
-      nav.nav-pill { left: 50%; transform: translateX(-50%); width: 92%; padding: .75rem 1rem; }
-    }
+    /* --- YEAR PILL LAYOUT (fixed container; scrollable buttons) --- */
+    .year-glass { position: relative; border-radius: 9999px; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+    .year-pill { position: relative; padding: 0.5rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(0, 0, 0, 0.06); overflow: hidden; height: 3.25rem; box-sizing: border-box; width: 300px; }
+    .dark .year-pill { border-color: rgba(255, 255, 255, 0.08); }
 
-    /* Popup internal scrolling */
-    #ticket-popup, #homelab-popup, #contact-popup, #powerApps-popup { max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .year-highlight { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 2.25rem; width: 7.75rem; border-radius: 9999px; z-index: 1; box-shadow: inset 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.08); background: rgba(255, 255, 255, 0.55); border: 1px solid rgba(255, 255, 255, 0.5); transition: width 0.25s ease; }
+    .dark .year-highlight { background: rgba(17, 24, 39, 0.55); border-color: rgba(255, 255, 255, 0.08); box-shadow: inset 0 8px 24px rgba(255, 255, 255, 0.03), 0 2px 8px rgba(0, 0, 0, 0.35); }
+
+    .year-rail { display: flex; align-items: center; gap: 0.5rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; height: 100%; }
+    .year-rail::-webkit-scrollbar { display: none; }
+    .year-item, .year-spacer { flex: 0 0 auto; display: grid; place-items: center; scroll-snap-align: center; scroll-snap-stop: always; height: 100%; }
+
+    .year-btn { position: relative; z-index: 2; user-select: none; cursor: pointer; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 0 0.6rem; border-radius: 0.75rem; transition: transform 0.2s ease, opacity 0.2s ease, color 0.2s ease; color: rgba(17, 24, 39, 0.7); font-size: 0.95rem; height: 2.25rem; display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
+    .year-btn[aria-current="true"] { color: #111827; transform: scale(1.06); opacity: 1; }
+    .dark .year-btn { color: rgba(255, 255, 255, 0.7); }
+    .dark .year-btn[aria-current="true"] { color: #fff; }
+
+    /* Edge fades (optional) */
+    .year-fade { position: absolute; top: 0; bottom: 0; width: 42px; z-index: 2; pointer-events: none; opacity: 0; transition: opacity .2s ease; background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0)); }
+    .year-fade.right { right: 0; background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0)); }
+    .dark .year-fade { background: linear-gradient(to right, rgba(17,24,39,1), rgba(17,24,39,0)); }
+    .dark .year-fade.right { background: linear-gradient(to left, rgba(17,24,39,1), rgba(17,24,39,0)); }
+
+    
   </style>
 
   <script>
+    
     // Dark mode init + toggle
     if ( localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) ) {
       document.documentElement.classList.add('dark');
@@ -84,29 +89,7 @@
   </script>
 </head>
 <body>
-
-<!-- Global overlay (popups & mobile nav reuse) -->
-<div id="popup-overlay" class="fixed top-0 left-0 w-full h-full bg-gray-900/50 backdrop-blur-lg z-40 transition-opacity duration-300 opacity-0 pointer-events-none"></div>
-<div id="nav-overlay" class="fixed top-0 left-0 w-full h-full bg-gray-900/30 z-40 transition-opacity duration-300 opacity-0 pointer-events-none md:hidden"></div>
-
-<!-- Contact Popup (unchanged) -->
-<div id="contact-popup" class="dark:bg-gray-900 w-11/12 md:w-2/3 lg:w-1/2 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white dark:bg-gray-800 border border-blue-200 dark:border-blue-700 rounded-xl shadow-2xl p-6 md:p-8 lg:p-10 flex flex-col items-center gap-6 transition-opacity duration-300 opacity-0 pointer-events-none">
-  <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-100 text-center mb-4">Get in Touch!</h2>
-  <p class="text-lg text-gray-700 dark:text-gray-300 text-center max-w-prose">I'd love to connect. Linkedin is preferred but email is avalible aswell.</p>
-  <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4 w-full">
-    <a href="https://www.linkedin.com/in/luke-priest" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-3 px-6 rounded-full inline-flex items-center justify-center text-base sm:text-lg transition-all duration-200 ease-in-out shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 w-full sm:w-auto">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48" class="mr-3 fill-current"><path fill="#0078d4" d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"></path><path d="M30,37V26.901c0-1.689-0.819-2.698-2.192-2.698c-0.815,0-1.414,0.459-1.779,1.364 c-0.017,0.064-0.041,0.325-0.031,1.114L26,37h-7V18h7v1.061C27.022,18.356,28.275,18,29.738,18c4.547,0,7.261,3.093,7.261,8.274 L37,37H30z M11,37V18h3.457C12.454,18,11,16.528,11,14.499C11,12.472,12.478,11,14.514,11c2.012,0,3.445,1.431,3.486,3.479 C18,16.523,16.521,18,14.485,18H18v19H11z" opacity=".05"></path><path d="M30.5,36.5v-9.599c0-1.973-1.031-3.198-2.692-3.198c-1.295,0-1.935,0.912-2.243,1.677 c-0.082,0.199-0.071,0.989-0.067,1.326L25.5,36.5h-6v-18h6v1.638c0.795-0.823,2.075-1.638,4.238-1.638 c4.233,0,6.761,2.906,6.761,7.774L36.5,36.5H30.5z M11.5,36.5v-18h6v18H11.5z M14.457,17.5c-1.713,0-2.957-1.262-2.957-3.001 c0-1.738,1.268-2.999,3.014-2.999c1.724,0,2.951,1.229,2.986,2.989c0,1.749-1.268,3.011-3.015,3.011H14.457z" opacity=".07"></path><path fill="#fff" d="M12,19h5v17h-5V19z M14.485,17h-0.028C12.965,17,12,15.888,12,14.499C12,13.08,12.995,12,14.514,12 c1.521,0,2.458,1.08,2.486,2.499C17,15.887,16.035,17,14.485,17z M36,36h-5v-9.099c0-2.198-1.225-3.698-3.192-3.698 c-1.501,0-2.313,1.012-2.707,1.99C24.957,25.543,25,26.511,25,27v9h-5V19h5v2.616C25.721,20.5,26.85,19,29.738,19 c3.578,0,6.261,2.25,6.261,7.274L36,36L36,36z"></path></svg>
-      LinkedIn
-    </a>
-    <a href="mailto:contact&#64;lukepriest.work" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-semibold py-3 px-6 rounded-full inline-flex items-center justify-center text-base sm:text-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 w-full sm:w-auto">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="mr-3 fill-gray-800 dark:fill-gray-200"><path d="M149-135q-39.05 0-66.53-27.48Q55-189.95 55-229v-502q0-39.46 27.47-67.23Q109.95-826 149-826h662q39.46 0 67.23 27.77Q906-770.46 906-731v502q0 39.05-27.77 66.52Q850.46-135 811-135H149Zm331-295 331-223v-78L480-513 149-731v78l331 223Z"/></svg>
-      <span class="text-gray-800 dark:text-gray-200">Email Me</span>
-    </a>
-  </div>
-  <button onclick="closeContactPopup()" class="mt-6 px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out font-medium shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75">Close</button>
-</div>
-
-<!-- NAVBAR: Right-floating hamburger + fullscreen overlay (JS-free). Desktop pill preserved. -->
+  <!-- NAVBAR: Right-floating hamburger + fullscreen overlay (JS-free). Desktop pill preserved. -->
 
 <!-- 1) Desktop pill nav (centered). Hidden on mobile -->
 <nav class="hidden md:block fixed inset-x-0 top-0 z-40">
@@ -194,9 +177,9 @@
   </div>
 </header>
 
-<main class="px-4 md:px-16 py-8 md:py-12 bg-white dark:bg-gray-900">
+<main class="px-4 md:px-16 bg-white dark:bg-gray-900">
 
-   <section id="experience" class="max-w-5xl mx-auto mb-16">
+   <section id="experience" class="max-w-5xl mx-auto mt-16 mb-16">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
             <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4 sm:mb-0">Professional Experience</h2>
             <a href="LukePriestResume.pdf" aria-label="PDF Resume" target="_blank" rel="noopener noreferrer"
@@ -244,7 +227,28 @@
         <div id="project-scroll"></div>
     </section>
 
-  <section id="about-me" class="max-w-5xl mx-auto mt-16 mb-16">
+  <section id="artifacts" class="max-w-5xl mx-auto mt-16 mb-6">
+    <h2 class="text-4xl text-center font-bold text-gray-800 dark:text-gray-100">Documents</h2>
+  </section>
+
+  <!-- Year Selector + Sections (no iframe) -->
+  <section aria-labelledby="viewer-title" class="w-full h-full mx-auto">
+
+    <!-- Year pill -->
+    <div class="relative flex justify-center mb-6">
+      <div class="year-pill">
+        <div class="year-highlight" id="year-highlight"></div>
+        <div class="year-rail" id="year-rail" aria-label="Year selector" role="tablist"></div>
+        <div id="year-fade-left" class="year-fade left"></div>
+        <div id="year-fade-right" class="year-fade right"></div>
+      </div>
+    </div>
+
+    <!-- Sections that are shown/hidden by year selector -->
+    <div id="year-sections" class="space-y-6">
+      <!-- 9th -->
+      <div id="year-9th" class="rounded-2xl overflow-hidden hidden ">
+        <section id="about-me" class="max-w-5xl mx-auto mt-16 mb-16">
     <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">Internship</h2>
     <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
       <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
@@ -529,21 +533,167 @@
             </table>
             <!-- End Table -->
              </div>
-
-
-    <footer class="mt-auto w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
-      <div class="grid place-content-center items-center gap-5">
-        <ul class="text-end">
-          <li class="inline-block relative pe-8 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-neutral-600">
-            <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200" href="mailto:priest.24@daytonstemschool.org">Contact Me</a>
-          </li>
-          <li class="inline-block relative pe-8 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-neutral-600">
-            <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-500 dark:hover:text-neutral-200 dark:focus:text-neutral-200" href="https://www.linkedin.com/in/luke-priest">LinkedIn</a>
-          </li>
-        </ul>
+        </div>
       </div>
-    </footer>
+    </div>
   </div>
+</div>
+
+<!-- 10th -->
+      <div id="year-10th" class="rounded-2xl w-full shadow-lg p-6 hidden">
+
+              <div class=" text-center ">
+      <h1 class="block text-3xl font-bold text-gray-800 sm:text-2xl lg:text-4xl lg:leading-tight dark:text-white">Career Exploration Report</h1>
+      <p class="mt-3 px-4 lg:px-[5vw] xl:px-[10vw] 2xl:px-[15vw] text-lg text-gray-800 dark:text-neutral-400">
+        This report documents exploration of two careers and four potential
+        internships related to those careers. Extensive research has been
+        conducted about the two chosen careers, System Management and
+        computing programming. Informational, and government websites
+        were used, among them the U.S. Department of Labor’s Bureau of
+        Labor Statistic’s Occupational Outlook Handbook, ONET, and
+        DATAUSA. This research resulted in locating four internships. Wright
+        Patt Airforce Base is the preferred internship because it combines
+        civilian military life with IT. Next steps include contacting this
+        potential site to set up an internship and conducting further research
+        into industry certifications.</p>
+    </div>
+
+       <embed class="pl-[5%] w-[95%] h-[1300px]" src="img/LP_Career_Exploration_Report.pdf">
+
+      </div>
+
+      
+
+  </section>
 </main>
+
+<script>
+  // Map labels to section IDs
+  const YEAR_MAP = [
+    { label: 'intern', id: 'year-9th' },
+    { label: 'career', id: 'year-10th' }
+  ];
+
+  const rail = document.getElementById('year-rail');
+  const highlight = document.getElementById('year-highlight');
+  const sectionsContainer = document.getElementById('year-sections');
+
+  function makeSpacer(){ const d=document.createElement('div'); d.className='year-spacer'; d.style.width='0px'; return d; }
+  const leftSpacer = makeSpacer();
+  const rightSpacer = makeSpacer();
+  rail.appendChild(leftSpacer);
+
+  // Build buttons
+  YEAR_MAP.forEach((y, idx) => {
+    const cell = document.createElement('div');
+    cell.className = 'year-item';
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'year-btn';
+    btn.role = 'tab';
+    btn.setAttribute('aria-controls', y.id);
+    btn.setAttribute('aria-selected', 'false');
+    btn.dataset.index = idx;
+    btn.textContent = y.label;
+    btn.addEventListener('click', () => centerTo(idx, { set: true, animate: true }));
+    btn.addEventListener('keydown', (e) => { if(e.key==='Enter' || e.key===' '){ e.preventDefault(); centerTo(idx, { set:true, animate:true }); } });
+    cell.appendChild(btn);
+    rail.appendChild(cell);
+  });
+  rail.appendChild(rightSpacer);
+
+  function centerTo(index, { set=false, animate=true }={}) {
+    const buttons = rail.querySelectorAll('.year-btn');
+    const btn = buttons[index];
+    if(!btn) return;
+    const target = btn.offsetLeft - (rail.clientWidth - btn.offsetWidth) / 2;
+    const max = rail.scrollWidth - rail.clientWidth;
+    const left = Math.min(Math.max(0, target), max);
+    rail.scrollTo({ left, behavior: animate ? 'smooth' : 'auto' });
+    if(set) setActive(index);
+  }
+
+  function setActive(index) {
+    const buttons = rail.querySelectorAll('.year-btn');
+    buttons.forEach((b,i)=>{
+      const isActive = i===index;
+      b.setAttribute('aria-current', isActive ? 'true' : 'false');
+      b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      b.tabIndex = isActive ? 0 : -1;
+    });
+
+    // Highlight sizing
+    const activeBtn = buttons[index];
+    const pad = 20;
+    const w = activeBtn.getBoundingClientRect().width;
+    highlight.style.width = Math.max(72, w+pad) + 'px';
+
+    // Show/hide sections
+    const { id, label } = YEAR_MAP[index];
+    YEAR_MAP.forEach(({ id: sid }) => {
+      const el = document.getElementById(sid);
+      if(!el) return;
+      if(sid === id) {
+        el.classList.remove('hidden');
+        // tiny entrance animation
+        el.classList.add('animated-section','visible');
+      } else {
+        el.classList.add('hidden');
+        el.classList.remove('visible');
+      }
+    });
+
+    localStorage.setItem('viewerYear', label);
+  }
+
+  function nearestIndex() {
+    const buttons = rail.querySelectorAll('.year-btn');
+    const viewportCenter = rail.scrollLeft + rail.clientWidth / 2;
+    let best = 0, bestDist = Infinity;
+    buttons.forEach((btn, i) => {
+      const center = btn.offsetLeft + btn.offsetWidth / 2;
+      const d = Math.abs(center - viewportCenter);
+      if(d < bestDist){ bestDist = d; best = i; }
+    });
+    return best;
+  }
+
+  let t;
+  rail.addEventListener('scroll', () => {
+    clearTimeout(t);
+    t = setTimeout(()=>{
+      const i = nearestIndex();
+      centerTo(i,{animate:true});
+      setActive(i);
+    }, 100);
+  }, { passive:true });
+
+  rail.addEventListener('keydown', (e)=>{
+    const buttons = rail.querySelectorAll('.year-btn');
+    const current = parseInt([...buttons].find(b=>b.getAttribute('aria-current')==='true')?.dataset.index || '0', 10);
+    if(e.key==='ArrowLeft'){ e.preventDefault(); centerTo(Math.max(0,current-1), { set:true }); }
+    if(e.key==='ArrowRight'){ e.preventDefault(); centerTo(Math.min(YEAR_MAP.length-1,current+1), { set:true }); }
+    if(e.key==='Enter' || e.key===' '){ e.preventDefault(); centerTo(current, { set:true }); }
+  });
+
+  window.addEventListener('resize', ()=>{
+    const buttons = rail.querySelectorAll('.year-btn');
+    const current = parseInt([...buttons].find(b=>b.getAttribute('aria-current')==='true')?.dataset.index || '0', 10);
+    const railPadding = 12;
+    leftSpacer.style.width = rightSpacer.style.width = `${(rail.clientWidth/2) - railPadding}px`;
+    centerTo(current,{animate:false});
+    setActive(current);
+  });
+
+  (function init(){
+    const railPadding = 12;
+    leftSpacer.style.width = rightSpacer.style.width = `${(rail.clientWidth/2) - railPadding}px`;
+    const savedLabel = localStorage.getItem('viewerYear');
+    const startIdx = savedLabel ? Math.max(0, YEAR_MAP.findIndex(y => y.label === savedLabel)) : (YEAR_MAP.length - 1);
+    rail.setAttribute('tabindex','0');
+    centerTo(startIdx,{animate:false,set:true});
+    requestAnimationFrame(()=>{ setActive(startIdx); });
+  })();
+</script>
 </body>
 </html>

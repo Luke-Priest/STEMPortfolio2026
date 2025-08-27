@@ -1,15 +1,16 @@
 <!doctype html>
 <html lang="en" class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Luke Priest's Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Luke Priest's professional portfolio showcasing experience as an IT Technician, certifications, projects, networking, hardware, and customer support.">
-  <meta name="author" content="Luke Priest">
-  <meta name="keywords" content="Luke Priest, Portfolio, IT Technician, CompTIA A+, CompTIA Network+, Dayton STEM School">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="../src/output.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Luke Priest's professional portfolio showcasing experience as an IT Technician, certifications, projects, networking, hardware, and customer support." />
+  <meta name="author" content="Luke Priest" />
+  <meta name="keywords" content="Luke Priest, Portfolio, IT Technician, CompTIA A+, CompTIA Network+, Dayton STEM School" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link href="../src/output.css" rel="stylesheet" />
 
+  <!-- Open Graph -->
   <meta property="og:title" content="Luke Priest's Portfolio" />
   <meta property="og:description" content="Accredited IT Technician in Dayton, Ohio" />
   <meta property="og:image" content="https://lukepriest.work/img/Me.avif" />
@@ -18,8 +19,10 @@
   <meta property="og:site_name" content="Luke Priest IT Technician" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:updated_time" content="2025-07-27T23:00:06+0000" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -27,12 +30,7 @@
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://lukepriest.work/"
-          }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://lukepriest.work/" }
         ]
       }
     ]
@@ -45,37 +43,44 @@
     .skill-badge { background-color: #dbeafe; color: #1e40af; padding: .5rem 1rem; border-radius: 9999px; font-weight: 500; transition: background-color .3s, color .3s; }
     @media (prefers-color-scheme: dark) { .skill-badge { background-color: #1e3a8a; color: #bfdbfe; } }
 
-    .hidden-section { opacity: 0; transform: translateY(20px); transition: opacity .8s ease-out, transform .8s ease-out; }
-    .hidden-item { opacity: 0; transform: translateY(10px); transition: opacity .6s ease-out, transform .6s ease-out; }
+    .hidden-section { opacity: 0; transform: translateY(20px); transition: opacity .6s ease-out, transform .6s ease-out; }
+    .hidden-item { opacity: 0; transform: translateY(10px); transition: opacity .5s ease-out, transform .5s ease-out; }
     .animated-section.visible, .animated-item.visible { opacity: 1; transform: translateY(0); }
-    .animated-section.visible .hidden-item:nth-child(1) { transition-delay: .1s; }
-    .animated-section.visible .hidden-item:nth-child(2) { transition-delay: .2s; }
-    .animated-section.visible .hidden-item:nth-child(3) { transition-delay: .3s; }
-    .animated-section.visible .hidden-item:nth-child(4) { transition-delay: .4s; }
-    .animated-section.visible .hidden-item:nth-child(5) { transition-delay: .5s; }
-    .animated-section.visible .hidden-item:nth-child(6) { transition-delay: .6s; }
 
     @keyframes fadeInSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0);} }
     .animate-hero-text { animation: fadeInSlideUp 1s ease-out forwards; opacity: 0; }
-    .animate-hero-text:nth-child(1) { animation-delay: .2s; }
-    .animate-hero-text:nth-child(2) { animation-delay: .4s; }
-    .animate-hero-buttons { animation: fadeInSlideUp 1s ease-out forwards; opacity: 0; animation-delay: .6s; }
-    .animate-hero-image { animation: fadeInSlideUp 1s ease-out forwards; opacity: .01; animation-delay: .8s; }
 
-    /* Preserve desktop nav hover aesthetics */
     nav a { padding: .5rem 1rem; border-radius: 9999px; transition: all .3s ease; }
     nav a:hover { background-color: rgba(147, 197, 253, 0.3); }
 
-    /* Small-screen adjustments without affecting md+ */
-    @media (max-width: 768px) {
-      nav.nav-pill { left: 50%; transform: translateX(-50%); width: 92%; padding: .75rem 1rem; }
-    }
+    /* --- YEAR PILL LAYOUT (fixed container; scrollable buttons) --- */
+    .year-glass { position: relative; border-radius: 9999px; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+    .year-pill { position: relative; padding: 0.5rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(0, 0, 0, 0.06); overflow: hidden; height: 3.25rem; box-sizing: border-box; width: 300px; }
+    .dark .year-pill { border-color: rgba(255, 255, 255, 0.08); }
 
-    /* Popup internal scrolling */
-    #ticket-popup, #homelab-popup, #contact-popup, #powerApps-popup { max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .year-highlight { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 2.25rem; width: 7.75rem; border-radius: 9999px; z-index: 1; box-shadow: inset 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.08); background: rgba(255, 255, 255, 0.55); border: 1px solid rgba(255, 255, 255, 0.5); transition: width 0.25s ease; }
+    .dark .year-highlight { background: rgba(17, 24, 39, 0.55); border-color: rgba(255, 255, 255, 0.08); box-shadow: inset 0 8px 24px rgba(255, 255, 255, 0.03), 0 2px 8px rgba(0, 0, 0, 0.35); }
+
+    .year-rail { display: flex; align-items: center; gap: 0.5rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; height: 100%; }
+    .year-rail::-webkit-scrollbar { display: none; }
+    .year-item, .year-spacer { flex: 0 0 auto; display: grid; place-items: center; scroll-snap-align: center; scroll-snap-stop: always; height: 100%; }
+
+    .year-btn { position: relative; z-index: 2; user-select: none; cursor: pointer; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 0 0.6rem; border-radius: 0.75rem; transition: transform 0.2s ease, opacity 0.2s ease, color 0.2s ease; color: rgba(17, 24, 39, 0.7); font-size: 0.95rem; height: 2.25rem; display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
+    .year-btn[aria-current="true"] { color: #111827; transform: scale(1.06); opacity: 1; }
+    .dark .year-btn { color: rgba(255, 255, 255, 0.7); }
+    .dark .year-btn[aria-current="true"] { color: #fff; }
+
+    /* Edge fades (optional) */
+    .year-fade { position: absolute; top: 0; bottom: 0; width: 42px; z-index: 2; pointer-events: none; opacity: 0; transition: opacity .2s ease; background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0)); }
+    .year-fade.right { right: 0; background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0)); }
+    .dark .year-fade { background: linear-gradient(to right, rgba(17,24,39,1), rgba(17,24,39,0)); }
+    .dark .year-fade.right { background: linear-gradient(to left, rgba(17,24,39,1), rgba(17,24,39,0)); }
+
+    
   </style>
 
   <script>
+    
     // Dark mode init + toggle
     if ( localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) ) {
       document.documentElement.classList.add('dark');
@@ -84,25 +89,221 @@
   </script>
 </head>
 <body>
+  <header id="site-hero" class="flex flex-col md:flex-row items-center justify-between min-h[60vh] md:min-h-screen px-4 md:px-16 py-8 md:py-12 bg-gradient-to-br from-blue-200 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-blue-900 relative overflow-hidden">
+  <svg class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 800" fill="none">
+    <defs>
+      <linearGradient id="bg-gradient" x1="0" y1="0" x2="1440" y2="800" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#60A5FA"/>
+        <stop offset="1" stop-color="#F0F9FF"/>
+      </linearGradient>
+      <linearGradient id="bg-gradient-dark" x1="0" y1="0" x2="1440" y2="800" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#1e3a8a"/>
+        <stop offset="1" stop-color="#0f172a"/>
+      </linearGradient>
+    </defs>
+    <path d="M0,400 Q360,600 720,400 T1440,400 V800 H0 Z" fill="url(#bg-gradient)" class="dark:hidden"/>
+    <path d="M0,400 Q360,600 720,400 T1440,400 V800 H0 Z" fill="url(#bg-gradient-dark)" class="hidden dark:inline"/>
+  </svg>
+  <svg class="absolute top-0 left-0 w-full h-full pointer-events-none z-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 800">
+    <circle cx="83%" cy="25%" r="180" fill="#93C5FD" opacity="0.09"/>
+    <circle cx="21%" cy="13%" r="120" fill="#3B82F6" opacity="0.05"/>
+  </svg>
+  <div class="flex-1 w-full relative z-10 flex items-center justify-center text-center">
+    <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6 drop-shadow-lg animate-hero-text">12th Projects</h1>
+  </div>
+</header>
+<main class="px-4 md:px-16 bg-white dark:bg-gray-900">
 
-<main class="px-4 md:px-16 py-8 md:py-12 bg-white dark:bg-gray-900">
-  <section id="about-me" class="max-w-5xl mx-auto mt-16 mb-16">
-    <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">About Me</h2>
+  <!-- Intro -->
+  <section id="growth" class="max-w-5xl mx-auto mt-16 mb-16">
+    <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">Greatest Growth : Communication</h2>
     <div class="bg-blue-50 dark:bg-gray-800 rounded-xl shadow p-6">
       <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
-        I am a highly motivated and hands-on 12th-grade student at the <a class="text-blue-600 dark:text-blue-300 hover:underline" href="https://www.daytonstemschool.org/" target="_blank" rel="noopener noreferrer">Dayton Regional STEM School</a>, passionate about everything technology. With a strong foundation in computer programming, hardware, and networking, I thrive in project-based environments where I can apply theoretical knowledge to real-world challenges. My experience as an IT Technician and Escape Room Gamemaster has shaped my problem-solving, customer support, and technical troubleshooting skills. I am constantly seeking opportunities to expand my expertise and contribute to innovative solutions in the IT field.
+        9th: Jury presentation | 10th: Chinese Rap | 11th: Amendment Podcast | 12th: TBD (TAC or Senior English)
       </p>
     </div>
-    <div class="flex justify-end mt-8">
-      <a href="Experiences/index.html" class="inline-flex items-center px-6 py-3 g-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 text-white font-semibold text-base transition shadow-lg">
-        Learn More
-        <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-      </a>
-    </div>
-    <div id="experience-scroll"></div>
   </section>
 
-  </div>
+  <section id="artifacts" class="max-w-5xl mx-auto mt-16 mb-6">
+    <h2 class="text-4xl text-center font-bold text-gray-800 dark:text-gray-100">Artifacts</h2>
+  </section>
+
+  <!-- Year Selector + Sections (no iframe) -->
+  <section aria-labelledby="viewer-title" class="w-full h-full mx-auto">
+
+    <!-- Year pill -->
+    <div class="relative flex justify-center mb-6">
+      <div class="year-pill">
+        <div class="year-highlight" id="year-highlight"></div>
+        <div class="year-rail" id="year-rail" aria-label="Year selector" role="tablist"></div>
+        <div id="year-fade-left" class="year-fade left"></div>
+        <div id="year-fade-right" class="year-fade right"></div>
+      </div>
+    </div>
+
+    <!-- Sections that are shown/hidden by year selector -->
+    <div id="year-sections" class="space-y-6">
+      <!-- 9th -->
+      <div id="year-9th" class="rounded-2xl overflow-hidden shadow-lg hidden ">
+        <h3 class="text-xl font-bold mb-2">9th Grade Projects</h3>
+        <iframe class="place-content-center pl-[1%] w-[99%] min-h-[90vh]" src="9thGradeArtifact.pdf" scrolling="no"></iframe>
+        <p class="text-gray-700 dark:text-gray-300">Jury presentation.</p>
+      </div>
+
+      <!-- 10th -->
+      <div id="year-10th" class="rounded-2xl overflow-hidden shadow-lg p-6 hidden">
+        <h3 class="text-xl font-bold mb-2">10th Grade Projects</h3>
+        <iframe alt="My Chinese Rap Video" src="https://drive.google.com/file/d/1EksmO7s6pfIiIx9O7RbT_QMQ1qN0BcpO/preview" frameborder="0" scrolling="no" allowfullscreen title="RapProject.mp4"></iframe>
+
+        <p class="text-gray-700 dark:text-gray-300">Chinese rap.</p>
+      </div>
+
+      <!-- 11th -->
+      <div id="year-11th" class="rounded-2xl overflow-hidden shadow-lg p-6 hidden">
+        <h3 class="text-xl font-bold mb-2">11th Grade Projects</h3>
+              <div class="mx-auto pt-12" style="max-width: 560px"><div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"><iframe src="https://drive.google.com/file/d/1vhwlrKU0f7L1ZCiWnVBA7fHSqlvijpA0/preview" width="640" height="480" allow="autoplay"></iframe></div></div>
+
+        <p class="text-gray-700 dark:text-gray-300">Ammendment Podcast.</p>
+      </div>
+
+      <!-- 12th -->
+      <div id="year-12th" class="rounded-2xl overflow-hidden shadow-lg p-6 hidden">
+        <h3 class="text-xl font-bold mb-2">12th Grade Projects</h3>
+        <p class="text-gray-700 dark:text-gray-300">???</p>
+      </div>
+    </div>
+  </section>
 </main>
+
+<script>
+  // Map labels to section IDs
+  const YEAR_MAP = [
+    { label: '9th', id: 'year-9th' },
+    { label: '10th', id: 'year-10th' },
+    { label: '11th', id: 'year-11th' },
+    { label: '12th', id: 'year-12th' }
+  ];
+
+  const rail = document.getElementById('year-rail');
+  const highlight = document.getElementById('year-highlight');
+  const sectionsContainer = document.getElementById('year-sections');
+
+  function makeSpacer(){ const d=document.createElement('div'); d.className='year-spacer'; d.style.width='0px'; return d; }
+  const leftSpacer = makeSpacer();
+  const rightSpacer = makeSpacer();
+  rail.appendChild(leftSpacer);
+
+  // Build buttons
+  YEAR_MAP.forEach((y, idx) => {
+    const cell = document.createElement('div');
+    cell.className = 'year-item';
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'year-btn';
+    btn.role = 'tab';
+    btn.setAttribute('aria-controls', y.id);
+    btn.setAttribute('aria-selected', 'false');
+    btn.dataset.index = idx;
+    btn.textContent = y.label;
+    btn.addEventListener('click', () => centerTo(idx, { set: true, animate: true }));
+    btn.addEventListener('keydown', (e) => { if(e.key==='Enter' || e.key===' '){ e.preventDefault(); centerTo(idx, { set:true, animate:true }); } });
+    cell.appendChild(btn);
+    rail.appendChild(cell);
+  });
+  rail.appendChild(rightSpacer);
+
+  function centerTo(index, { set=false, animate=true }={}) {
+    const buttons = rail.querySelectorAll('.year-btn');
+    const btn = buttons[index];
+    if(!btn) return;
+    const target = btn.offsetLeft - (rail.clientWidth - btn.offsetWidth) / 2;
+    const max = rail.scrollWidth - rail.clientWidth;
+    const left = Math.min(Math.max(0, target), max);
+    rail.scrollTo({ left, behavior: animate ? 'smooth' : 'auto' });
+    if(set) setActive(index);
+  }
+
+  function setActive(index) {
+    const buttons = rail.querySelectorAll('.year-btn');
+    buttons.forEach((b,i)=>{
+      const isActive = i===index;
+      b.setAttribute('aria-current', isActive ? 'true' : 'false');
+      b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      b.tabIndex = isActive ? 0 : -1;
+    });
+
+    // Highlight sizing
+    const activeBtn = buttons[index];
+    const pad = 20;
+    const w = activeBtn.getBoundingClientRect().width;
+    highlight.style.width = Math.max(72, w+pad) + 'px';
+
+    // Show/hide sections
+    const { id, label } = YEAR_MAP[index];
+    YEAR_MAP.forEach(({ id: sid }) => {
+      const el = document.getElementById(sid);
+      if(!el) return;
+      if(sid === id) {
+        el.classList.remove('hidden');
+        // tiny entrance animation
+        el.classList.add('animated-section','visible');
+      } else {
+        el.classList.add('hidden');
+        el.classList.remove('visible');
+      }
+    });
+
+    localStorage.setItem('viewerYear', label);
+  }
+
+  function nearestIndex() {
+    const buttons = rail.querySelectorAll('.year-btn');
+    const viewportCenter = rail.scrollLeft + rail.clientWidth / 2;
+    let best = 0, bestDist = Infinity;
+    buttons.forEach((btn, i) => {
+      const center = btn.offsetLeft + btn.offsetWidth / 2;
+      const d = Math.abs(center - viewportCenter);
+      if(d < bestDist){ bestDist = d; best = i; }
+    });
+    return best;
+  }
+
+  let t;
+  rail.addEventListener('scroll', () => {
+    clearTimeout(t);
+    t = setTimeout(()=>{
+      const i = nearestIndex();
+      centerTo(i,{animate:true});
+      setActive(i);
+    }, 100);
+  }, { passive:true });
+
+  rail.addEventListener('keydown', (e)=>{
+    const buttons = rail.querySelectorAll('.year-btn');
+    const current = parseInt([...buttons].find(b=>b.getAttribute('aria-current')==='true')?.dataset.index || '0', 10);
+    if(e.key==='ArrowLeft'){ e.preventDefault(); centerTo(Math.max(0,current-1), { set:true }); }
+    if(e.key==='ArrowRight'){ e.preventDefault(); centerTo(Math.min(YEAR_MAP.length-1,current+1), { set:true }); }
+    if(e.key==='Enter' || e.key===' '){ e.preventDefault(); centerTo(current, { set:true }); }
+  });
+
+  window.addEventListener('resize', ()=>{
+    const buttons = rail.querySelectorAll('.year-btn');
+    const current = parseInt([...buttons].find(b=>b.getAttribute('aria-current')==='true')?.dataset.index || '0', 10);
+    const railPadding = 12;
+    leftSpacer.style.width = rightSpacer.style.width = `${(rail.clientWidth/2) - railPadding}px`;
+    centerTo(current,{animate:false});
+    setActive(current);
+  });
+
+  (function init(){
+    const railPadding = 12;
+    leftSpacer.style.width = rightSpacer.style.width = `${(rail.clientWidth/2) - railPadding}px`;
+    const savedLabel = localStorage.getItem('viewerYear');
+    const startIdx = savedLabel ? Math.max(0, YEAR_MAP.findIndex(y => y.label === savedLabel)) : (YEAR_MAP.length - 1);
+    rail.setAttribute('tabindex','0');
+    centerTo(startIdx,{animate:false,set:true});
+    requestAnimationFrame(()=>{ setActive(startIdx); });
+  })();
+</script>
 </body>
 </html>

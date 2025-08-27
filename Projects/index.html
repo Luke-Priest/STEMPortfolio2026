@@ -73,6 +73,17 @@
     .year-fade.right { right: 0; background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0)); }
     .dark .year-fade { background: linear-gradient(to right, rgba(17,24,39,1), rgba(17,24,39,0)); }
     .dark .year-fade.right { background: linear-gradient(to left, rgba(17,24,39,1), rgba(17,24,39,0)); }
+
+    /* === NEW: nav hide animation === */
+    .nav-animate {
+      transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+    }
+    .nav-hidden {
+      opacity: 0;
+      transform: translateY(-8px);
+      visibility: hidden;
+      pointer-events: none;
+    }
   </style>
 
   <script>
@@ -89,7 +100,7 @@
 <body>
 
 <!-- Desktop nav -->
-<nav class="hidden md:block fixed inset-x-0 top-0 z-40">
+<nav id="nav-desktop" class="hidden md:block fixed inset-x-0 top-0 z-40 nav-animate">
   <div class="nav-pill pointer-events-auto fixed top-4 left-1/2 -translate-x-1/2 backdrop-blur-lg bg-white/30 dark:bg-gray-900/30 border border-gray-200/30 dark:border-gray-700/30 rounded-full shadow-lg px-6 py-3">
     <div class="flex items-center space-x-6">
       <a href="../index.html" class="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-300 font-medium transition-colors">Home</a>
@@ -102,9 +113,9 @@
   </div>
 </nav>
 
-<!-- Mobile hamburger (unchanged) -->
+<!-- Mobile hamburger (unchanged visually; gets hidden via JS) -->
 <input id="nav-check" type="checkbox" class="peer sr-only" />
-<label for="nav-check" class="md:hidden fixed top-4 right-4 z-50 inline-flex items-center justify-center rounded-full p-4 backdrop-blur-lg bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-gray-100 border border-gray-200/40 dark:border-gray-700/40 shadow-lg cursor-pointer">
+<label id="nav-mobile-btn" for="nav-check" class="md:hidden fixed top-4 right-4 z-50 inline-flex items-center justify-center rounded-full p-4 backdrop-blur-lg bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-gray-100 border border-gray-200/40 dark:border-gray-700/40 shadow-lg cursor-pointer nav-animate">
   <svg class="h-8 w-8 peer-checked:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
   <svg class="h-8 w-8 hidden peer-checked:block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
   <span class="sr-only">Toggle menu</span>
@@ -121,7 +132,7 @@
   </div>
 </div>
 
-<header class="flex flex-col md:flex-row items-center justify-between min-h-[60vh] md:min-h-screen px-4 md:px-16 py-8 md:py-12 bg-gradient-to-br from-blue-200 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-blue-900 relative overflow-hidden">
+<header id="site-hero" class="flex flex-col md:flex-row items-center justify-between min-h[60vh] md:min-h-screen px-4 md:px-16 py-8 md:py-12 bg-gradient-to-br from-blue-200 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-blue-900 relative overflow-hidden">
   <svg class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 800" fill="none">
     <defs>
       <linearGradient id="bg-gradient" x1="0" y1="0" x2="1440" y2="800" gradientUnits="userSpaceOnUse">
@@ -145,7 +156,7 @@
   </div>
 </header>
 
-<main class="px-4 md:px-16 py-8 md:py-12 bg-white dark:bg-gray-900">
+<main class="px-4 md:px-16 py-8 bg-white dark:bg-gray-900">
   <section aria-labelledby="viewer-title" class="w-full h-full mx-auto">
     <div class="mb-4 md:mb-6 text-center">
       <h2 id="viewer-title" class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">Yearly Project Pages</h2>
@@ -153,7 +164,7 @@
     </div>
     <div class="relative flex justify-center mb-6">
       <div class="">
-        <div class="year-pill">
+        <div class="year-pill scroll">
           <div class="year-highlight" id="year-highlight"></div>
           <div class="year-rail" id="year-rail" aria-label="Year selector" role="tablist"></div>
           <div id="year-fade-left" class="year-fade left"></div>
@@ -163,8 +174,8 @@
         </div>
       </div>
     </div>
-    <div class="rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-lg">
-      <iframe id="year-iframe" title="Embedded Project Page" loading="lazy" class="w-full h-[72vh] md:h-[78vh] bg-white dark:bg-gray-900" referrerpolicy="no-referrer" sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-scripts allow-same-origin" src="about:blank"></iframe>
+    <div class="w-[98vw] ml-[-1.95vw] rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-lg">
+      <iframe id="year-iframe" title="Embedded Project Page" loading="lazy" class="w-full h-[72vh] md:h-[90vh] bg-white dark:bg-gray-900" src="about:blank"></iframe>
     </div>
   </section>
 </main>
@@ -241,34 +252,25 @@
     indR.style.opacity = atStart ? '1' : '0';
   }
 
-  // ---------- NEW: Animate scroll from left to right when pill enters viewport ----------
+  // ---------- Animate scroll from left to right when pill enters viewport ----------
   function runIntroScroll(){
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // respect accessibility
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // accessibility
     const max = Math.max(0, rail.scrollWidth - rail.clientWidth);
-    if (max <= 0) return; // nothing to scroll
+    if (max <= 0) return;
 
-    // lock user-driven scroll handling during the animation
     rail.dataset.lock = '1';
-
-    // start at the extreme left
     rail.scrollLeft = 0;
     updateIndicators();
 
-    // duration scales lightly with distance (clamped)
     const duration = Math.max(1500, Math.min(3500, max * 2));
     const start = performance.now();
-
     function easeInOutQuad(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
-
     function step(now){
       const t = Math.min(1, (now - start) / duration);
-      const eased = easeInOutQuad(t);
-      rail.scrollLeft = max * eased;
+      rail.scrollLeft = max * easeInOutQuad(t);
       updateIndicators();
-      if (t < 1) {
-        requestAnimationFrame(step);
-      } else {
-        // release lock and snap to nearest centered year
+      if (t < 1) { requestAnimationFrame(step); }
+      else {
         delete rail.dataset.lock;
         const i = nearestIndex();
         centerTo(i, { set:true, animate:true });
@@ -279,26 +281,23 @@
 
   let t;
   rail.addEventListener('scroll', () => {
-    if (rail.dataset.lock) return; // ignore during intro animation
+    if (rail.dataset.lock) return;
     clearTimeout(t);
     t = setTimeout(()=>{ const i = nearestIndex(); centerTo(i,{animate:true}); setActive(i); updateIndicators(); }, 100);
   }, { passive:true });
 
   rail.addEventListener('keydown', (e)=>{
     const buttons = rail.querySelectorAll('.year-btn');
-    const current = parseInt([...
-      buttons].find(b=>b.getAttribute('aria-current')==='true')?.dataset.index || '0', 10);
+    const current = parseInt([...buttons].find(b=>b.getAttribute('aria-current')==='true')?.dataset.index || '0', 10);
     if(e.key==='ArrowLeft'){ e.preventDefault(); centerTo(Math.max(0,current-1), { set:true }); }
     if(e.key==='ArrowRight'){ e.preventDefault(); centerTo(Math.min(years.length-1,current+1), { set:true }); }
     if(e.key==='Enter' || e.key===' '){ e.preventDefault(); centerTo(current, { set:true }); }
   });
 
   window.addEventListener('resize', ()=>{
-    // center current and resize spacers to keep first/last centerable
     const buttons = rail.querySelectorAll('.year-btn');
-    const current = parseInt([...
-      buttons].find(b=>b.getAttribute('aria-current')==='true')?.dataset.index || '0', 10);
-    const railPadding = 12; // approx .year-pill horizontal padding
+    const current = parseInt([...buttons].find(b=>b.getAttribute('aria-current')==='true')?.dataset.index || '0', 10);
+    const railPadding = 12;
     leftSpacer.style.width = rightSpacer.style.width = `${(rail.clientWidth/2) - railPadding}px`;
     centerTo(current,{animate:false}); setActive(current); updateIndicators();
   });
@@ -312,16 +311,41 @@
     centerTo(startIdx,{animate:false,set:true});
     requestAnimationFrame(()=>{ setActive(startIdx); updateIndicators(); });
 
-    // Observe the pill; run the left-to-right scroll once when it comes into view
+    // Observe the pill to run intro once
     const pill = document.querySelector('.year-pill');
-    const io = new IntersectionObserver((entries)=>{
-      for (const entry of entries){
-          runIntroScroll();
-          io.disconnect();
-          break;
-      }
+    const ioPill = new IntersectionObserver((entries)=>{
+      for (const entry of entries){ runIntroScroll(); ioPill.disconnect(); break; }
     }, { threshold: 1 });
-    if (pill) io.observe(pill);
+    if (pill) ioPill.observe(pill);
+
+    // === NEW: Hide nav when hero/header is NOT visible ===
+    const hero = document.getElementById('site-hero');
+    const navDesktop = document.getElementById('nav-desktop');
+    const navMobileBtn = document.getElementById('nav-mobile-btn');
+    const navCheck = document.getElementById('nav-check');
+
+    const ioHero = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      const heroVisible = entry && entry.isIntersecting;
+
+      // When hero not visible -> hide both nav controls
+      if (!heroVisible) {
+        navDesktop?.classList.add('nav-hidden');
+        navMobileBtn?.classList.add('nav-hidden');
+        // Close mobile menu if open
+        if (navCheck && navCheck.checked) navCheck.checked = false;
+      } else {
+        navDesktop?.classList.remove('nav-hidden');
+        navMobileBtn?.classList.remove('nav-hidden');
+      }
+    }, {
+      // Trigger as soon as the very top of hero scrolls out
+      root: null,
+      threshold: 0.01,
+      rootMargin: '0px'
+    });
+
+    if (hero) ioHero.observe(hero);
   })();
 </script>
 
