@@ -174,22 +174,40 @@
         </div>
       </div>
     </div>
-    <div class="w-[98vw] ml-[-1.95vw] rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-lg">
+    <div class="w-[98vw] mx-auto rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-lg">
       <iframe id="year-iframe" title="Embedded Project Page" loading="lazy" class="w-full h-[72vh] md:h-[90vh] bg-white dark:bg-gray-900" src="about:blank"></iframe>
     </div>
   </section>
 </main>
 
 <script>
-  const PAGES = { 2020: "6th/6th.html", 2021: "7th/7th.html", 2022: "8th/8th.html", 2023: "9th/9th.html", 2024: "10th/10th.html", 2025: "11th/11th.html", 2026: "12th.html" };
+  const PAGES = {
+    2020: "6th/6th.html",
+    2021: "7th/7th.html",
+    2022: "8th/8th.html",
+    2023: "9th/9th.html",
+    2024: "10th/10th.html",
+    2025: "11th/11th.html",
+    2026: "12th.html"
+  };
+
   const years = Object.keys(PAGES).sort((a,b) => a.localeCompare(b));
   const rail = document.getElementById("year-rail");
   const highlight = document.getElementById("year-highlight");
   const iframe = document.getElementById("year-iframe");
   const fadeL = document.getElementById('year-fade-left');
   const fadeR = document.getElementById('year-fade-right');
-  const indL = document.getElementById('year-ind-left');
-  const indR = document.getElementById('year-ind-right');
+  const indL  = document.getElementById('year-ind-left');
+  const indR  = document.getElementById('year-ind-right');
+
+  // Track current active state so we don't thrash iframe.src
+  let activeIndex = -1;
+  let currentYear = null;
+
+  // Helper to normalize target URLs before comparing
+  function normalizedHref(rel) {
+    return new URL(rel, document.baseURI).href;
+  }
 
   function makeSpacer(){ const d = document.createElement('div'); d.className = 'year-spacer'; d.style.width = '0px'; return d; }
   const leftSpacer = makeSpacer();
@@ -206,7 +224,12 @@
     btn.innerText = year;
     btn.dataset.index = idx;
     btn.addEventListener('click', () => centerTo(idx, { set: true, animate: true }));
-    btn.addEventListener('keydown', (e) => { if(e.key==='Enter' || e.key===' '){ e.preventDefault(); centerTo(idx, { set:true, animate:true }); }});
+    btn.addEventListener('keydown', (e) => {
+      if (e.key==='Enter' || e.key===' ') {
+        e.preventDefault();
+        centerTo(idx, { set:true, animate:true });
+      }
+    });
     cell.appendChild(btn);
     rail.appendChild(cell);
   });
@@ -216,19 +239,44 @@
     const buttons = rail.querySelectorAll('.year-btn');
     const btn = buttons[index];
     if(!btn) return;
+
     const target = btn.offsetLeft - (rail.clientWidth - btn.offsetWidth) / 2;
     const max = rail.scrollWidth - rail.clientWidth;
     const left = Math.min(Math.max(0, target), max);
     rail.scrollTo({ left, behavior: animate ? 'smooth' : 'auto' });
+
     if(set) setActive(index);
   }
 
   function setActive(index){
+    if (index === activeIndex) return; // already active, nothing to do
+
     const buttons = rail.querySelectorAll('.year-btn');
-    buttons.forEach((b,i)=>{ b.setAttribute('aria-current', i===index ? 'true' : 'false'); b.tabIndex = i===index ? 0 : -1; });
+    buttons.forEach((b,i)=>{
+      b.setAttribute('aria-current', i===index ? 'true' : 'false');
+      b.tabIndex = i===index ? 0 : -1;
+    });
+
     const activeBtn = buttons[index];
-    const pad = 20; const w = activeBtn.getBoundingClientRect().width; highlight.style.width = Math.max(72, w+pad) + 'px';
-    const year = years[index]; if(iframe.src !== PAGES[year]) iframe.src = PAGES[year]; localStorage.setItem('viewerYear', year);
+    const pad = 20;
+    const w = activeBtn.getBoundingClientRect().width;
+    highlight.style.width = Math.max(72, w + pad) + 'px';
+
+    const year = years[index];
+    if (year !== currentYear) {
+      const targetUrl = normalizedHref(PAGES[year]);
+
+      // Only apply if different from last applied target (stored on dataset)
+      if (iframe.dataset.src !== targetUrl) {
+        iframe.dataset.src = targetUrl;
+        iframe.src = targetUrl;
+      }
+
+      localStorage.setItem('viewerYear', year);
+      currentYear = year;
+    }
+
+    activeIndex = index;
   }
 
   function nearestIndex(){
@@ -269,8 +317,9 @@
       const t = Math.min(1, (now - start) / duration);
       rail.scrollLeft = max * easeInOutQuad(t);
       updateIndicators();
-      if (t < 1) { requestAnimationFrame(step); }
-      else {
+      if (t < 1) {
+        requestAnimationFrame(step);
+      } else {
         delete rail.dataset.lock;
         const i = nearestIndex();
         centerTo(i, { set:true, animate:true });
@@ -279,46 +328,78 @@
     requestAnimationFrame(step);
   }
 
+  // Debounced scroll: only update when the nearest index CHANGES
   let t;
   rail.addEventListener('scroll', () => {
     if (rail.dataset.lock) return;
     clearTimeout(t);
-    t = setTimeout(()=>{ const i = nearestIndex(); centerTo(i,{animate:true}); setActive(i); updateIndicators(); }, 100);
+    t = setTimeout(() => {
+      const i = nearestIndex();
+      if (i !== activeIndex) {
+        centerTo(i, { animate:true });
+        setActive(i);
+      }
+      updateIndicators();
+    }, 120);
   }, { passive:true });
 
   rail.addEventListener('keydown', (e)=>{
     const buttons = rail.querySelectorAll('.year-btn');
-    const current = parseInt([...buttons].find(b=>b.getAttribute('aria-current')==='true')?.dataset.index || '0', 10);
-    if(e.key==='ArrowLeft'){ e.preventDefault(); centerTo(Math.max(0,current-1), { set:true }); }
-    if(e.key==='ArrowRight'){ e.preventDefault(); centerTo(Math.min(years.length-1,current+1), { set:true }); }
-    if(e.key==='Enter' || e.key===' '){ e.preventDefault(); centerTo(current, { set:true }); }
+    const current = (activeIndex >= 0)
+      ? activeIndex
+      : parseInt([...buttons].find(b=>b.getAttribute('aria-current')==='true')?.dataset.index || '0', 10);
+
+    if(e.key==='ArrowLeft'){
+      e.preventDefault();
+      centerTo(Math.max(0,current-1), { set:true });
+    }
+    if(e.key==='ArrowRight'){
+      e.preventDefault();
+      centerTo(Math.min(years.length-1,current+1), { set:true });
+    }
+    if(e.key==='Enter' || e.key===' '){
+      e.preventDefault();
+      centerTo(current, { set:true });
+    }
   });
 
   window.addEventListener('resize', ()=>{
+    // Recompute spacers & recenter, but DO NOT touch iframe.src
     const buttons = rail.querySelectorAll('.year-btn');
-    const current = parseInt([...buttons].find(b=>b.getAttribute('aria-current')==='true')?.dataset.index || '0', 10);
+    const current = (activeIndex >= 0)
+      ? activeIndex
+      : parseInt([...buttons].find(b=>b.getAttribute('aria-current')==='true')?.dataset.index || '0', 10);
+
     const railPadding = 12;
     leftSpacer.style.width = rightSpacer.style.width = `${(rail.clientWidth/2) - railPadding}px`;
-    centerTo(current,{animate:false}); setActive(current); updateIndicators();
+    centerTo(current, { animate:false });
+    updateIndicators();
   });
 
   (function init(){
     const railPadding = 12;
     leftSpacer.style.width = rightSpacer.style.width = `${(rail.clientWidth/2) - railPadding}px`;
+
     const saved = localStorage.getItem('viewerYear');
-    const startIdx = saved && years.includes(saved) ? years.indexOf(saved) : (years.length-1);
+    const startIdx = saved && years.includes(saved) ? years.indexOf(saved) : (years.length - 1);
     rail.setAttribute('tabindex','0');
-    centerTo(startIdx,{animate:false,set:true});
-    requestAnimationFrame(()=>{ setActive(startIdx); updateIndicators(); });
+
+    // Initialize active state once
+    centerTo(startIdx, { animate:false, set:true });
+    requestAnimationFrame(()=>{ updateIndicators(); });
 
     // Observe the pill to run intro once
     const pill = document.querySelector('.year-pill');
     const ioPill = new IntersectionObserver((entries)=>{
-      for (const entry of entries){ runIntroScroll(); ioPill.disconnect(); break; }
+      for (const entry of entries){
+        runIntroScroll();
+        ioPill.disconnect();
+        break;
+      }
     }, { threshold: 1 });
     if (pill) ioPill.observe(pill);
 
-    // === NEW: Hide nav when hero/header is NOT visible ===
+    // Hide nav when hero/header is NOT visible (kept from your original)
     const hero = document.getElementById('site-hero');
     const navDesktop = document.getElementById('nav-desktop');
     const navMobileBtn = document.getElementById('nav-mobile-btn');
@@ -328,18 +409,15 @@
       const entry = entries[0];
       const heroVisible = entry && entry.isIntersecting;
 
-      // When hero not visible -> hide both nav controls
       if (!heroVisible) {
         navDesktop?.classList.add('nav-hidden');
         navMobileBtn?.classList.add('nav-hidden');
-        // Close mobile menu if open
         if (navCheck && navCheck.checked) navCheck.checked = false;
       } else {
         navDesktop?.classList.remove('nav-hidden');
         navMobileBtn?.classList.remove('nav-hidden');
       }
     }, {
-      // Trigger as soon as the very top of hero scrolls out
       root: null,
       threshold: 0.01,
       rootMargin: '0px'
@@ -348,6 +426,7 @@
     if (hero) ioHero.observe(hero);
   })();
 </script>
+
 
 </body>
 </html>
