@@ -333,46 +333,50 @@
   function loadIntoIframe(url){
     fetch(url, { cache: "no-store", redirect: "follow" })
       .then(function(res){
-        var ct = res.headers.get("content-type") || "";
         if (!res.ok) throw new Error("HTTP error " + res.status);
         return res.text();
       })
       .then(function(html){
-        // 1) Sanitize a little
+        // Light scrub to reduce download/nav shenanigans
         html = html.replace(/<meta[^>]+http-equiv=["']?refresh["']?[^>]*>/gi, "");
-        html = html.replace(/\sdownload(=(["']).*?\2)?/gi, "");
-        html = html.replace(/target=(["'])_blank\1/gi, 'target="_self"');
+        html = html.replace(/\sdownload(=(["']).*?\2)?/gi, "");              // strip download attr
+        html = html.replace(/target=(["'])_blank\1/gi, 'target="_self"');    // keep links in-frame
 
-        // 2) Make all relative links resolve to the YEAR PAGE'S directory
-        //    e.g. for ".../Projects/10th/10th.html" -> base href ".../Projects/10th/"
+        // Make relative URLs resolve from the year page's folder
         var baseHref = url.slice(0, url.lastIndexOf("/") + 1);
 
-        // 3) CSP that allows styles/images/fonts/media from same-origin *and* https
-        //    and allows iframes (Drive, etc.) while still blocking scripts/forms/popups
+        // CSP: allow scripts, styles, images, fonts, media, and iframes over HTTPS/self.
+        // No 'allow-downloads' and we still remove download attrs above.
         var wrapperStart =
           "<!doctype html><html><head>" +
           "<meta charset=\"utf-8\">" +
           "<meta http-equiv=\"Content-Security-Policy\" content=\"" +
             "default-src 'none'; " +
+            "script-src 'self' https: 'unsafe-inline' 'unsafe-eval'; " +
+            "style-src 'self' https: 'unsafe-inline'; " +
             "img-src 'self' https: data: blob:; " +
-            "style-src 'self' 'unsafe-inline' https:; " +
             "font-src 'self' https: data:; " +
             "media-src 'self' https: blob:; " +
-            "frame-src 'self' https:; " +   /* allow Google Drive/YT iframes, etc. */
-            "connect-src 'self' https:; " + /* harmless for fetching same-origin assets */
-            "frame-ancestors 'none'; " +
-            "form-action 'none';" +
+            "frame-src 'self' https:; " +         /* allow nested external iframes */
+            "connect-src 'self' https:; " +
+            "navigate-to 'self' https:; " +       /* limit where script-driven nav can go */
+            "frame-ancestors 'none'; " +          /* this inner doc can't be framed elsewhere */
+            "form-action 'self' https:;" +        /* allow posting only to self/https */
           "\">" +
           "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
           "<base href=\"" + baseHref + "\" target=\"_self\">" +
           "<style>html,body{margin:0;padding:0;}</style>" +
+          // small click guard for any leftover download-y links
+          "<script>(function(){document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var rel=(a.getAttribute('rel')||'').toLowerCase();var href=a.getAttribute('href')||'';if(/^blob:|^data:/.test(href)){e.preventDefault();e.stopPropagation();}},true);}());<\/script>" +
           "</head><body>";
 
         var wrapperEnd = "</body></html>";
 
-        // Keep scripts disabled for safety: NO 'allow-scripts' here
+        // IMPORTANT: enable scripts & same-origin so your JS runs and nested iframes can initialize.
+        // Do NOT include 'allow-downloads' or 'allow-popups' unless you truly need them.
         iframe.removeAttribute("src");
-        iframe.setAttribute("sandbox", "allow-same-origin"); // images/css/iframes OK, scripts NO
+        iframe.setAttribute("sandbox",
+          "allow-scripts allow-same-origin allow-forms"); // minimal for JS + iframes
         iframe.srcdoc = wrapperStart + html + wrapperEnd;
       })
       .catch(function(err){
@@ -381,8 +385,8 @@
           "<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
           "<style>body{font:14px system-ui, sans-serif; padding:1rem;}</style></head><body>" +
           "<h2>Can’t display this page safely</h2>" +
-          "<p>Tried to load <code>" + safeUrl + "</code> but the browser blocked it or it wasn’t accessible.</p>" +
-          "<p><strong>Tip:</strong> serve via <code>http://localhost</code> (Live Server / <code>python3 -m http.server</code>).</p>" +
+          "<p>Tried to load <code>" + safeUrl + "</code>.</p>" +
+          "<p><strong>Tip:</strong> serve via <code>http://localhost</code> so assets have proper headers.</p>" +
           "</body></html>";
         iframe.removeAttribute("src");
         iframe.setAttribute("sandbox", "");
