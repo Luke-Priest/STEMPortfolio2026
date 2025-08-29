@@ -218,18 +218,11 @@
   var indL      = document.getElementById("year-ind-left");
   var indR      = document.getElementById("year-ind-right");
 
-  /* ---------- Ephemeral state (in-memory only) ---------- */
-  var state = {
-    activeIndex: -1,
-    currentYear: null,
-    lastDocKey: null,
-    lockScroll: false
-  };
+  /* ---------- Ephemeral state ---------- */
+  var state = { activeIndex:-1, currentYear:null, lockScroll:false };
 
   /* ---------- Utils ---------- */
-  function normalizedHref(rel){
-    return new URL(rel, document.baseURI).href;
-  }
+  function normalizedHref(rel){ return new URL(rel, document.baseURI).href; }
   function makeSpacer(){
     var d = document.createElement("div");
     d.className = "year-spacer";
@@ -330,6 +323,7 @@
     if (indR)  indR.style.opacity  = atStart ? "1" : "0";
   }
 
+  /* ---------- Safe loader (fetch -> sanitize -> srcdoc) ---------- */
   function loadIntoIframe(url){
     fetch(url, { cache: "no-store", redirect: "follow" })
       .then(function(res){
@@ -337,16 +331,15 @@
         return res.text();
       })
       .then(function(html){
-        // Light scrub to reduce download/nav shenanigans
+        // Trim common download/redirect vectors
         html = html.replace(/<meta[^>]+http-equiv=["']?refresh["']?[^>]*>/gi, "");
-        html = html.replace(/\sdownload(=(["']).*?\2)?/gi, "");              // strip download attr
-        html = html.replace(/target=(["'])_blank\1/gi, 'target="_self"');    // keep links in-frame
+        html = html.replace(/\sdownload(=(["']).*?\2)?/gi, "");
+        html = html.replace(/target=(["'])_blank\1/gi, 'target="_self"');
 
-        // Make relative URLs resolve from the year page's folder
+        // Resolve relative paths from the year's folder
         var baseHref = url.slice(0, url.lastIndexOf("/") + 1);
 
-        // CSP: allow scripts, styles, images, fonts, media, and iframes over HTTPS/self.
-        // No 'allow-downloads' and we still remove download attrs above.
+        // CSP: allow JS/CSS/assets, PDF via <object>/<embed>, nested iframes; still no downloads.
         var wrapperStart =
           "<!doctype html><html><head>" +
           "<meta charset=\"utf-8\">" +
@@ -357,26 +350,25 @@
             "img-src 'self' https: data: blob:; " +
             "font-src 'self' https: data:; " +
             "media-src 'self' https: blob:; " +
-            "frame-src 'self' https:; " +         /* allow nested external iframes */
+            "object-src 'self' https: blob: data:; " +
+            "plugin-types application/pdf; " +
+            "frame-src 'self' https: blob: data:; " +
             "connect-src 'self' https:; " +
-            "navigate-to 'self' https:; " +       /* limit where script-driven nav can go */
-            "frame-ancestors 'none'; " +          /* this inner doc can't be framed elsewhere */
-            "form-action 'self' https:;" +        /* allow posting only to self/https */
+            "navigate-to 'self' https:; " +
+            "frame-ancestors 'none'; " +
+            "form-action 'self' https:;" +
           "\">" +
           "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
           "<base href=\"" + baseHref + "\" target=\"_self\">" +
           "<style>html,body{margin:0;padding:0;}</style>" +
-          // small click guard for any leftover download-y links
-          "<script>(function(){document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var rel=(a.getAttribute('rel')||'').toLowerCase();var href=a.getAttribute('href')||'';if(/^blob:|^data:/.test(href)){e.preventDefault();e.stopPropagation();}},true);}());<\/script>" +
+          "<script>(function(){document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var href=a.getAttribute('href')||'';if(/^blob:|^data:/.test(href)){e.preventDefault();e.stopPropagation();}},true);}());<\/script>" +
           "</head><body>";
 
         var wrapperEnd = "</body></html>";
 
-        // IMPORTANT: enable scripts & same-origin so your JS runs and nested iframes can initialize.
-        // Do NOT include 'allow-downloads' or 'allow-popups' unless you truly need them.
+        // Enable JS in the inner doc; still no popup/download permissions.
         iframe.removeAttribute("src");
-        iframe.setAttribute("sandbox",
-          "allow-scripts allow-same-origin allow-forms"); // minimal for JS + iframes
+        iframe.setAttribute("sandbox", "allow-scripts allow-same-origin allow-forms");
         iframe.srcdoc = wrapperStart + html + wrapperEnd;
       })
       .catch(function(err){
@@ -386,8 +378,9 @@
           "<style>body{font:14px system-ui, sans-serif; padding:1rem;}</style></head><body>" +
           "<h2>Can’t display this page safely</h2>" +
           "<p>Tried to load <code>" + safeUrl + "</code>.</p>" +
-          "<p><strong>Tip:</strong> serve via <code>http://localhost</code> so assets have proper headers.</p>" +
+          "<p><strong>Tip:</strong> open the site via <code>http://localhost</code> so assets have proper headers.</p>" +
           "</body></html>";
+
         iframe.removeAttribute("src");
         iframe.setAttribute("sandbox", "");
         iframe.srcdoc = fallback;
@@ -396,10 +389,7 @@
 
   /* ---------- Intro sweep ---------- */
   function runIntroScroll(){
-    try {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    } catch(e){ /* ignore */ }
-
+    try { if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return; } catch(e){}
     var max = Math.max(0, rail.scrollWidth - rail.clientWidth);
     if (max <= 0) return;
 
@@ -409,19 +399,13 @@
 
     var duration = Math.max(1500, Math.min(3500, max * 2));
     var start = performance.now();
-
     function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
     function step(now){
       var t = Math.min(1, (now - start) / duration);
       rail.scrollLeft = max * ease(t);
       updateIndicators();
-      if (t < 1) {
-        requestAnimationFrame(step);
-      } else {
-        state.lockScroll = false;
-        var i = nearestIndex();
-        centerTo(i, { set:true, animate:true });
-      }
+      if (t < 1) requestAnimationFrame(step);
+      else { state.lockScroll = false; var i = nearestIndex(); centerTo(i, { set:true, animate:true }); }
     }
     requestAnimationFrame(step);
   }
@@ -433,10 +417,7 @@
     clearTimeout(debounce);
     debounce = setTimeout(function(){
       var i = nearestIndex();
-      if (i !== state.activeIndex) {
-        centerTo(i, { animate:true });
-        setActive(i);
-      }
+      if (i !== state.activeIndex) { centerTo(i, { animate:true }); setActive(i); }
       updateIndicators();
     }, 120);
   }, { passive:true });
@@ -447,9 +428,9 @@
       ? state.activeIndex
       : parseInt((Array.prototype.find.call(buttons, function(b){ return b.getAttribute("aria-current")==="true"; }) || { dataset:{ index:"0" } }).dataset.index, 10);
 
-    if (e.key === "ArrowLeft") { e.preventDefault(); centerTo(Math.max(0, current-1), { set:true }); }
-    if (e.key === "ArrowRight"){ e.preventDefault(); centerTo(Math.min(years.length-1, current+1), { set:true }); }
-    if (e.key === "Enter" || e.key === " "){ e.preventDefault(); centerTo(current, { set:true }); }
+    if (e.key === "ArrowLeft")  { e.preventDefault(); centerTo(Math.max(0, current-1), { set:true }); }
+    if (e.key === "ArrowRight") { e.preventDefault(); centerTo(Math.min(years.length-1, current+1), { set:true }); }
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); centerTo(current, { set:true }); }
   });
 
   window.addEventListener("resize", function(){
@@ -470,27 +451,21 @@
     leftSpacer.style.width = rightSpacer.style.width = String((rail.clientWidth/2) - railPadding) + "px";
     rail.setAttribute("tabindex", "0");
 
-    // Default to the latest year (no persistence)
-    var startIdx = years.length - 1;
+    var startIdx = years.length - 1; // latest year
     centerTo(startIdx, { animate:false, set:true });
     requestAnimationFrame(updateIndicators);
 
-    // One-time intro scroll when the pill is fully in view
     var pill = document.querySelector(".year-pill");
     if (pill) {
       var ioPill = new IntersectionObserver(function(entries, obs){
         for (var i=0; i<entries.length; i++){
-          if (entries[i].isIntersecting) {
-            runIntroScroll();
-            obs.disconnect();
-            break;
-          }
+          if (entries[i].isIntersecting) { runIntroScroll(); obs.disconnect(); break; }
         }
       }, { threshold: 1 });
       ioPill.observe(pill);
     }
 
-    // Optional nav visibility logic (purely visual; no storage)
+    // Optional nav visibility (no persistence)
     var hero        = document.getElementById("site-hero");
     var navDesktop  = document.getElementById("nav-desktop");
     var navMobileBtn= document.getElementById("nav-mobile-btn");
@@ -500,7 +475,6 @@
       var ioHero = new IntersectionObserver(function(entries){
         var entry = entries[0];
         var heroVisible = entry && entry.isIntersecting;
-
         if (!heroVisible) {
           if (navDesktop)  navDesktop.classList.add("nav-hidden");
           if (navMobileBtn)navMobileBtn.classList.add("nav-hidden");
@@ -510,11 +484,11 @@
           if (navMobileBtn)navMobileBtn.classList.remove("nav-hidden");
         }
       }, { root:null, threshold:0.01, rootMargin:"0px" });
-
       ioHero.observe(hero);
     }
   })();
 </script>
+
 
 
 
