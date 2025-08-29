@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Watts From Waste – HTML Slides</title>
+  <style>
+/* One-page-per-viewport slideshow with contained scaling */
+:root {
+  color-scheme: light dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.viewer {
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  overscroll-behavior-y: contain;
+  background: #0f172a; /* slate-900-ish */
+}
+
+.slide {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  scroll-snap-align: start;
+  background: #0b1220; /* slightly different for letterbox edges */
+}
+
+.slide img {
+  /* Contain within viewport: never exceed vw/vh, preserve aspect */
+  max-width: min(100vw, 100dvw);
+  max-height: min(100vh, 100dvh);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 8px 28px rgba(0,0,0,.4);
+  border-radius: 8px;
+}
+
+/* Simple fixed header to show pagination */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px 0;
+  color: #e5e7eb;
+  background: linear-gradient(to bottom, rgba(2,6,23,0.9), rgba(2,6,23,0.2));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  text-align: center;
+  font-size: 12px;
+  padding: 8px 0;
+  color: #94a3b8;
+  background: linear-gradient(to top, rgba(2,6,23,0.8), transparent);
+}
+</style>
+</head>
+<body>
+  <main class="viewer">
+    <div class="header">9th Grade Artifact – 1 slide</div>
+  <section class="slide" aria-label="Slide 1 of 1">
+    <img src="slide-01.png" alt="Slide 1"/>
+  </section>
+  
+  </main>
+</body>
+</html>
