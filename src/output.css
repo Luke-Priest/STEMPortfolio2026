@@ -508,6 +508,9 @@
   .h-\[72vh\] {
     height: 72vh;
   }
+  .h-\[80vh\] {
+    height: 80vh;
+  }
   .h-\[800px\] {
     height: 800px;
   }
@@ -600,6 +603,12 @@
   }
   .max-w-\[85rem\] {
     max-width: 85rem;
+  }
+  .max-w-\[2000px\] {
+    max-width: 2000px;
+  }
+  .max-w-\[2500px\] {
+    max-width: 2500px;
   }
   .max-w-md {
     max-width: var(--container-md);

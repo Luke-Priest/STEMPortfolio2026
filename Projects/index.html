@@ -158,30 +158,47 @@
 
 <main class="px-4 md:px-16 py-8 bg-white dark:bg-gray-900">
   <section aria-labelledby="viewer-title" class="w-full h-full mx-auto">
-    <div class="mb-4 md:mb-6 text-center">
-      <h2 id="viewer-title" class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">Yearly Project Pages</h2>
-      <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">NOTE: pages earlier than 2023 are original and WILL have visual bugs.</p>
-    </div>
-    <div class="relative flex justify-center mb-6">
-      <div class="">
-        <div class="year-pill scroll">
-          <div class="year-highlight" id="year-highlight"></div>
-          <div class="year-rail" id="year-rail" aria-label="Year selector" role="tablist"></div>
-          <div id="year-fade-left" class="year-fade left"></div>
-          <div id="year-fade-right" class="year-fade right"></div>
-          <div id="year-ind-left" class="year-indicator" style="left:6px">&#x276E;</div>
-          <div id="year-ind-right" class="year-indicator" style="right:6px">&#x276F;</div>
-        </div>
+  <div class="mb-4 md:mb-6 text-center">
+    <h2 id="viewer-title" class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">
+      Yearly Project Pages
+    </h2>
+    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+      NOTE: pages earlier than 2023 are original and WILL have visual bugs.
+    </p>
+  </div>
+
+  <div class="relative flex justify-center mb-6">
+    <div>
+      <div class="year-pill scroll">
+        <div class="year-highlight" id="year-highlight"></div>
+        <div class="year-rail" id="year-rail" aria-label="Year selector" role="tablist"></div>
+        <div id="year-fade-left" class="year-fade left"></div>
+        <div id="year-fade-right" class="year-fade right"></div>
+        <div id="year-ind-left" class="year-indicator" style="left:6px">&#x276E;</div>
+        <div id="year-ind-right" class="year-indicator" style="right:6px">&#x276F;</div>
       </div>
     </div>
-    <div class="w-[98vw] mx-auto rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-lg">
-      <iframe id="year-iframe" title="Embedded Project Page" loading="lazy" class="w-full h-[72vh] md:h-[90vh] bg-white dark:bg-gray-900" src="about:blank"></iframe>
-    </div>
-  </section>
+  </div>
+
+  <!-- Centered iframe container -->
+  <div class="max-w-[2500px] mx-auto w-full rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-lg">
+    <iframe
+      id="year-iframe"
+  title="Embedded Project Page"
+  class="w-full h-[72vh] md:h-[90vh] bg-white dark:bg-gray-900"
+  referrerpolicy="no-referrer"
+  sandbox=""
+  src="about:blank">
+
+    </iframe>
+  </div>
+</section>
+
 </main>
 
 <script>
-  const PAGES = {
+  /* ---------- Config ---------- */
+  var PAGES = {
     2020: "6th/6th.html",
     2021: "7th/7th.html",
     2022: "8th/8th.html",
@@ -191,151 +208,219 @@
     2026: "12th.html"
   };
 
-  const years = Object.keys(PAGES).sort((a,b) => a.localeCompare(b));
-  const rail = document.getElementById("year-rail");
-  const highlight = document.getElementById("year-highlight");
-  const iframe = document.getElementById("year-iframe");
-  const fadeL = document.getElementById('year-fade-left');
-  const fadeR = document.getElementById('year-fade-right');
-  const indL  = document.getElementById('year-ind-left');
-  const indR  = document.getElementById('year-ind-right');
+  /* ---------- DOM ---------- */
+  var years     = Object.keys(PAGES).sort(function(a,b){ return a.localeCompare(b); });
+  var rail      = document.getElementById("year-rail");
+  var highlight = document.getElementById("year-highlight");
+  var iframe    = document.getElementById("year-iframe");
+  var fadeL     = document.getElementById("year-fade-left");
+  var fadeR     = document.getElementById("year-fade-right");
+  var indL      = document.getElementById("year-ind-left");
+  var indR      = document.getElementById("year-ind-right");
 
-  // Track current active state so we don't thrash iframe.src
-  let activeIndex = -1;
-  let currentYear = null;
+  /* ---------- Ephemeral state (in-memory only) ---------- */
+  var state = {
+    activeIndex: -1,
+    currentYear: null,
+    lastDocKey: null,
+    lockScroll: false
+  };
 
-  // Helper to normalize target URLs before comparing
-  function normalizedHref(rel) {
+  /* ---------- Utils ---------- */
+  function normalizedHref(rel){
     return new URL(rel, document.baseURI).href;
   }
+  function makeSpacer(){
+    var d = document.createElement("div");
+    d.className = "year-spacer";
+    d.style.width = "0px";
+    return d;
+  }
 
-  function makeSpacer(){ const d = document.createElement('div'); d.className = 'year-spacer'; d.style.width = '0px'; return d; }
-  const leftSpacer = makeSpacer();
-  const rightSpacer = makeSpacer();
+  /* ---------- Build rail ---------- */
+  var leftSpacer = makeSpacer();
+  var rightSpacer = makeSpacer();
   rail.appendChild(leftSpacer);
 
-  years.forEach((year, idx) => {
-    const cell = document.createElement('div');
-    cell.className = 'year-item';
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'year-btn';
-    btn.role = 'tab';
-    btn.innerText = year;
-    btn.dataset.index = idx;
-    btn.addEventListener('click', () => centerTo(idx, { set: true, animate: true }));
-    btn.addEventListener('keydown', (e) => {
-      if (e.key==='Enter' || e.key===' ') {
+  years.forEach(function(year, idx){
+    var cell = document.createElement("div");
+    cell.className = "year-item";
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "year-btn";
+    btn.role = "tab";
+    btn.textContent = year;
+    btn.dataset.index = String(idx);
+
+    btn.addEventListener("click", function(){ centerTo(idx, { set:true, animate:true }); });
+    btn.addEventListener("keydown", function(e){
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         centerTo(idx, { set:true, animate:true });
       }
     });
+
     cell.appendChild(btn);
     rail.appendChild(cell);
   });
   rail.appendChild(rightSpacer);
 
-  function centerTo(index, { set=false, animate=true }={}){
-    const buttons = rail.querySelectorAll('.year-btn');
-    const btn = buttons[index];
-    if(!btn) return;
+  /* ---------- Core behaviors ---------- */
+  function centerTo(index, opts){
+    opts = opts || {};
+    var set = !!opts.set;
+    var animate = (opts.animate !== false);
 
-    const target = btn.offsetLeft - (rail.clientWidth - btn.offsetWidth) / 2;
-    const max = rail.scrollWidth - rail.clientWidth;
-    const left = Math.min(Math.max(0, target), max);
-    rail.scrollTo({ left, behavior: animate ? 'smooth' : 'auto' });
+    var buttons = rail.querySelectorAll(".year-btn");
+    var btn = buttons[index];
+    if (!btn) return;
 
-    if(set) setActive(index);
+    var target = btn.offsetLeft - (rail.clientWidth - btn.offsetWidth) / 2;
+    var max = Math.max(0, rail.scrollWidth - rail.clientWidth);
+    var left = Math.min(Math.max(0, target), max);
+    rail.scrollTo({ left: left, behavior: animate ? "smooth" : "auto" });
+
+    if (set) setActive(index);
   }
 
   function setActive(index){
-    if (index === activeIndex) return; // already active, nothing to do
+    if (index === state.activeIndex) return;
 
-    const buttons = rail.querySelectorAll('.year-btn');
-    buttons.forEach((b,i)=>{
-      b.setAttribute('aria-current', i===index ? 'true' : 'false');
+    var buttons = rail.querySelectorAll(".year-btn");
+    buttons.forEach(function(b,i){
+      b.setAttribute("aria-current", i===index ? "true" : "false");
       b.tabIndex = i===index ? 0 : -1;
     });
 
-    const activeBtn = buttons[index];
-    const pad = 20;
-    const w = activeBtn.getBoundingClientRect().width;
-    highlight.style.width = Math.max(72, w + pad) + 'px';
+    var activeBtn = buttons[index];
+    var pad = 20;
+    var w = activeBtn.getBoundingClientRect().width;
+    highlight.style.width = Math.max(72, w + pad) + "px";
 
-    const year = years[index];
-    if (year !== currentYear) {
-      const targetUrl = normalizedHref(PAGES[year]);
-
-      // Only apply if different from last applied target (stored on dataset)
-      if (iframe.dataset.src !== targetUrl) {
-        iframe.dataset.src = targetUrl;
-        iframe.src = targetUrl;
-      }
-
-      localStorage.setItem('viewerYear', year);
-      currentYear = year;
+    var year = years[index];
+    if (year !== state.currentYear) {
+      var url = normalizedHref(PAGES[year]);
+      loadIntoIframe(url);
+      state.currentYear = year;
     }
 
-    activeIndex = index;
+    state.activeIndex = index;
   }
 
   function nearestIndex(){
-    const buttons = rail.querySelectorAll('.year-btn');
-    const viewportCenter = rail.scrollLeft + rail.clientWidth / 2;
-    let best = 0, bestDist = Infinity;
-    buttons.forEach((btn, i) => {
-      const center = btn.offsetLeft + btn.offsetWidth / 2;
-      const d = Math.abs(center - viewportCenter);
-      if(d < bestDist){ bestDist = d; best = i; }
+    var buttons = rail.querySelectorAll(".year-btn");
+    var viewportCenter = rail.scrollLeft + rail.clientWidth / 2;
+    var best = 0, bestDist = Infinity;
+
+    buttons.forEach(function(btn, i){
+      var center = btn.offsetLeft + btn.offsetWidth / 2;
+      var d = Math.abs(center - viewportCenter);
+      if (d < bestDist) { bestDist = d; best = i; }
     });
     return best;
   }
 
   function updateIndicators(){
-    const atStart = rail.scrollLeft <= 2;
-    const atEnd = rail.scrollLeft >= (rail.scrollWidth - rail.clientWidth - 2);
-    fadeL.style.opacity = atStart ? '0' : '1';
-    fadeR.style.opacity = atEnd ? '0' : '1';
-    indL.style.opacity = atEnd ? '1' : '0';
-    indR.style.opacity = atStart ? '1' : '0';
+    var atStart = rail.scrollLeft <= 2;
+    var atEnd = rail.scrollLeft >= (rail.scrollWidth - rail.clientWidth - 2);
+    if (fadeL) fadeL.style.opacity = atStart ? "0" : "1";
+    if (fadeR) fadeR.style.opacity = atEnd ? "0" : "1";
+    if (indL)  indL.style.opacity  = atEnd ? "1" : "0";
+    if (indR)  indR.style.opacity  = atStart ? "1" : "0";
   }
 
-  // ---------- Animate scroll from left to right when pill enters viewport ----------
+  /* ---------- Safe loader (fetch -> sanitize -> srcdoc) ---------- */
+  function loadIntoIframe(url){
+    fetch(url, { cache: "no-store", redirect: "follow" })
+      .then(function(res){
+        var ct = res.headers.get("content-type") || "";
+        if (!res.ok || ct.indexOf("text/html") === -1) {
+          throw new Error("Blocked non-HTML (" + res.status + " " + (ct || "no content-type") + ")");
+        }
+        return res.text();
+      })
+      .then(function(html){
+        // Remove meta refresh redirects
+        html = html.replace(/<meta[^>]+http-equiv=["']?refresh["']?[^>]*>/gi, "");
+        // Strip download attributes
+        html = html.replace(/\sdownload(=(["']).*?\2)?/gi, "");
+        // Force links to remain in-frame
+        html = html.replace(/target=(["'])_blank\1/gi, 'target="_self"');
+
+        var wrapperStart =
+          "<!doctype html><html><head>" +
+          "<meta charset=\"utf-8\">" +
+          "<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'none'; img-src 'self' data: blob:; style-src 'unsafe-inline' 'self'; font-src 'self' data:; media-src 'self' blob:; frame-ancestors 'none'; form-action 'none'; connect-src 'self';\">" +
+          "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
+          "<base target=\"_self\">" +
+          "<style>html,body{margin:0;padding:0;}</style>" +
+          "</head><body>";
+
+        var wrapperEnd = "</body></html>";
+
+        // Keep scripts disabled: sandbox allows same-origin only (no scripts/forms/popups)
+        iframe.removeAttribute("src");
+        iframe.setAttribute("sandbox", "allow-same-origin");
+        iframe.srcdoc = wrapperStart + html + wrapperEnd;
+
+        state.lastDocKey = url;
+      })
+      .catch(function(err){
+        var safeUrl = url.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        var fallback =
+          "<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
+          "<style>body{font:14px system-ui, sans-serif; padding:1rem;}</style></head><body>" +
+          "<h2>Can’t display this page safely</h2>" +
+          "<p>Tried to load <code>" + safeUrl + "</code> but it wasn’t plain HTML or attempted a download.</p>" +
+          "</body></html>";
+
+        iframe.removeAttribute("src");
+        iframe.setAttribute("sandbox", "");
+        iframe.srcdoc = fallback;
+      });
+  }
+
+  /* ---------- Intro sweep ---------- */
   function runIntroScroll(){
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // accessibility
-    const max = Math.max(0, rail.scrollWidth - rail.clientWidth);
+    try {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    } catch(e){ /* ignore */ }
+
+    var max = Math.max(0, rail.scrollWidth - rail.clientWidth);
     if (max <= 0) return;
 
-    rail.dataset.lock = '1';
+    state.lockScroll = true;
     rail.scrollLeft = 0;
     updateIndicators();
 
-    const duration = Math.max(1500, Math.min(3500, max * 2));
-    const start = performance.now();
-    function easeInOutQuad(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+    var duration = Math.max(1500, Math.min(3500, max * 2));
+    var start = performance.now();
+
+    function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
     function step(now){
-      const t = Math.min(1, (now - start) / duration);
-      rail.scrollLeft = max * easeInOutQuad(t);
+      var t = Math.min(1, (now - start) / duration);
+      rail.scrollLeft = max * ease(t);
       updateIndicators();
       if (t < 1) {
         requestAnimationFrame(step);
       } else {
-        delete rail.dataset.lock;
-        const i = nearestIndex();
+        state.lockScroll = false;
+        var i = nearestIndex();
         centerTo(i, { set:true, animate:true });
       }
     }
     requestAnimationFrame(step);
   }
 
-  // Debounced scroll: only update when the nearest index CHANGES
-  let t;
-  rail.addEventListener('scroll', () => {
-    if (rail.dataset.lock) return;
-    clearTimeout(t);
-    t = setTimeout(() => {
-      const i = nearestIndex();
-      if (i !== activeIndex) {
+  /* ---------- Events ---------- */
+  var debounce;
+  rail.addEventListener("scroll", function(){
+    if (state.lockScroll) return;
+    clearTimeout(debounce);
+    debounce = setTimeout(function(){
+      var i = nearestIndex();
+      if (i !== state.activeIndex) {
         centerTo(i, { animate:true });
         setActive(i);
       }
@@ -343,89 +428,82 @@
     }, 120);
   }, { passive:true });
 
-  rail.addEventListener('keydown', (e)=>{
-    const buttons = rail.querySelectorAll('.year-btn');
-    const current = (activeIndex >= 0)
-      ? activeIndex
-      : parseInt([...buttons].find(b=>b.getAttribute('aria-current')==='true')?.dataset.index || '0', 10);
+  rail.addEventListener("keydown", function(e){
+    var buttons = rail.querySelectorAll(".year-btn");
+    var current = (state.activeIndex >= 0)
+      ? state.activeIndex
+      : parseInt((Array.prototype.find.call(buttons, function(b){ return b.getAttribute("aria-current")==="true"; }) || { dataset:{ index:"0" } }).dataset.index, 10);
 
-    if(e.key==='ArrowLeft'){
-      e.preventDefault();
-      centerTo(Math.max(0,current-1), { set:true });
-    }
-    if(e.key==='ArrowRight'){
-      e.preventDefault();
-      centerTo(Math.min(years.length-1,current+1), { set:true });
-    }
-    if(e.key==='Enter' || e.key===' '){
-      e.preventDefault();
-      centerTo(current, { set:true });
-    }
+    if (e.key === "ArrowLeft") { e.preventDefault(); centerTo(Math.max(0, current-1), { set:true }); }
+    if (e.key === "ArrowRight"){ e.preventDefault(); centerTo(Math.min(years.length-1, current+1), { set:true }); }
+    if (e.key === "Enter" || e.key === " "){ e.preventDefault(); centerTo(current, { set:true }); }
   });
 
-  window.addEventListener('resize', ()=>{
-    // Recompute spacers & recenter, but DO NOT touch iframe.src
-    const buttons = rail.querySelectorAll('.year-btn');
-    const current = (activeIndex >= 0)
-      ? activeIndex
-      : parseInt([...buttons].find(b=>b.getAttribute('aria-current')==='true')?.dataset.index || '0', 10);
+  window.addEventListener("resize", function(){
+    var buttons = rail.querySelectorAll(".year-btn");
+    var current = (state.activeIndex >= 0)
+      ? state.activeIndex
+      : parseInt((Array.prototype.find.call(buttons, function(b){ return b.getAttribute("aria-current")==="true"; }) || { dataset:{ index:"0" } }).dataset.index, 10);
 
-    const railPadding = 12;
-    leftSpacer.style.width = rightSpacer.style.width = `${(rail.clientWidth/2) - railPadding}px`;
+    var railPadding = 12;
+    leftSpacer.style.width = rightSpacer.style.width = String((rail.clientWidth/2) - railPadding) + "px";
     centerTo(current, { animate:false });
     updateIndicators();
   });
 
+  /* ---------- Init ---------- */
   (function init(){
-    const railPadding = 12;
-    leftSpacer.style.width = rightSpacer.style.width = `${(rail.clientWidth/2) - railPadding}px`;
+    var railPadding = 12;
+    leftSpacer.style.width = rightSpacer.style.width = String((rail.clientWidth/2) - railPadding) + "px";
+    rail.setAttribute("tabindex", "0");
 
-    const saved = localStorage.getItem('viewerYear');
-    const startIdx = saved && years.includes(saved) ? years.indexOf(saved) : (years.length - 1);
-    rail.setAttribute('tabindex','0');
-
-    // Initialize active state once
+    // Default to the latest year (no persistence)
+    var startIdx = years.length - 1;
     centerTo(startIdx, { animate:false, set:true });
-    requestAnimationFrame(()=>{ updateIndicators(); });
+    requestAnimationFrame(updateIndicators);
 
-    // Observe the pill to run intro once
-    const pill = document.querySelector('.year-pill');
-    const ioPill = new IntersectionObserver((entries)=>{
-      for (const entry of entries){
-        runIntroScroll();
-        ioPill.disconnect();
-        break;
-      }
-    }, { threshold: 1 });
-    if (pill) ioPill.observe(pill);
+    // One-time intro scroll when the pill is fully in view
+    var pill = document.querySelector(".year-pill");
+    if (pill) {
+      var ioPill = new IntersectionObserver(function(entries, obs){
+        for (var i=0; i<entries.length; i++){
+          if (entries[i].isIntersecting) {
+            runIntroScroll();
+            obs.disconnect();
+            break;
+          }
+        }
+      }, { threshold: 1 });
+      ioPill.observe(pill);
+    }
 
-    // Hide nav when hero/header is NOT visible (kept from your original)
-    const hero = document.getElementById('site-hero');
-    const navDesktop = document.getElementById('nav-desktop');
-    const navMobileBtn = document.getElementById('nav-mobile-btn');
-    const navCheck = document.getElementById('nav-check');
+    // Optional nav visibility logic (purely visual; no storage)
+    var hero        = document.getElementById("site-hero");
+    var navDesktop  = document.getElementById("nav-desktop");
+    var navMobileBtn= document.getElementById("nav-mobile-btn");
+    var navCheck    = document.getElementById("nav-check");
 
-    const ioHero = new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      const heroVisible = entry && entry.isIntersecting;
+    if (hero) {
+      var ioHero = new IntersectionObserver(function(entries){
+        var entry = entries[0];
+        var heroVisible = entry && entry.isIntersecting;
 
-      if (!heroVisible) {
-        navDesktop?.classList.add('nav-hidden');
-        navMobileBtn?.classList.add('nav-hidden');
-        if (navCheck && navCheck.checked) navCheck.checked = false;
-      } else {
-        navDesktop?.classList.remove('nav-hidden');
-        navMobileBtn?.classList.remove('nav-hidden');
-      }
-    }, {
-      root: null,
-      threshold: 0.01,
-      rootMargin: '0px'
-    });
+        if (!heroVisible) {
+          if (navDesktop)  navDesktop.classList.add("nav-hidden");
+          if (navMobileBtn)navMobileBtn.classList.add("nav-hidden");
+          if (navCheck && navCheck.checked) navCheck.checked = false;
+        } else {
+          if (navDesktop)  navDesktop.classList.remove("nav-hidden");
+          if (navMobileBtn)navMobileBtn.classList.remove("nav-hidden");
+        }
+      }, { root:null, threshold:0.01, rootMargin:"0px" });
 
-    if (hero) ioHero.observe(hero);
+      ioHero.observe(hero);
+    }
   })();
 </script>
+
+
 
 
 </body>
