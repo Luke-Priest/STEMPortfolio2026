@@ -15,16 +15,20 @@
 html, body {
   height: 100%;
   margin: 0;
-  overflow: hidden; /* fully disables scrolling */
+  overflow: hidden; /* lock global page scroll */
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
 }
 
 .viewer {
   height: 100vh;
   width: 100vw;
-  /* prevent scrolling */
-  overflow: hidden;        /* ⬅ CHANGED from auto */
-  scroll-snap-type: none;  /* ⬅ disabled snapping */
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+
+  /* prevent rubber-band/bounce scroll above or below content */
+  overscroll-behavior: none; 
+  -webkit-overflow-scrolling: touch; /* still smooth on iOS */
+  
   background: #0f172a; /* slate-900-ish */
 }
 
@@ -35,11 +39,11 @@ html, body {
   align-items: center;
   justify-content: center;
   margin: 0;
-  background: #0b1220; /* slightly different for letterbox edges */
+  scroll-snap-align: start;
+  background: #0b1220;
 }
 
 .slide img {
-  /* Contain within viewport: never exceed vw/vh, preserve aspect */
   max-width: min(100vw, 100dvw);
   max-height: min(100vh, 100dvh);
   width: auto;
@@ -50,13 +54,12 @@ html, body {
   border-radius: 8px;
 }
 
-/* Simple fixed header to show pagination */
 .header {
-  position: fixed; /* ⬅ was sticky */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 10;
   text-align: center;
   font-size: 14px;
   padding: 10px 0;
@@ -66,11 +69,10 @@ html, body {
   -webkit-backdrop-filter: blur(6px);
 }
 
+
 .footer {
-  position: fixed; /* ⬅ was sticky */
+  position: sticky;
   bottom: 0;
-  left: 0;
-  right: 0;
   z-index: 2;
   text-align: center;
   font-size: 12px;
@@ -86,7 +88,6 @@ html, body {
     <section class="slide" aria-label="Slide 1 of 1">
       <img src="slide-01.png" alt="Slide 1"/>
     </section>
-    <div class="footer">End of presentation</div>
   </main>
 </body>
 </html>
