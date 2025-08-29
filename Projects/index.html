@@ -330,51 +330,60 @@
     if (indR)  indR.style.opacity  = atStart ? "1" : "0";
   }
 
-  /* ---------- Safe loader (fetch -> sanitize -> srcdoc) ---------- */
   function loadIntoIframe(url){
     fetch(url, { cache: "no-store", redirect: "follow" })
       .then(function(res){
         var ct = res.headers.get("content-type") || "";
-        if (!res.ok || ct.indexOf("text/html") === -1) {
-          throw new Error("Blocked non-HTML (" + res.status + " " + (ct || "no content-type") + ")");
-        }
+        if (!res.ok) throw new Error("HTTP error " + res.status);
         return res.text();
       })
       .then(function(html){
-        // Remove meta refresh redirects
+        // 1) Sanitize a little
         html = html.replace(/<meta[^>]+http-equiv=["']?refresh["']?[^>]*>/gi, "");
-        // Strip download attributes
         html = html.replace(/\sdownload(=(["']).*?\2)?/gi, "");
-        // Force links to remain in-frame
         html = html.replace(/target=(["'])_blank\1/gi, 'target="_self"');
 
+        // 2) Make all relative links resolve to the YEAR PAGE'S directory
+        //    e.g. for ".../Projects/10th/10th.html" -> base href ".../Projects/10th/"
+        var baseHref = url.slice(0, url.lastIndexOf("/") + 1);
+
+        // 3) CSP that allows styles/images/fonts/media from same-origin *and* https
+        //    and allows iframes (Drive, etc.) while still blocking scripts/forms/popups
         var wrapperStart =
           "<!doctype html><html><head>" +
           "<meta charset=\"utf-8\">" +
-          "<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'none'; img-src 'self' data: blob:; style-src 'unsafe-inline' 'self'; font-src 'self' data:; media-src 'self' blob:; frame-ancestors 'none'; form-action 'none'; connect-src 'self';\">" +
+          "<meta http-equiv=\"Content-Security-Policy\" content=\"" +
+            "default-src 'none'; " +
+            "img-src 'self' https: data: blob:; " +
+            "style-src 'self' 'unsafe-inline' https:; " +
+            "font-src 'self' https: data:; " +
+            "media-src 'self' https: blob:; " +
+            "frame-src 'self' https:; " +   /* allow Google Drive/YT iframes, etc. */
+            "connect-src 'self' https:; " + /* harmless for fetching same-origin assets */
+            "frame-ancestors 'none'; " +
+            "form-action 'none';" +
+          "\">" +
           "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
-          "<base target=\"_self\">" +
+          "<base href=\"" + baseHref + "\" target=\"_self\">" +
           "<style>html,body{margin:0;padding:0;}</style>" +
           "</head><body>";
 
         var wrapperEnd = "</body></html>";
 
-        // Keep scripts disabled: sandbox allows same-origin only (no scripts/forms/popups)
+        // Keep scripts disabled for safety: NO 'allow-scripts' here
         iframe.removeAttribute("src");
-        iframe.setAttribute("sandbox", "allow-same-origin");
+        iframe.setAttribute("sandbox", "allow-same-origin"); // images/css/iframes OK, scripts NO
         iframe.srcdoc = wrapperStart + html + wrapperEnd;
-
-        state.lastDocKey = url;
       })
       .catch(function(err){
-        var safeUrl = url.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        var safeUrl = url.replace(/</g,"&lt;").replace(/>/g,"&gt;");
         var fallback =
           "<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
           "<style>body{font:14px system-ui, sans-serif; padding:1rem;}</style></head><body>" +
           "<h2>Can’t display this page safely</h2>" +
-          "<p>Tried to load <code>" + safeUrl + "</code> but it wasn’t plain HTML or attempted a download.</p>" +
+          "<p>Tried to load <code>" + safeUrl + "</code> but the browser blocked it or it wasn’t accessible.</p>" +
+          "<p><strong>Tip:</strong> serve via <code>http://localhost</code> (Live Server / <code>python3 -m http.server</code>).</p>" +
           "</body></html>";
-
         iframe.removeAttribute("src");
         iframe.setAttribute("sandbox", "");
         iframe.srcdoc = fallback;
